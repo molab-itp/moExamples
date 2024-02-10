@@ -2,6 +2,9 @@
 // lobby
 let my = {};
 
+// my.stored_devices
+// dstore_device_summary()
+
 function my_setup() {
   my.width = 400;
   my.height = 300;
@@ -20,7 +23,8 @@ function setup() {
 
   let config = fb_.init('jht9629');
   // let config = fb_.init('jht1493');
-  console.log('config.projectId', config.projectId, 'configLabel', config.configLabel, 'room', my.roomName);
+  console.log('config.projectId', config.projectId, 'configLabel', config.configLabel);
+  console.log('config.configVersion', config.configVersion, 'room', my.roomName);
 
   dstore_init();
 }
@@ -30,7 +34,7 @@ function dstore_init() {
   signInAnonymously(auth)
     .then(() => {
       my.uid = auth.currentUser.uid;
-      console.log('dstore_init', my.uid);
+      console.log('dstore_init my.uid', my.uid);
 
       dstore_device_onChild();
     })
@@ -43,5 +47,4 @@ function draw() {
   //
 }
 
-// dstore_device_summary()
 // dstore_device_remove()
