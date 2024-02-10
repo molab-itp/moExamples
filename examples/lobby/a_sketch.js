@@ -1,6 +1,5 @@
 // https://editor.p5js.org/jht9629-nyu/sketches/xxxx
-// mo-pixel-grid jht9629 fb_firebase.js
-
+// lobby
 let my = {};
 
 function my_setup() {
