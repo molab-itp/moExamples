@@ -1,5 +1,5 @@
-// https://editor.p5js.org/jht9629-nyu/sketches/xxxx
-// lobby
+// https://editor.p5js.org/jht9629-nyu/sketches/vP6sWN4Cu
+// p5moExamples lobby
 
 let my = {};
 
