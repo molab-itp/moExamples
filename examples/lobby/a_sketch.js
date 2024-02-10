@@ -11,9 +11,6 @@ let my = {};
 function my_setup() {
   my.width = 400;
   my.height = 300;
-  // updated to verify change on mobile
-  my.version = '?v=157';
-  // Aspect ratio of video capture
   my.dstore_rootPath = 'm0-@r-@w-';
   my.roomName = 'room0';
   my.nameDevice = '';
@@ -48,5 +45,3 @@ function draw() {
     circle(x + len / 2, y, len);
   }
 }
-
-// dstore_device_remove()
