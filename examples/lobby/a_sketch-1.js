@@ -1,6 +1,8 @@
 // https://editor.p5js.org/jht9629-nyu/sketches/vP6sWN4Cu
 // p5moExamples lobby
 
+// expand circle size to fit as many circles in canvas as possible
+
 let my = {};
 
 // my.devices.length
@@ -16,6 +18,8 @@ function my_setup() {
   my.mo_app = 'mo-blackfacts';
   my.roomName = 'room0';
   my.nameDevice = '';
+  my.ndiv = 1;
+  my.ndivDelta = 1;
 }
 
 function setup() {
@@ -40,11 +44,13 @@ function draw() {
   background(200);
   my.devices = dstore_device_summary();
   if (!my.devices) return;
-  let n = my.devices.length;
-  let len = width / n;
-  let y = len / 2;
-  let x = len / 2;
-  for (let index = 0; index < my.devices.length; index++) {
+  let ndevices = my.devices.length;
+  let len = width / my.ndiv;
+  let half = len / 2;
+  let x0 = half;
+  let y = half;
+  let x = x0;
+  for (let index = 0; index < ndevices; index++) {
     let device = my.devices[index];
     let colr = 0;
     // green circle marks active device
@@ -54,14 +60,20 @@ function draw() {
     fill(colr);
     circle(x, y, len);
     // yellow inner dot marks my device
-    if (device.uid == my.uid) {
+    if (device && device.uid == my.uid) {
       fill('yellow');
       circle(x, y, len / 3);
     }
-    x += len;
+    if (index != ndevices - 1) {
+      x += len;
+    }
     if (x > width) {
-      x = 0;
+      x = x0;
       y += len;
+      if (y + half > height) {
+        my.ndiv += my.ndivDelta;
+        break;
+      }
     }
   }
 }
