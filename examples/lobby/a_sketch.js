@@ -39,7 +39,9 @@ function draw() {
   my.devices = dstore_device_summary();
   if (!my.devices) return;
   let n = my.devices.length;
-  let len = int(width / n);
+  // let len = int(width / n);
+  // let len = int(width / n);
+  let len = width / n;
   let y = int(len / 2);
   let x = 0;
   for (let index = 0; index < my.devices.length; index++) {
@@ -57,7 +59,7 @@ function draw() {
       circle(x + len / 2, y, len / 2);
     }
     x += len;
-    if (x + len > width) {
+    if (x > width) {
       x = 0;
       y += len;
     }
