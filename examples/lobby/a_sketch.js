@@ -3,6 +3,7 @@
 
 let my = {};
 
+// my.devices.length
 // my.devices[0].uid
 // my.devices[0].serverValues.date_s
 // my.devices[0].serverValues.visit_count
@@ -24,8 +25,9 @@ function setup() {
 
   let config = fb_.init('jht9629');
   // let config = fb_.init('jht1493');
-  console.log('config.projectId', config.projectId, 'configLabel', config.configLabel);
-  console.log('config.configVersion', config.configVersion, 'room', my.roomName);
+  console.log('config.projectId', config.projectId);
+  console.log('configLabel', config.configLabel);
+  console.log('configVersion', config.configVersion, 'room', my.roomName);
 
   dstore_init({ dstore_host_init });
 }
@@ -39,12 +41,11 @@ function draw() {
   my.devices = dstore_device_summary();
   if (!my.devices) return;
   let n = my.devices.length;
-  // let len = int(width / n);
-  // let len = int(width / n);
   let len = width / n;
   let y = int(len / 2);
   let x = 0;
   for (let index = 0; index < my.devices.length; index++) {
+    let xm = x + len / 2;
     let device = my.devices[index];
     let colr = 0;
     // green circle marks active device
@@ -52,14 +53,14 @@ function draw() {
       colr = 'green';
     }
     fill(colr);
-    circle(x + len / 2, y, len);
+    circle(xm, y, len);
     // yellow inner dot marks my device
     if (device.uid == my.uid) {
       fill('yellow');
-      circle(x + len / 2, y, len / 2);
+      circle(xm, y, len / 3);
     }
     x += len;
-    if (x > width) {
+    if (xm > width) {
       x = 0;
       y += len;
     }
