@@ -3,15 +3,16 @@
 
 let my = {};
 
-// dstore_device_summary()[0].uid
-// dstore_device_summary()[0].serverValues.date_s
-// dstore_device_summary()[0].serverValues.visit_count
-// dstore_device_summary()[0].serverValues.userAgent
+// my.devices[0].uid
+// my.devices[0].serverValues.date_s
+// my.devices[0].serverValues.visit_count
+// my.devices[0].serverValues.userAgent
 
 function my_setup() {
   my.width = 400;
   my.height = 300;
   my.dstore_rootPath = 'm0-@r-@w-';
+  my.mo_app = 'mo-blackfacts';
   my.roomName = 'room0';
   my.nameDevice = '';
 }
@@ -35,13 +36,30 @@ function dstore_host_init() {
 
 function draw() {
   background(200);
-  let ds = dstore_device_summary();
-  if (!ds) return;
-  let n = ds.length;
+  my.devices = dstore_device_summary();
+  if (!my.devices) return;
+  let n = my.devices.length;
   let len = int(width / n);
   let y = int(len / 2);
-  fill(0);
-  for (let x = 0; x < width; x += len) {
+  let x = 0;
+  for (let index = 0; index < my.devices.length; index++) {
+    let device = my.devices[index];
+    let colr = 0;
+    // green circle marks active device
+    if (device && dstore_device_isActive(device)) {
+      colr = 'green';
+    }
+    fill(colr);
     circle(x + len / 2, y, len);
+    // yellow inner dot marks my device
+    if (device.uid == my.uid) {
+      fill('yellow');
+      circle(x + len / 2, y, len / 2);
+    }
+    x += len;
+    if (x + len > width) {
+      x = 0;
+      y += len;
+    }
   }
 }
