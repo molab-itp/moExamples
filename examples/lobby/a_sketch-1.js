@@ -104,3 +104,8 @@ function downloadToFile(filename, text) {
   element.click();
   document.body.removeChild(element);
 }
+
+// https://stackoverflow.com/questions/46945784/how-to-debug-javascript-in-visual-studio-code-with-live-server-running
+
+// .vscode/launch.json
+//       "url": "http://localhost:5500/p5moExamples/examples/lobby",
