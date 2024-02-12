@@ -29,9 +29,9 @@ function setup() {
   my.canvas = createCanvas(my.width, my.height);
 
   let config = fb_.init(my.fb_config);
+  console.log('configVersion', config.configVersion);
   console.log('config.projectId', config.projectId);
   console.log('configLabel', config.configLabel);
-  console.log('configVersion', config.configVersion);
   console.log('room', my.roomName);
 
   dstore_init({ dstore_host_init });
@@ -83,7 +83,7 @@ function draw_device(device, x, y) {
     fill('green');
     circle(x, y, my.dotLen);
   }
-  // inner yellow  dot marks my device
+  // inner yellow dot marks my device
   if (device.uid == my.uid) {
     fill('yellow');
     circle(x, y, my.dotLen);
