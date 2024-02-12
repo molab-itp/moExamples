@@ -19,7 +19,6 @@ function my_setup() {
   my.roomName = 'room0';
   my.nameDevice = '';
   my.ndiv = 1;
-  my.ndivDelta = 1;
 }
 
 function setup() {
@@ -45,6 +44,10 @@ function draw() {
   my.devices = dstore_device_summary();
   if (!my.devices) return;
   let ndevices = my.devices.length;
+  if (ndevices != my.lastn) {
+    my.ndiv = 1;
+  }
+  my.lastn = ndevices;
   let len = width / my.ndiv;
   let half = len / 2;
   let x0 = half;
@@ -71,7 +74,7 @@ function draw() {
       x = x0;
       y += len;
       if (y + half > height) {
-        my.ndiv += my.ndivDelta;
+        my.ndiv += 1;
         break;
       }
     }
