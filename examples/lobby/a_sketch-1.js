@@ -48,36 +48,43 @@ function draw() {
     my.ndiv = 1;
   }
   my.lastn = ndevices;
-  let len = width / my.ndiv;
-  let half = len / 2;
-  let x0 = half;
-  let y = half;
+  my.len = width / my.ndiv;
+  my.half = my.len / 2;
+  my.dotLen = my.len / 3;
+  let x0 = my.half;
+  let y = my.half;
   let x = x0;
   for (let index = 0; index < ndevices; index++) {
     let device = my.devices[index];
-    let colr = 0;
-    // green circle marks active device
-    if (device && dstore_device_isActive(device)) {
-      colr = 'green';
-    }
-    fill(colr);
-    circle(x, y, len);
-    // yellow inner dot marks my device
-    if (device && device.uid == my.uid) {
-      fill('yellow');
-      circle(x, y, len / 3);
-    }
+    draw_device(device, x, y);
     if (index != ndevices - 1) {
-      x += len;
+      x += my.len;
     }
     if (x > width) {
       x = x0;
-      y += len;
-      if (y + half > height) {
+      y += my.len;
+      if (y + my.half > height) {
         my.ndiv += 1;
         break;
       }
     }
+  }
+}
+
+function draw_device(device, x, y) {
+  if (!device) return;
+  let colr = 0;
+  fill(colr);
+  circle(x, y, my.len);
+  // inner green dot marks active device
+  if (dstore_device_isActive(device)) {
+    fill('green');
+    circle(x, y, my.dotLen);
+  }
+  // inner yellow  dot marks my device
+  if (device.uid == my.uid) {
+    fill('yellow');
+    circle(x, y, my.dotLen);
   }
 }
 
@@ -92,11 +99,8 @@ function downloadToFile(filename, text) {
   var element = document.createElement('a');
   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
   element.setAttribute('download', filename);
-
   element.style.display = 'none';
   document.body.appendChild(element);
-
   element.click();
-
   document.body.removeChild(element);
 }
