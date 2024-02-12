@@ -14,6 +14,8 @@ let my = {};
 function my_setup() {
   my.width = 400;
   my.height = 300;
+  my.fb_config = 'jht9629';
+  // my.fb_config = 'jht1493';
   my.dstore_rootPath = 'm0-@r-@w-';
   my.mo_app = 'mo-blackfacts';
   my.roomName = 'room0';
@@ -26,11 +28,11 @@ function setup() {
 
   my.canvas = createCanvas(my.width, my.height);
 
-  let config = fb_.init('jht9629');
-  // let config = fb_.init('jht1493');
+  let config = fb_.init(my.fb_config);
   console.log('config.projectId', config.projectId);
   console.log('configLabel', config.configLabel);
-  console.log('configVersion', config.configVersion, 'room', my.roomName);
+  console.log('configVersion', config.configVersion);
+  console.log('room', my.roomName);
 
   dstore_init({ dstore_host_init });
 }
