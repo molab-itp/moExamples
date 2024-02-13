@@ -12,6 +12,8 @@ let my = {};
 function my_setup() {
   my.width = 400;
   my.height = 300;
+  my.fireb_config = 'jht9629';
+  // my.fireb_config = 'jht1493';
   my.dbase_rootPath = 'm0-@r-@w-';
   my.mo_app = 'mo-blackfacts';
   my.roomName = 'room0';
@@ -23,11 +25,11 @@ function setup() {
 
   my.canvas = createCanvas(my.width, my.height);
 
-  let config = fireb_.init('jht9629');
-  // let config = fireb_.init('jht1493');
-  console.log('config.projectId', config.projectId);
-  console.log('configLabel', config.configLabel);
-  console.log('configVersion', config.configVersion, 'room', my.roomName);
+  // let config = fireb_.init('jht9629');
+  // // let config = fireb_.init('jht1493');
+  // console.log('config.projectId', config.projectId);
+  // console.log('configLabel', config.configLabel);
+  // console.log('configVersion', config.configVersion, 'room', my.roomName);
 
   dbase_app_init({ dbase_host_init });
 }

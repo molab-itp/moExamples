@@ -28,11 +28,11 @@ function setup() {
 
   my.canvas = createCanvas(my.width, my.height);
 
-  let config = fireb_.init(my.fireb_config);
-  console.log('configVersion', config.configVersion);
-  console.log('config.projectId', config.projectId);
-  console.log('configLabel', config.configLabel);
-  console.log('room', my.roomName);
+  // let config = fireb_.init(my.fireb_config);
+  // console.log('configVersion', config.configVersion);
+  // console.log('config.projectId', config.projectId);
+  // console.log('configLabel', config.configLabel);
+  // console.log('room', my.roomName);
 
   dbase_app_init({ dbase_host_init });
 }
