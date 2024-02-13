@@ -16,7 +16,7 @@ function my_setup() {
   my.height = 300;
   my.fireb_config = 'jht9629';
   // my.fireb_config = 'jht1493';
-  my.dstore_rootPath = 'm0-@r-@w-';
+  my.dbase_rootPath = 'm0-@r-@w-';
   my.mo_app = 'mo-blackfacts';
   my.roomName = 'room0';
   my.nameDevice = '';
@@ -34,16 +34,16 @@ function setup() {
   console.log('configLabel', config.configLabel);
   console.log('room', my.roomName);
 
-  dstore_init({ dstore_host_init });
+  dbase_app_init({ dbase_host_init });
 }
 
-function dstore_host_init() {
-  console.log('dstore_host_init');
+function dbase_host_init() {
+  console.log('dbase_host_init');
 }
 
 function draw() {
   background(200);
-  my.devices = dstore_device_summary();
+  my.devices = dbase_device_summary();
   if (!my.devices) return;
   let ndevices = my.devices.length;
   if (ndevices != my.lastn) {
@@ -79,7 +79,7 @@ function draw_device(device, x, y) {
   fill(colr);
   circle(x, y, my.len);
   // inner green dot marks active device
-  if (dstore_device_isActive(device)) {
+  if (dbase_device_isActive(device)) {
     fill('green');
     circle(x, y, my.dotLen);
   }

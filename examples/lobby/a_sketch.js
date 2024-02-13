@@ -12,7 +12,7 @@ let my = {};
 function my_setup() {
   my.width = 400;
   my.height = 300;
-  my.dstore_rootPath = 'm0-@r-@w-';
+  my.dbase_rootPath = 'm0-@r-@w-';
   my.mo_app = 'mo-blackfacts';
   my.roomName = 'room0';
   my.nameDevice = '';
@@ -29,16 +29,16 @@ function setup() {
   console.log('configLabel', config.configLabel);
   console.log('configVersion', config.configVersion, 'room', my.roomName);
 
-  dstore_init({ dstore_host_init });
+  dbase_app_init({ dbase_host_init });
 }
 
-function dstore_host_init() {
-  console.log('dstore_host_init');
+function dbase_host_init() {
+  console.log('dbase_host_init');
 }
 
 function draw() {
   background(200);
-  my.devices = dstore_device_summary();
+  my.devices = dbase_device_summary();
   if (!my.devices) return;
   let n = my.devices.length;
   let len = width / n;
@@ -48,7 +48,7 @@ function draw() {
     let device = my.devices[index];
     let colr = 0;
     // green circle marks active device
-    if (device && dstore_device_isActive(device)) {
+    if (device && dbase_device_isActive(device)) {
       colr = 'green';
     }
     fill(colr);
