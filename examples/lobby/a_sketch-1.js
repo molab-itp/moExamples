@@ -34,7 +34,7 @@ function setup() {
   // console.log('configLabel', config.configLabel);
   // console.log('room', my.roomName);
 
-  dbase_app_init({ dbase_host_init });
+  dbase_app_init({ completed: dbase_host_init });
 }
 
 function dbase_host_init() {
