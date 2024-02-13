@@ -23,8 +23,8 @@ function setup() {
 
   my.canvas = createCanvas(my.width, my.height);
 
-  let config = fb_.init('jht9629');
-  // let config = fb_.init('jht1493');
+  let config = fireb_.init('jht9629');
+  // let config = fireb_.init('jht1493');
   console.log('config.projectId', config.projectId);
   console.log('configLabel', config.configLabel);
   console.log('configVersion', config.configVersion, 'room', my.roomName);
