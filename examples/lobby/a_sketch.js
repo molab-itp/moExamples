@@ -25,17 +25,7 @@ function setup() {
 
   my.canvas = createCanvas(my.width, my.height);
 
-  // let config = fireb_.init('jht9629');
-  // // let config = fireb_.init('jht1493');
-  // console.log('config.projectId', config.projectId);
-  // console.log('configLabel', config.configLabel);
-  // console.log('configVersion', config.configVersion, 'room', my.roomName);
-
-  dbase_app_init({ completed: dbase_host_init });
-}
-
-function dbase_host_init() {
-  console.log('dbase_host_init');
+  dbase_app_init({});
 }
 
 function draw() {

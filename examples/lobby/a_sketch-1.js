@@ -28,17 +28,7 @@ function setup() {
 
   my.canvas = createCanvas(my.width, my.height);
 
-  // let config = fireb_.init(my.fireb_config);
-  // console.log('configVersion', config.configVersion);
-  // console.log('config.projectId', config.projectId);
-  // console.log('configLabel', config.configLabel);
-  // console.log('room', my.roomName);
-
-  dbase_app_init({ completed: dbase_host_init });
-}
-
-function dbase_host_init() {
-  console.log('dbase_host_init');
+  dbase_app_init({});
 }
 
 function draw() {
