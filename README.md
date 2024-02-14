@@ -39,7 +39,7 @@ Copied into to sketches.
 
 ## Plan
 
-- Add basic vote eample
+- Add basic vote sample
 
 - Add manual version ?v=x to bust the browser cache for github pages deploy
 
