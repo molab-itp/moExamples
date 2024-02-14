@@ -11,8 +11,8 @@ quiet=--quiet
 # merge branch next in to branch main
 # switch back to branch next
 #
-git add . 
 echo `date -u +"%Y-%m-%dT%H:%M:%SZ"` > src/gen/build_ver.txt
+git add . 
 git commit $quiet -m "`cat src/gen/build_ver.txt`"
 git push $quiet
 # in main
