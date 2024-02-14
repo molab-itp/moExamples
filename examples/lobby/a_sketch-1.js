@@ -12,8 +12,8 @@ let my = {};
 // my.devices[0].serverValues.userAgent
 
 function my_setup() {
-  my.width = 400;
-  my.height = 300;
+  my.width = windowWidth;
+  my.height = windowHeight;
   my.fireb_config = 'jht9629';
   // my.fireb_config = 'jht1493';
   my.dbase_rootPath = 'm0-@r-@w-';
@@ -48,8 +48,7 @@ function draw() {
   let y = my.half;
   let x = x0;
   for (let index = 0; index < ndevices; index++) {
-    let device = my.devices[index];
-    draw_device(device, x, y);
+    draw_device(index, x, y);
     if (index != ndevices - 1) {
       x += my.len;
     }
@@ -64,7 +63,8 @@ function draw() {
   }
 }
 
-function draw_device(device, x, y) {
+function draw_device(index, x, y) {
+  let device = my.devices[index];
   if (!device) return;
   let colr = 0;
   fill(colr);
@@ -79,6 +79,9 @@ function draw_device(device, x, y) {
     fill('yellow');
     circle(x, y, my.dotLen);
   }
+  fill(255);
+  let n = device.index;
+  text(n + '', x, y);
 }
 
 function downloadAction() {
