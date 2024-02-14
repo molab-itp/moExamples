@@ -5,6 +5,14 @@ p5js examples using [p5moLibrary](https://github.com/molab-itp/p5moLibrary.git)
 - [examples/lobby](examples/lobby)
 - [examples/lobby](examples/pixel-grid)
 
+## Add your example
+
+- fork this repo
+- create a branch with your example
+- submit a pull request to this repo
+
+## Notes
+
 ```
 
 // https://editor.p5js.org/jht9629-nyu/sketches/vP6sWN4Cu
