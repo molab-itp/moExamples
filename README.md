@@ -34,3 +34,11 @@ Copied into to sketches.
 > edit index.html to remove ?v=xx
 
 ```
+
+## Plan
+
+- Add basic vote eample
+
+- Add manual version ?v=x to bust the browser cache for github pages deploy
+
+- Consider sharing build.sh to version this code
