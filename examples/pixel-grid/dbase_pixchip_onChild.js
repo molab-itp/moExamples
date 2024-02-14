@@ -70,7 +70,7 @@ function dbase_pixchip_update() {
 
   update(refPath, chip);
 
-  dbase_device_update();
+  dbase_device_updates();
 }
 
 // --

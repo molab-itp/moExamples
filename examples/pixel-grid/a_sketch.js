@@ -15,9 +15,9 @@ function setup() {
 
   video_create();
 
-  let config = fireb_.init('jht9629');
-  // let config = fireb_.init('jht1493');
-  ui_log('config.projectId', config.projectId, 'configLabel', config.configLabel);
+  // let config = fireb_.init('jht9629');
+  // // let config = fireb_.init('jht1493');
+  // ui_log('config.projectId', config.projectId, 'configLabel', config.configLabel);
 
   dbase_app_init({ completed: dbase_host_init });
 
