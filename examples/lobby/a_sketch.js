@@ -15,7 +15,7 @@ function my_setup() {
   my.fireb_config = 'jht9629';
   // my.fireb_config = 'jht1493';
   my.dbase_rootPath = 'm0-@r-@w-';
-  my.mo_app = 'mo-blackfacts';
+  my.mo_app = 'lobby';
   my.roomName = 'room0';
   my.nameDevice = '';
 }
