@@ -1,11 +1,11 @@
-// https://editor.p5js.org/jht9629-nyu/sketches/7Wjlo3pPU
-// mo-pixel-grid jht9629 fireb_firebase.js
+// https://editor.p5js.org/jht9629-nyu/sketches/CntV1JQNp
+// p5moExamples pixel-grid
 
 let my = {};
 
 function setup() {
-  my_setup();
-  my_init();
+  my_init1();
+  my_init2();
 
   my.canvas = createCanvas(my.width, my.height);
   my.canvas.mouseReleased(canvas_mouseReleased);
@@ -25,8 +25,8 @@ function setup() {
 }
 
 function dbase_host_init() {
-  dbase_pixgrid_onChild();
-  dbase_pixchip_onChild();
+  dbase_pix_grid_observe();
+  dbase_pix_chip_observe();
 }
 
 function anim_init() {
@@ -66,7 +66,7 @@ function updateAction() {
   }
   if (my.scanFlag) {
     draw_cross_hair_update();
-    dbase_pixchip_update();
+    dbase_pix_chip_update();
   }
 }
 
@@ -158,6 +158,9 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   // console.log('windowResized width', width, 'height', height);
 }
+
+// https://editor.p5js.org/jht9629-nyu/sketches/7Wjlo3pPU
+// mo-pixel-grid jht9629 fireb_firebase.js
 
 // https://editor.p5js.org/jht9629-nyu/sketches/twgS6eWRZ
 // pixel-grid
