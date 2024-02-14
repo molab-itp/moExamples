@@ -37,6 +37,7 @@ function draw() {
   if (!my.devices) return;
   let ndevices = my.devices.length;
   if (ndevices != my.lastn) {
+    console.log('ndevices', ndevices);
     my.ndiv = 1;
   }
   my.lastn = ndevices;
