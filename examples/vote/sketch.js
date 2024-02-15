@@ -1,7 +1,7 @@
-// https://editor.p5js.org/jht9629-nyu/sketches/vP6sWN4Cu
-// p5moExamples lobby
+// https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1
+// p5moExamples vote
 
-// expand circle size to fit as many circles in canvas as possible
+// participants can cast a numeric vote up or down
 
 let my = {};
 
@@ -37,6 +37,17 @@ function setup() {
   createElement('br');
   createSpan('Total Vote ');
   my.vote_total_count_span = createSpan('' + my.vote_total_count);
+}
+
+function draw() {
+  background(200);
+  //
+  if (!check_devices()) return;
+  //
+  calc_votes();
+  //
+  my.vote_count_span.html(my.vote_count);
+  my.vote_total_count_span.html(my.vote_total_count);
 }
 
 function startup_completed() {
@@ -85,27 +96,18 @@ function voteDown() {
   dbase_update_props({}, { vote_count: dbase_value_increment(-1) });
 }
 
-function draw() {
-  background(200);
+function check_devices() {
   my.devices = dbase_device_summary();
   if (!my.devices) {
     console.log('no devices yet');
-    return;
+    return 0;
   }
-  check_devices();
-  //
-  calc_votes();
-  //
-  my.vote_count_span.html(my.vote_count);
-  my.vote_total_count_span.html(my.vote_total_count);
-}
-
-function check_devices() {
   let ndevices = my.devices.length;
   if (ndevices != my.lastn) {
     console.log('ndevices', ndevices);
   }
   my.lastn = ndevices;
+  return 1;
 }
 
 function calc_votes() {
