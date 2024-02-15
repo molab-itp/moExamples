@@ -1,8 +1,6 @@
 // https://editor.p5js.org/jht9629-nyu/sketches/vP6sWN4Cu
 // p5moExamples lobby
 
-// expand circle size to fit as many circles in canvas as possible
-
 let my = {};
 
 // my.devices.length
@@ -12,15 +10,14 @@ let my = {};
 // my.devices[0].serverValues.userAgent
 
 function my_setup() {
-  my.width = windowWidth;
-  my.height = windowHeight;
+  my.width = 400;
+  my.height = 300;
   my.fireb_config = 'jht9629';
   // my.fireb_config = 'jht1493';
   my.dbase_rootPath = 'm0-@r-@w-';
-  my.mo_app = 'mo-blackfacts';
+  my.mo_app = 'lobby';
   my.roomName = 'room0';
   my.nameDevice = '';
-  my.ndiv = 1;
 }
 
 function setup() {
@@ -35,76 +32,28 @@ function draw() {
   background(200);
   my.devices = dbase_device_summary();
   if (!my.devices) return;
-  let ndevices = my.devices.length;
-  if (ndevices != my.lastn) {
-    console.log('ndevices', ndevices);
-    my.ndiv = 1;
-  }
-  my.lastn = ndevices;
-  my.len = width / my.ndiv;
-  my.half = my.len / 2;
-  my.dotLen = my.len / 3;
-  let x0 = my.half;
-  let y = my.half;
-  let x = x0;
-  for (let index = 0; index < ndevices; index++) {
-    draw_device(index, x, y);
-    if (index != ndevices - 1) {
-      x += my.len;
+  let n = my.devices.length;
+  let len = width / n;
+  let y = len / 2;
+  let x = len / 2;
+  for (let index = 0; index < my.devices.length; index++) {
+    let device = my.devices[index];
+    let colr = 0;
+    // green circle marks active device
+    if (device && dbase_device_isActive(device)) {
+      colr = 'green';
     }
+    fill(colr);
+    circle(x, y, len);
+    // yellow inner dot marks my device
+    if (device.uid == my.uid) {
+      fill('yellow');
+      circle(x, y, len / 3);
+    }
+    x += len;
     if (x > width) {
-      x = x0;
-      y += my.len;
-      if (y + my.half > height) {
-        my.ndiv += 1;
-        break;
-      }
+      x = 0;
+      y += len;
     }
   }
 }
-
-function draw_device(index, x, y) {
-  let device = my.devices[index];
-  if (!device) return;
-  let colr = 0;
-  fill(colr);
-  circle(x, y, my.len);
-  // inner green dot marks active device
-  if (dbase_device_isActive(device)) {
-    fill('green');
-    circle(x, y, my.dotLen);
-  }
-  // inner yellow dot marks my device
-  if (device.uid == my.uid) {
-    fill('yellow');
-    circle(x, y, my.dotLen);
-  }
-  fill(255);
-  let n = device.index;
-  text(n + '', x, y);
-}
-
-function downloadAction() {
-  if (!my.devices) return;
-  let str = JSON.stringify(my.devices, undefined, 2);
-  downloadToFile(my.mo_app + '-live' + '.json', str);
-}
-
-// https://stackoverflow.com/questions/3665115/how-to-create-a-file-in-memory-for-user-to-download-but-not-through-server
-function downloadToFile(filename, text) {
-  var element = document.createElement('a');
-  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-  element.setAttribute('download', filename);
-  element.style.display = 'none';
-  document.body.appendChild(element);
-  element.click();
-  document.body.removeChild(element);
-}
-
-// F5 to select chrome
-// VS Code menu: Run > Start Debugging
-
-// .vscode/launch.json
-//       "url": "http://localhost:5500/p5moExamples/examples/lobby",
-
-// https://stackoverflow.com/questions/46945784/how-to-debug-javascript-in-visual-studio-code-with-live-server-running
