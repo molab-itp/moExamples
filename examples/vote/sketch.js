@@ -119,3 +119,11 @@ function calc_votes() {
     }
   }
 }
+
+// F5 to select chrome
+// VS Code menu: Run > Start Debugging
+
+// .vscode/launch.json
+//       "url": "http://localhost:5500/p5moExamples/examples/vote",
+
+// https://stackoverflow.com/questions/46945784/how-to-debug-javascript-in-visual-studio-code-with-live-server-running

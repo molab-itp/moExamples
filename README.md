@@ -45,6 +45,8 @@ Copied into to sketches.
 
 - [] collab draw example
 
+- [] Document VS Code debugging steps
+
 - [] Document vote example
 
 - [] Document lobby example
