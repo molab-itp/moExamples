@@ -1,6 +1,6 @@
 # [p5moExamples](https://github.com/molab-itp/p5moExamples.git)
 
-p5js examples for [p5moLibrary](https://github.com/molab-itp/p5moLibrary.git)
+- p5js examples for [p5moLibrary](https://github.com/molab-itp/p5moLibrary.git)
 
 ## [github.io p5moExamples](https://molab-itp.github.io/p5moExamples?v=003)
 
@@ -43,10 +43,21 @@ Copied into to sketches.
 
 ## Plan
 
-- collab draw example
+- [] collab draw example
 
-- Document basic vote example
+- [] Document vote example
 
-- Document manual version ?v=x to bust the browser cache for github pages deploy
+- [] Document lobby example
 
-- Consider sharing build.sh to version this code
+- [] Document manual version ?v=x to bust the browser cache for github pages deploy
+
+- [] Consider sharing build.sh to version this code
+
+## Done
+
+```
+
+- [x] Add basic vote sample
+
+
+```
