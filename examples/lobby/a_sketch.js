@@ -87,7 +87,20 @@ function draw_device(index, x, y) {
 function downloadAction() {
   if (!my.devices) return;
   let str = JSON.stringify(my.devices, undefined, 2);
-  downloadToFile(my.mo_app + '-live' + '.json', str);
+  downloadToFile('lobby-' + my.mo_app + '-live' + '.json', str);
+  downloadActionShort();
+}
+
+function downloadActionShort() {
+  //
+  // remove arrays to short display of summary
+  //
+  for (let device of my.devices) {
+    delete device.serverValues.update;
+    delete device.serverValues.visit;
+  }
+  let str = JSON.stringify(my.devices, undefined, 2);
+  downloadToFile('lobby-short-' + my.mo_app + '-live' + '.json', str);
 }
 
 // https://stackoverflow.com/questions/3665115/how-to-create-a-file-in-memory-for-user-to-download-but-not-through-server
