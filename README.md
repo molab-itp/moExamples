@@ -43,8 +43,10 @@ Copied into to sketches.
 
 ## Plan
 
-- Add basic vote sample
+- collab draw example
 
-- Add manual version ?v=x to bust the browser cache for github pages deploy
+- Document basic vote example
+
+- Document manual version ?v=x to bust the browser cache for github pages deploy
 
 - Consider sharing build.sh to version this code
