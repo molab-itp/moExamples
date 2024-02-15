@@ -43,6 +43,8 @@ Copied into to sketches.
 
 ## Plan
 
+- [] lobby delete room function
+
 - [] collab draw example
 
 - [] Document VS Code debugging steps
