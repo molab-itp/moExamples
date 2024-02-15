@@ -1,12 +1,14 @@
 //
 // p5moLibrary functions
 
+// # --
 // function dbase_app_init({ completed }) {
 
 //   dbase_app_init({ completed: dbase_host_init });
 //   dbase_app_init({ completed: dbase_host_init });
 //   dbase_app_init({ completed: dbase_host_init });
 
+// # --
 // function dbase_update_props(props, deviceProps, groupProps) {
 //  default deviceProps = { count: increment(1) };
 
@@ -16,6 +18,7 @@
 //  dbase_update_props({}, { startup_time: timeSecs });
 //  dbase_update_props({}); // Send initial ping
 
+// # --
 // function dbase_device_updates(updates, keys) {
 
 //  dbase_device_updates({ portrait, group });
@@ -23,6 +26,7 @@
 //    dbase_device_updates({}, { event: 'visit', count: 'visit_count' });
 //    dbase_device_updates({}, { event: 'update', count: 'update_count' });
 
+// # --
 // function dbase_event_observe({ changed_key_value, removed_key_value }, apps) {
 
 // dbase_event_observe({ changed_key_value: mo_app_key_value });
@@ -43,3 +47,6 @@
 //   { changed_key_value, removed_key_value }, //
 //   { app: 'mo-pix-grid', tag: 'dbase_pix_grid_observe' }
 // );
+
+// # --
+// function dbase_value_increment(value) {

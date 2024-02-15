@@ -19,6 +19,8 @@ function my_setup() {
   my.nameDevice = '';
   //
   my.vote_count = 0;
+  my.vote_total_count = 0;
+  my.stored_devices = {};
 }
 
 function setup() {
@@ -32,23 +34,55 @@ function setup() {
   createButton('Vote Up').mousePressed(voteUp);
   createButton('Vote Down').mousePressed(voteDown);
   my.vote_count_span = createSpan('' + my.vote_count);
+  createElement('br');
+  createSpan('Total Vote ');
+  my.vote_total_count_span = createSpan('' + my.vote_total_count);
 }
 
 function startup_completed() {
   console.log('startup_completed');
-  dbase_event_observe({ changed_key_value });
+  dbase_event_observe({ changed_key_value, removed_key_value });
 }
 
 function changed_key_value(key, value) {
   console.log('changed_key_value key', key, 'value', value);
+  switch (key) {
+    case 'device':
+      // value = { uid: { count: xx, vote_count: nn}, ...}
+      my.stored_devices = value;
+      //
+      let myprops = my.stored_devices[my.uid];
+      if (myprops != undefined) {
+        console.log('changed_key_value myprops', myprops);
+        let vc = myprops.vote_count;
+        if (vc != undefined) {
+          my.vote_count = vc;
+        } else {
+          my.vote_count = 0;
+        }
+      }
+      break;
+  }
+}
+
+function removed_key_value(key, value) {
+  console.log('removed_key_value key', key, 'value', value);
+  switch (key) {
+    case 'device':
+      my.stored_devices = {};
+      my.vote_count = 0;
+      break;
+  }
 }
 
 function voteUp() {
   console.log('Vote Up');
+  dbase_update_props({}, { vote_count: dbase_value_increment(1) });
 }
 
 function voteDown() {
   console.log('Vote Down');
+  dbase_update_props({}, { vote_count: dbase_value_increment(-1) });
 }
 
 function draw() {
@@ -58,9 +92,28 @@ function draw() {
     console.log('no devices yet');
     return;
   }
+  check_devices();
+  //
+  calc_votes();
+  //
+  my.vote_count_span.html(my.vote_count);
+  my.vote_total_count_span.html(my.vote_total_count);
+}
+
+function check_devices() {
   let ndevices = my.devices.length;
   if (ndevices != my.lastn) {
     console.log('ndevices', ndevices);
   }
   my.lastn = ndevices;
+}
+
+function calc_votes() {
+  my.vote_total_count = 0;
+  for (let uid in my.stored_devices) {
+    let device = my.stored_devices[uid];
+    if (device.vote_count != undefined) {
+      my.vote_total_count += device.vote_count;
+    }
+  }
 }
