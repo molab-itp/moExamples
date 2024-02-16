@@ -1,3 +1,4 @@
+//
 function startup_completed() {
   console.log('startup_completed');
   dbase_event_observe({ changed_key_value, removed_key_value });

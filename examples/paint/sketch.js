@@ -9,15 +9,20 @@ let my = {};
 //    individual vote
 
 function my_setup() {
-  my.width = windowWidth;
-  // Leave room at bottom for buttons
-  my.height = windowHeight - 60;
+  if (0) {
+    my.width = windowWidth;
+    // Leave room at bottom for buttons
+    my.height = windowHeight - 60;
+  } else {
+    my.width = 200;
+    my.height = 200;
+  }
   //
   // my.fireb_config = 'jht9629';
   my.fireb_config = 'jht1493';
   my.dbase_rootPath = 'm0-@r-@w-';
   my.roomName = 'room0';
-  my.mo_app = 'mo-vote';
+  my.mo_app = 'mo-paint';
   my.nameDevice = '';
   //
   my.stored_devices = {};
@@ -28,10 +33,9 @@ function my_setup() {
   my.ylen = 10;
   my.xSpeed = 0;
   my.ySpeed = 0;
-  my.color = 'red';
-  my.colorIndex = 0;
   my.colorGold = [187, 165, 61];
-  my.colors = ['red', 'green', my.colorGold];
+  my.colorIndex = 0;
+  my.colors = ['red', 'green', my.colorGold, 0];
 }
 
 function setup() {
@@ -46,32 +50,28 @@ function setup() {
   dbase_app_init({ completed: startup_completed });
 
   background(200);
-  noStroke();
+  // noStroke();
+  strokeWeight(my.xlen);
 
-  init_buttons();
+  createButton('Clear').mousePressed(clearAction);
 }
 
 function draw() {
   // background(200);
   //
-  if (!check_devices()) return;
-  //
-  if (my.color) {
-    fill(my.color);
-    rect(my.x, my.y, my.xlen, my.ylen);
+  if (mouseIsPressed) {
+    let colr = my.colors[my.colorIndex];
+    // fill(colr);
+    // rect(mouseX, mouseY, my.xlen, my.ylen);
+    stroke(colr);
+    line(pmouseX, pmouseY, mouseX, mouseY);
   }
-  my.x = (my.x + my.xSpeed + width) % width;
-  my.y = (my.y + my.ySpeed + height) % height;
 }
 
-function init_buttons() {
-  createButton('Paint Off').mousePressed(paintOffAction);
-  createButton('Pen Red').mousePressed(paintRedAction);
-  createButton('Pen Green').mousePressed(paintGreenAction);
-  createButton('Pen Gold').mousePressed(paintGoldAction);
-  createElement('br');
-  createButton('Move Left').mousePressed(moveLeftAction);
-  createButton('Move Right').mousePressed(moveRightAction);
-  createButton('Move Up').mousePressed(moveUpAction);
-  createButton('Move Down').mousePressed(moveDownAction);
+function clearAction() {
+  background(200);
+}
+
+function mousePressed() {
+  my.colorIndex = (my.colorIndex + 1) % my.colors.length;
 }
