@@ -20,7 +20,7 @@ function my_setup() {
   //
   my.vote_count = 0;
   my.vote_total_count = 0;
-  my.stored_devices = {};
+  my.device_values = {};
 }
 
 function setup() {
@@ -60,9 +60,9 @@ function changed_key_value(key, value) {
   switch (key) {
     case 'device':
       // value = { uid: { count: xx, vote_count: nn}, ...}
-      my.stored_devices = value;
+      my.device_values = value;
       //
-      let myprops = my.stored_devices[my.uid];
+      let myprops = my.device_values[my.uid];
       if (myprops != undefined) {
         console.log('changed_key_value myprops', myprops);
         let vc = myprops.vote_count;
@@ -80,7 +80,7 @@ function removed_key_value(key, value) {
   console.log('removed_key_value key', key, 'value', value);
   switch (key) {
     case 'device':
-      my.stored_devices = {};
+      my.device_values = {};
       my.vote_count = 0;
       break;
   }
@@ -112,8 +112,8 @@ function check_devices() {
 
 function calc_votes() {
   my.vote_total_count = 0;
-  for (let uid in my.stored_devices) {
-    let device = my.stored_devices[uid];
+  for (let uid in my.device_values) {
+    let device = my.device_values[uid];
     if (device.vote_count != undefined) {
       my.vote_total_count += device.vote_count;
     }

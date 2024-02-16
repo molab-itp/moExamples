@@ -5,15 +5,15 @@ function startup_completed() {
 }
 
 function changed_key_value(key, value) {
-  console.log('changed_key_value key', key, 'value', value);
+  // console.log('changed_key_value key', key, 'value', value);
   switch (key) {
     case 'device':
       // value = { uid: { count: xx, vote_count: nn}, ...}
-      my.stored_devices = value;
+      my.device_values = value;
       //
-      let dprops = my.stored_devices[my.uid];
+      let dprops = my.device_values[my.uid];
       if (dprops != undefined) {
-        console.log('changed_key_value dprops', dprops);
+        // console.log('changed_key_value dprops', dprops);
       }
       break;
   }
@@ -23,7 +23,7 @@ function removed_key_value(key, value) {
   console.log('removed_key_value key', key, 'value', value);
   switch (key) {
     case 'device':
-      my.stored_devices = {};
+      my.device_values = {};
       my.vote_count = 0;
       break;
   }
