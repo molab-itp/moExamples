@@ -5,8 +5,8 @@
 
 let my = {};
 
-// mo-vote/device/{uid}/vote
-//    individual vote
+// mo-vote/device/{uid}/paint
+//    x, y, brush_size
 
 function my_setup() {
   if (0) {
@@ -37,29 +37,28 @@ function my_setup() {
   my.xLeft = my.x0;
   my.yBottom = my.y0;
   my.hitEdge = 0;
+  my.brushSize = 4;
 }
 
 function setup() {
   my_setup();
 
   my.canvas = createCanvas(my.width, my.height);
+  my.canvas.mousePressed(canvas_mousePressed);
 
   dbase_app_init({ completed: startup_completed });
 
   background(200);
 
   createButton('Clear').mousePressed(clearAction);
+  createButton('Smaller Brush').mousePressed(smallerBrushSizeAction);
+  createButton('Larger Brush').mousePressed(largerBrushSizeAction);
 }
 
 function draw() {
-  // background(200);
-  //
-  if (pmouseX < 0 || pmouseY < 0) {
-    return;
-  }
-  if (mouseIsPressed) {
+  if (mouseIsPressed && mouseInCanvas()) {
     let colr = my.colors[my.colorIndex];
-    strokeWeight(4);
+    strokeWeight(my.brushSize);
     stroke(colr);
     line(pmouseX, pmouseY, mouseX, mouseY);
     my.x0 = mouseX;
@@ -73,59 +72,22 @@ function draw() {
   }
 }
 
-function mousePressed() {
+function mouseInCanvas() {
+  return mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY < height;
+}
+function canvas_mousePressed() {
   // console.log('mousePressed mouseX', mouseX, 'mouseY', mouseY);
   next_lineColor();
 }
 
-function draw_cross() {
-  //
-  my.xRight += 1;
-  if (my.xRight > my.width) {
-    my.hitEdge += 1;
-    my.xRight = my.x0;
-  }
-  strokeWeight(4);
-  stroke(lineColor(0));
-  line(my.x0, my.y0, my.xRight, my.y0);
-
-  my.yBottom += 1;
-  if (my.yBottom > my.height) {
-    my.hitEdge += 1;
-    my.yBottom = my.y0;
-  }
-  stroke(lineColor(1));
-  line(my.x0, my.y0, my.x0, my.yBottom);
-
-  my.xLeft -= 1;
-  if (my.xLeft < 0) {
-    my.hitEdge += 1;
-    my.xLeft = my.x0;
-  }
-  stroke(lineColor(2));
-  line(my.x0, my.y0, my.xLeft, my.y0);
-
-  my.yTop -= 1;
-  if (my.yTop < 0) {
-    my.hitEdge += 1;
-    my.yTop = my.y0;
-  }
-  stroke(lineColor(3));
-  line(my.x0, my.y0, my.x0, my.yTop);
-
-  if (my.hitEdge >= 4) {
-    my.hitEdge = 0;
-    next_lineColor();
-  }
+function smallerBrushSizeAction() {
+  my.brushSize -= 1;
+  next_lineColor();
 }
 
-function next_lineColor() {
-  my.colorIndex = (my.colorIndex + 1) % my.colors.length;
-}
-
-function lineColor(iline) {
-  // return my.colors[my.lineColors[ci]];
-  return my.colors[my.colorIndex];
+function largerBrushSizeAction() {
+  my.brushSize += 1;
+  next_lineColor();
 }
 
 function clearAction() {
