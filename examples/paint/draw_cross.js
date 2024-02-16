@@ -5,7 +5,7 @@ function draw_cross() {
     my.hitEdge += 1;
     my.xRight = my.x0;
   }
-  strokeWeight(my.brushSize);
+  strokeWeight(my.brush_size);
   stroke(lineColor(0));
   line(my.x0, my.y0, my.xRight, my.y0);
 
@@ -40,9 +40,10 @@ function draw_cross() {
 }
 
 function next_lineColor() {
-  my.colorIndex = (my.colorIndex + 1) % my.colors.length;
+  my.color_index = (my.color_index + 1) % my.colors.length;
+  update_brush();
 }
 
 function lineColor() {
-  return my.colors[my.colorIndex];
+  return my.colors[my.color_index];
 }

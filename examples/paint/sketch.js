@@ -6,7 +6,7 @@
 let my = {};
 
 // mo-vote/device/{uid}/paint
-//    x, y, brush_size
+//    x0, y0, brush_size, color_index
 
 function my_setup() {
   if (0) {
@@ -28,16 +28,27 @@ function my_setup() {
   my.device_values = {};
   //
   my.colorGold = [187, 165, 61];
-  my.colorIndex = 0;
+  my.color_index = 0;
   my.colors = ['red', 'green', my.colorGold, 0];
-  my.x0 = my.width * 0.5;
-  my.y0 = my.height * 0.5;
-  my.xRight = my.x0;
-  my.yTop = my.y0;
-  my.xLeft = my.x0;
-  my.yBottom = my.y0;
+  {
+    let x = my.width * 0.5;
+    let y = my.height * 0.5;
+    brush_init(x, y);
+  }
   my.hitEdge = 0;
-  my.brushSize = 4;
+  my.brush_size = 4;
+  my.clear_action = 0;
+  //
+  my.layer = createGraphics(my.width, my.height);
+}
+
+function brush_init(x, y) {
+  my.x0 = x;
+  my.y0 = y;
+  my.xLeft = my.x0;
+  my.yTop = my.y0;
+  my.xRight = my.x0;
+  my.yBottom = my.y0;
 }
 
 function setup() {
@@ -51,22 +62,18 @@ function setup() {
   background(200);
 
   createButton('Clear').mousePressed(clearAction);
-  createButton('Smaller Brush').mousePressed(smallerBrushSizeAction);
-  createButton('Larger Brush').mousePressed(largerBrushSizeAction);
+  createSpan('Brush ');
+  createButton('Smaller').mousePressed(smallerBrushSizeAction);
+  createButton('Larger').mousePressed(largerBrushSizeAction);
 }
 
 function draw() {
   if (mouseIsPressed && mouseInCanvas()) {
-    let colr = my.colors[my.colorIndex];
-    strokeWeight(my.brushSize);
+    let colr = my.colors[my.color_index];
+    strokeWeight(my.brush_size);
     stroke(colr);
     line(pmouseX, pmouseY, mouseX, mouseY);
-    my.x0 = mouseX;
-    my.y0 = mouseY;
-    my.xRight = my.x0;
-    my.yTop = my.y0;
-    my.xLeft = my.x0;
-    my.yBottom = my.y0;
+    brush_init(mouseX, mouseY);
   } else {
     draw_cross();
   }
@@ -81,15 +88,16 @@ function canvas_mousePressed() {
 }
 
 function smallerBrushSizeAction() {
-  my.brushSize -= 1;
+  my.brush_size -= 1;
   next_lineColor();
 }
 
 function largerBrushSizeAction() {
-  my.brushSize += 1;
+  my.brush_size += 1;
   next_lineColor();
 }
 
 function clearAction() {
   background(200);
+  issue_clear_action();
 }

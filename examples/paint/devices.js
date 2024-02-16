@@ -24,7 +24,6 @@ function removed_key_value(key, value) {
   switch (key) {
     case 'device':
       my.device_values = {};
-      my.vote_count = 0;
       break;
   }
 }
@@ -41,4 +40,13 @@ function check_devices() {
   }
   my.lastn = ndevices;
   return 1;
+}
+
+function issue_clear_action() {
+  dbase_update_props({}, { clear_action: dbase_value_increment(1) });
+}
+
+function update_brush() {
+  let { x0, y0, brush_size, color_index } = my;
+  dbase_update_props({}, { x0, y0, brush_size, color_index, width, height });
 }
