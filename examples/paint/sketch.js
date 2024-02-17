@@ -6,10 +6,11 @@
 let my = {};
 
 // mo-vote/device/{uid}/paint
-//    x0, y0, brush_size, color_index
+//    x0, y0, brush_size, color_index, width, height
 
 function my_setup() {
-  if (0) {
+  my.full_screen = 1;
+  if (my.full_screen) {
     my.width = windowWidth;
     // Leave room at bottom for buttons
     my.height = windowHeight - 60;
@@ -27,28 +28,9 @@ function my_setup() {
   //
   my.device_values = {};
   //
-  my.colorGold = [187, 165, 61];
-  my.color_index = 0;
-  my.colors = ['red', 'green', my.colorGold, 0];
-  {
-    let x = my.width * 0.5;
-    let y = my.height * 0.5;
-    brush_init(x, y);
-  }
-  my.hitEdge = 0;
-  my.brush_size = 4;
+  my.brush = new Brush({ width: my.width, height: my.height });
   my.clear_action = 0;
   //
-  my.layer = createGraphics(my.width, my.height);
-}
-
-function brush_init(x, y) {
-  my.x0 = x;
-  my.y0 = y;
-  my.xLeft = my.x0;
-  my.yTop = my.y0;
-  my.xRight = my.x0;
-  my.yBottom = my.y0;
 }
 
 function setup() {
@@ -69,13 +51,11 @@ function setup() {
 
 function draw() {
   if (mouseIsPressed && mouseInCanvas()) {
-    let colr = my.colors[my.color_index];
-    strokeWeight(my.brush_size);
-    stroke(colr);
-    line(pmouseX, pmouseY, mouseX, mouseY);
-    brush_init(mouseX, mouseY);
+    my.brush.mouse_line();
+    image(my.brush.layer, 0, 0);
   } else {
-    draw_cross();
+    my.brush.render();
+    image(my.brush.layer, 0, 0);
   }
 }
 
@@ -84,17 +64,17 @@ function mouseInCanvas() {
 }
 function canvas_mousePressed() {
   // console.log('mousePressed mouseX', mouseX, 'mouseY', mouseY);
-  next_lineColor();
+  my.brush.next_lineColor();
 }
 
 function smallerBrushSizeAction() {
-  my.brush_size -= 1;
-  next_lineColor();
+  my.brush.adjust_size(-1);
+  my.brush.next_lineColor();
 }
 
 function largerBrushSizeAction() {
-  my.brush_size += 1;
-  next_lineColor();
+  my.brush.adjust_size(1);
+  my.brush.next_lineColor();
 }
 
 function clearAction() {

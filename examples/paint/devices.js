@@ -46,7 +46,7 @@ function issue_clear_action() {
   dbase_update_props({}, { clear_action: dbase_value_increment(1) });
 }
 
-function update_brush() {
-  let { x0, y0, brush_size, color_index } = my;
+function update_brush(my) {
+  let { x0, y0, brush_size, color_index, width, height } = my;
   dbase_update_props({}, { x0, y0, brush_size, color_index, width, height });
 }

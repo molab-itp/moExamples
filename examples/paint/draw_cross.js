@@ -41,7 +41,7 @@ function draw_cross() {
 
 function next_lineColor() {
   my.color_index = (my.color_index + 1) % my.colors.length;
-  update_brush();
+  update_brush(my);
 }
 
 function lineColor() {
