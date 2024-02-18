@@ -1,7 +1,8 @@
 class Brush {
   //
   static colorGold = [187, 165, 61];
-  static colors = ['red', 'green', Brush.colorGold, 0];
+  // static colors = ['red', 'green', Brush.colorGold, 0];
+  static colors = [[255, 0, 0], [0, 255, 0], Brush.colorGold, 0];
 
   //
   // {  width, height }
