@@ -104,12 +104,16 @@ class Brush {
 
   adjust_brush_size(delta) {
     let my = this;
-    my.brush_size += delta;
+    if (delta > 0 || my.brush_size > 1) {
+      my.brush_size += delta;
+    }
   }
 
   adjust_cross_size(delta) {
     let my = this;
-    my.cross_size += delta;
+    if (delta > 0 || my.cross_size > 1) {
+      my.cross_size += delta;
+    }
   }
 
   mousePressed() {
