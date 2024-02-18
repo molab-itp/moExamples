@@ -51,10 +51,11 @@ function update_brush(my) {
     cross_x0, //
     cross_y0,
     cross_size,
+    cross_color_index,
     brush_x0,
     brush_y0,
     brush_size,
-    color_index,
+    brush_color_index,
     width,
     height,
   } = my;
@@ -64,10 +65,11 @@ function update_brush(my) {
       cross_x0, //
       cross_y0,
       cross_size,
+      cross_color_index,
       brush_x0,
       brush_y0,
       brush_size,
-      color_index,
+      brush_color_index,
       width,
       height,
     }

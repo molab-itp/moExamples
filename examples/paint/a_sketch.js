@@ -11,33 +11,8 @@ let my = {};
 //    color_index, width, height
 //  };
 
-function my_setup() {
-  my.full_screen = 1;
-  if (my.full_screen) {
-    my.width = windowWidth;
-    // Leave room at bottom for buttons
-    my.height = windowHeight - 60;
-  } else {
-    my.width = 200;
-    my.height = 200;
-  }
-  //
-  // my.fireb_config = 'jht9629';
-  my.fireb_config = 'jht1493';
-  my.dbase_rootPath = 'm0-@r-@w-';
-  my.roomName = 'room0';
-  my.mo_app = 'mo-paint';
-  my.nameDevice = '';
-  //
-  my.device_values = {};
-  //
-  my.brush = new Brush({ width: my.width, height: my.height });
-  my.clear_action = 0;
-  //
-}
-
 function setup() {
-  my_setup();
+  my_init();
 
   my.canvas = createCanvas(my.width, my.height);
   my.canvas.mousePressed(canvas_mousePressed);
@@ -85,20 +60,20 @@ function clearAction() {
 
 function smallerCrossSizeAction() {
   my.brush.adjust_cross_size(-1);
-  my.brush.next_lineColor();
+  my.brush.next_crossColor();
 }
 
 function largerCrossSizeAction() {
   my.brush.adjust_cross_size(1);
-  my.brush.next_lineColor();
+  my.brush.next_crossColor();
 }
 
 function smallerBrushSizeAction() {
   my.brush.adjust_brush_size(-1);
-  my.brush.next_lineColor();
+  my.brush.next_brushColor();
 }
 
 function largerBrushSizeAction() {
   my.brush.adjust_brush_size(1);
-  my.brush.next_lineColor();
+  my.brush.next_brushColor();
 }

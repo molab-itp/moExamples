@@ -10,7 +10,8 @@ class Brush {
     Object.assign(this, props);
     let my = this;
     my.layer = createGraphics(my.width, my.height);
-    my.color_index = 0;
+    my.brush_color_index = 0;
+    my.cross_color_index = 0;
     my.hitEdge = 0;
     my.brush_size = 4;
     my.cross_size = 4;
@@ -49,7 +50,7 @@ class Brush {
       my.xRight = my.cross_x0;
     }
     my.layer.strokeWeight(my.cross_size);
-    my.layer.stroke(my.lineColor(0));
+    my.layer.stroke(my.crossColor(0));
     my.layer.line(my.cross_x0, my.cross_y0, my.xRight, my.cross_y0);
 
     my.yBottom += 1;
@@ -57,7 +58,7 @@ class Brush {
       my.hitEdge += 1;
       my.yBottom = my.cross_y0;
     }
-    my.layer.stroke(my.lineColor(1));
+    my.layer.stroke(my.crossColor(1));
     my.layer.line(my.cross_x0, my.cross_y0, my.cross_x0, my.yBottom);
 
     my.xLeft -= 1;
@@ -65,7 +66,7 @@ class Brush {
       my.hitEdge += 1;
       my.xLeft = my.cross_x0;
     }
-    my.layer.stroke(my.lineColor(2));
+    my.layer.stroke(my.crossColor(2));
     my.layer.line(my.cross_x0, my.cross_y0, my.xLeft, my.cross_y0);
 
     my.yTop -= 1;
@@ -73,33 +74,39 @@ class Brush {
       my.hitEdge += 1;
       my.yTop = my.cross_y0;
     }
-    my.layer.stroke(my.lineColor(3));
+    my.layer.stroke(my.crossColor(3));
     my.layer.line(my.cross_x0, my.cross_y0, my.cross_x0, my.yTop);
 
     if (my.hitEdge >= 4) {
       my.hitEdge = 0;
-      my.next_lineColor();
+      my.next_crossColor();
     }
   }
 
   mouseDragged() {
     let my = this;
-    let colr = Brush.colors[my.color_index];
+    let colr = Brush.colors[my.brush_color_index];
     my.layer.strokeWeight(my.brush_size);
     my.layer.stroke(colr);
     my.layer.line(pmouseX, pmouseY, mouseX, mouseY);
     my.init_brush(mouseX, mouseY);
   }
 
-  next_lineColor() {
+  next_crossColor() {
     let my = this;
-    my.color_index = (my.color_index + 1) % Brush.colors.length;
+    my.cross_color_index = (my.cross_color_index + 1) % Brush.colors.length;
     update_brush(my);
   }
 
-  lineColor() {
+  next_brushColor() {
     let my = this;
-    return Brush.colors[my.color_index];
+    my.brush_color_index = (my.brush_color_index + 1) % Brush.colors.length;
+    update_brush(my);
+  }
+
+  crossColor() {
+    let my = this;
+    return Brush.colors[my.cross_color_index];
   }
 
   adjust_brush_size(delta) {
@@ -120,13 +127,15 @@ class Brush {
     let my = this;
     my.lastMouseX = mouseX;
     my.lastMouseY = mouseY;
-    my.next_lineColor();
   }
 
   mouseReleased() {
     let my = this;
     if (mouseX == my.lastMouseX && mouseY == my.lastMouseY) {
       my.init_cross(mouseX, mouseY);
+      my.next_crossColor();
+    } else {
+      my.next_brushColor();
     }
   }
 
