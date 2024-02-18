@@ -114,8 +114,6 @@ class Brush {
 
   mousePressed() {
     let my = this;
-    my.lastX = my.brush_x0;
-    my.lastY = my.brush_y0;
     my.lastMouseX = mouseX;
     my.lastMouseY = mouseY;
     my.next_lineColor();
