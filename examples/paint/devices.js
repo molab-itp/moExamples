@@ -47,6 +47,29 @@ function issue_clear_action() {
 }
 
 function update_brush(my) {
-  let { x0, y0, brush_size, color_index, width, height } = my;
-  dbase_update_props({}, { x0, y0, brush_size, color_index, width, height });
+  let {
+    cross_x0, //
+    cross_y0,
+    cross_size,
+    brush_x0,
+    brush_y0,
+    brush_size,
+    color_index,
+    width,
+    height,
+  } = my;
+  dbase_update_props(
+    {},
+    {
+      cross_x0, //
+      cross_y0,
+      cross_size,
+      brush_x0,
+      brush_y0,
+      brush_size,
+      color_index,
+      width,
+      height,
+    }
+  );
 }
