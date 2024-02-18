@@ -13,6 +13,11 @@ class Brush {
     my.hitEdge = 0;
     my.brush_size = 4;
     my.cross_size = 4;
+    my.init_xy();
+  }
+
+  init_xy() {
+    let my = this;
     let x = my.width * 0.5;
     let y = my.height * 0.5;
     my.init_brush(x, y);
@@ -119,8 +124,12 @@ class Brush {
     let my = this;
     if (mouseX == my.lastMouseX && mouseY == my.lastMouseY) {
       my.init_cross(mouseX, mouseY);
-      // } else {
-      //   my.init_cross(my.lastX, my.lastY);
     }
+  }
+
+  clear() {
+    let my = this;
+    my.layer.clear();
+    my.init_xy();
   }
 }

@@ -5,11 +5,14 @@
 
 let my = {};
 
-// mo-vote/device/{uid}/paint
-//    x0, y0, brush_size, color_index, width, height
+// mo-paint/device/{uid}
+//  { cross_x0, cross_y0, cross_size,
+//    brush_x0, brush_y0, brush_size,
+//    color_index, width, height
+//  };
 
 function my_setup() {
-  my.full_screen = 0;
+  my.full_screen = 1;
   if (my.full_screen) {
     my.width = windowWidth;
     // Leave room at bottom for buttons
@@ -76,6 +79,7 @@ function canvas_mouseReleased() {
 
 function clearAction() {
   background(200);
+  my.brush.clear();
   issue_clear_action();
 }
 
