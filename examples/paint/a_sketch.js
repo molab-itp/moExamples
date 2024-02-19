@@ -20,7 +20,7 @@ function setup() {
 
   dbase_app_init({ completed: startup_completed });
 
-  background(200);
+  background(0);
 
   createButton('Clear').mousePressed(clearAction);
   createSpan('•');
@@ -29,6 +29,8 @@ function setup() {
   createSpan('•');
   createButton('Cross: Smaller').mousePressed(smallerCrossSizeAction);
   createButton('Larger').mousePressed(largerCrossSizeAction);
+
+  my.brush = new Brush({ width: my.width, height: my.height });
 }
 
 function draw() {
@@ -37,6 +39,7 @@ function draw() {
   }
   my.brush.render_cross();
   image(my.brush.layer, 0, 0);
+  draw_devices();
 }
 
 function mouseInCanvas() {
@@ -53,7 +56,7 @@ function canvas_mouseReleased() {
 }
 
 function clearAction() {
-  background(200);
+  background(0);
   my.brush.clear();
   issue_clear_action();
 }

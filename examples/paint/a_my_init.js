@@ -19,7 +19,6 @@ function my_init() {
   //
   my.device_values = {};
   //
-  my.brush = new Brush({ width: my.width, height: my.height });
   my.clear_action = 0;
   //
 }

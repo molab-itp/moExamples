@@ -48,8 +48,9 @@ function draw() {
   let y = my.half;
   let x = x0;
   for (let index = 0; index < ndevices; index++) {
+    let last = index == ndevices - 1;
     draw_device(index, x, y);
-    if (index != ndevices - 1) {
+    if (!last) {
       x += my.len;
     }
     if (x > width) {
@@ -66,6 +67,7 @@ function draw() {
 function draw_device(index, x, y) {
   let device = my.devices[index];
   if (!device) return;
+  let last = device.index == my.devices.length - 1;
   let colr = 0;
   fill(colr);
   circle(x, y, my.len);
@@ -74,13 +76,17 @@ function draw_device(index, x, y) {
     fill('green');
     circle(x, y, my.dotLen);
   }
+  if (last) {
+    fill('red');
+    circle(x, y, my.dotLen * 0.5);
+  }
   // inner yellow dot marks my device
   if (device.uid == my.uid) {
-    fill('yellow');
+    fill([187, 165, 61]);
     circle(x, y, my.dotLen);
   }
   fill(255);
-  let n = device.index;
+  let n = device.index + 1;
   text(n + '', x, y);
 }
 
