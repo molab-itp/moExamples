@@ -25,11 +25,11 @@ function setup() {
 
   createButton('Clear').mousePressed(clearAction);
   createSpan('•');
-  createButton('Brush: Smaller').mousePressed(smallerBrushSizeAction);
-  createButton('Larger').mousePressed(largerBrushSizeAction);
-  createSpan('•');
   createButton('Cross: Smaller').mousePressed(smallerCrossSizeAction);
   createButton('Larger').mousePressed(largerCrossSizeAction);
+  createSpan('•');
+  createButton('Brush: Smaller').mousePressed(smallerBrushSizeAction);
+  createButton('Larger').mousePressed(largerBrushSizeAction);
 
   my.brush = new Brush({ width: my.width, height: my.height });
 }

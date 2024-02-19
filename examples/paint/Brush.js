@@ -31,6 +31,10 @@ class Brush {
     let my = this;
     my.brush_x0 = x;
     my.brush_y0 = y;
+    {
+      let { brush_x0, brush_y0 } = my;
+      dbase_update_props({}, { brush_x0, brush_y0 });
+    }
   }
 
   init_cross(x, y) {
@@ -41,6 +45,10 @@ class Brush {
     my.yTop = my.cross_y0;
     my.xRight = my.cross_x0;
     my.yBottom = my.cross_y0;
+    {
+      let { cross_x0, cross_y0 } = my;
+      dbase_update_props({}, { cross_x0, cross_y0 });
+    }
   }
 
   render_cross() {
@@ -82,6 +90,8 @@ class Brush {
       my.hitEdge = 0;
       my.next_crossColor();
     }
+
+    dbase_update_props({});
   }
 
   mouseDragged() {

@@ -21,4 +21,5 @@ function my_init() {
   //
   my.clear_action = 0;
   //
+  my.isPortraitView = window.innerHeight > window.innerWidth;
 }

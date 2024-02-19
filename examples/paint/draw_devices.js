@@ -5,7 +5,7 @@ function draw_devices() {
     console.log('draw_devices layout_needed_check n', my.devices.length);
     build_brushes();
   }
-  // draw_brushes();
+  draw_brushes();
 }
 
 function draw_brushes() {
@@ -19,10 +19,16 @@ function draw_brushes() {
   // brush_y0,
   // brush_size,
   // brush_color_index,
-  for (let device of my.devices) {
-    let brush = my.brushes[device.uid];
-    brush.render_cross();
-    image(brush.layer, brush.layout.x0, brush.layout.y0);
+  // for (let device of my.devices) {
+  //   let brush = my.brushes[device.uid];
+  //   brush.render_cross();
+  //   image(brush.layer, brush.layout.x0, brush.layout.y0);
+  // }
+  for (let uid in my.brushes) {
+    let brush = my.brushes[uid];
+    // console.log('draw_brushes brush', brush);
+    // brush.render_cross();
+    // image(brush.layer, brush.layout.x0, brush.layout.y0);
   }
 }
 
@@ -30,7 +36,7 @@ function build_brushes() {
   let layouts = layout_devices();
   my.brushes = {};
   for (let layout of layouts) {
-    console.log('build_brushes layout', layout);
+    // console.log('build_brushes layout', layout);
 
     // layout = { device, x0: x, y0: y }
     let brush = new Brush({ width: my.xlen, height: my.ylen, layout });
@@ -40,11 +46,6 @@ function build_brushes() {
 }
 
 function layout_needed_check() {
-  // my.devices = dbase_device_summary();
-  // if (!my.devices) {
-  //   console.log('layout_needed_check no devices', my.devices);
-  //   return 0;
-  // }
   let ndevices = my.devices.length;
   if (ndevices != my.lastn) {
     console.log('layout_needed_check new ndevices', ndevices);
@@ -60,7 +61,7 @@ function layout_devices() {
   my.ndiv = 1;
   let ndevices = my.devices.length;
   let more;
-  let layout;
+  let layouts;
   do {
     more = 0;
     my.xlen = width / my.ndiv;
@@ -78,7 +79,7 @@ function layout_devices() {
         return;
       }
       layouts.push({ x0: x, y0: y, device });
-      console.log('layout_devices x', x, 'y', y, 'uid', device.uid);
+      // console.log('layout_devices x', x, 'y', y, 'uid', device.uid);
       if (index != ndevices - 1) {
         x += my.xlen;
       }
@@ -88,12 +89,12 @@ function layout_devices() {
         if (y + yhalf > height) {
           my.ndiv += 1;
           more = 1;
-          console.log('layout_devices more', more, 'index', index);
+          // console.log('layout_devices more', more, 'index', index);
           break;
         }
       }
     }
-    console.log('layout_devices more', more);
+    // console.log('layout_devices more', more);
   } while (more);
   return layouts;
 }
