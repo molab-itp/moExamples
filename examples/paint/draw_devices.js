@@ -3,15 +3,39 @@
 function draw_devices() {
   if (layout_needed_check()) {
     console.log('draw_devices layout_needed_check n', my.devices.length);
-    layout_devices();
-    for (let device of my.devices) {
-      console.log('draw_devices device', device);
-      // device.brush = my.brush = new Brush({ width: my.xlen, height: my.ylen });
-    }
+    build_brushes();
   }
-  // else {
-  //   console.log('draw_devices NO layout_needed_check ');
-  // }
+  draw_brushes();
+}
+
+function draw_brushes() {
+  // Draw brushes in my.devices order
+  // Reconsile brush properties
+  // cross_x0, //
+  // cross_y0,
+  // cross_size,
+  // cross_color_index,
+  // brush_x0,
+  // brush_y0,
+  // brush_size,
+  // brush_color_index,
+}
+
+function build_brushes() {
+  layout_devices();
+  my.brushes = {};
+  for (let device of my.devices) {
+    console.log('draw_devices device', device);
+
+    let brush = new Brush({ width: my.xlen, height: my.ylen });
+
+    let uid = device.uid;
+    brush.device_uid = uid;
+    brush.layout_x0 = device.layout_x0;
+    brush.layout_y0 = device.layout_y0;
+
+    my.brushes[uid] = brush;
+  }
 }
 
 function layout_needed_check() {
