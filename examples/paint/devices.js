@@ -13,7 +13,7 @@ function changed_key_value(key, value) {
     case 'device':
       // value = { uid: { count: xx, vote_count: nn}, ...}
       my.device_values = { ...value };
-      console.log('changed_key_value device_values', my.device_values);
+      // console.log('changed_key_value device_values', my.device_values);
       build_devices();
       break;
   }
@@ -41,13 +41,13 @@ function build_devices() {
     if (device) {
       device.uid = adevice.uid;
       device.sortOrder = index;
-      console.log('build_devices device.uid', device.uid, 'sortOrder', device.sortOrder);
+      // console.log('build_devices device.uid', device.uid, 'sortOrder', device.sortOrder);
     }
   }
   my.devices = Object.values(my.device_values).sort(function (item1, item2) {
     return item1.sortOrder - item2.sortOrder;
   });
-  console.log('build_devices devices', my.devices);
+  // console.log('build_devices devices', my.devices);
 }
 
 function issue_clear_action() {
