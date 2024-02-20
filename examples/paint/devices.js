@@ -2,12 +2,7 @@
 function startup_completed() {
   console.log('startup_completed');
 
-  dbase_a_device_observe({ observe_a_devices });
-  // // 'mo-paint/device'
-  // dbase_event_observe(
-  //   { changed_key_value, removed_key_value }, //
-  //   { app: my.mo_app + '/a_device' }
-  // );
+  dbase_a_devices_observe({ observe_a_devices });
 
   pingAction();
 
@@ -30,7 +25,7 @@ function pingAction() {
   dbase_device_updates({ controller });
 }
 
-function dbase_a_device_observe({ observe_a_devices }) {
+function dbase_a_devices_observe({ observe_a_devices }) {
   //
   if (!my.a_device_values) my.a_device_values = {};
 
@@ -55,16 +50,11 @@ function dbase_a_device_observe({ observe_a_devices }) {
     build_devices(key);
   }
 
-  // Could be improve performance by knowing
-  // that only specific device is updated?
-  //
-  // Collection list of active devices
-  //  and keep current brush in sync
+  // ?? can performance improved by knowing that only specific device is updated?
+  // Collection list of active devices and keep current in sync
   //
   function build_devices(key) {
     // console.log('build_devices key', key);
-    // value = { uid: { count: xx, vote_count: nn}, ...}
-    // my.a_device_values = value;
     //
     let allDevices = dbase_device_summary();
     let devices = [];
@@ -77,7 +67,6 @@ function dbase_a_device_observe({ observe_a_devices }) {
         devices.push(device);
       }
     }
-
     my.a_devices = devices;
 
     if (observe_a_devices) observe_a_devices(key);
@@ -99,7 +88,7 @@ function dbase_issue_clear_action() {
   dbase_queue_update({ clear_action: dbase_value_increment(1) });
 }
 
-function dbase_clear_action_check(my) {
+function dbase_clear_action_issued(my) {
   let actionSeen = 0;
   if (!my.clear_action) my.clear_action = 0;
   if (my.last_clear_action != my.clear_action) {
@@ -111,8 +100,28 @@ function dbase_clear_action_check(my) {
 
 // db_update_queue
 function dbase_queue_update(props) {
-  if (!my.db_update_queue) {
-    my.db_update_queue = {};
+  if (!my.db_queue) {
+    my.db_queue = {};
+    // troggle update to queue to time
+    my.db_queue_loop = new Anim({ time: 0.25, action: check_queue });
+    my.db_queue_count = 0;
+    my.db_queue_count_last = 0;
+    // my.pingLoop = new Anim({ target: my, time: my.pingTime, action: pingAction });
   }
-  dbase_update_props({}, props);
+  Object.assign(my.db_queue, props);
+  my.db_queue_count++;
+  // dbase_update_props({}, props);
+  function check_queue() {
+    // console.log('check_queue db_queue_count_last', my.db_queue_count_last, my.db_queue_count);
+    if (my.db_queue_count_last != my.db_queue_count) {
+      dbase_update_props({}, my.db_queue);
+      my.db_queue_count_last = my.db_queue_count;
+    }
+  }
+}
+
+function dbase_poll() {
+  if (my.db_queue_loop) {
+    my.db_queue_loop.step({ loop: 1 });
+  }
 }

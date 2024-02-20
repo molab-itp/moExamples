@@ -34,6 +34,7 @@ function setup() {
 }
 
 function draw() {
+  dbase_poll();
   if (my.isPortraitView) {
     if (mouseIsPressed && mouseInCanvas()) {
       my.brush.mouseDragged();

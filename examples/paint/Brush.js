@@ -8,8 +8,8 @@ class Brush {
   //
   // {  width, height, layout, db_update }
   constructor(props) {
-    Object.assign(this, props);
     let my = this;
+    Object.assign(my, props);
     my.layer = createGraphics(my.width, my.height);
     my.brush_color_index = 0;
     my.cross_color_index = 0;
@@ -129,7 +129,7 @@ class Brush {
 
   prepare_layer(status) {
     let my = this;
-    if (dbase_clear_action_check(my)) {
+    if (dbase_clear_action_issued(my)) {
       status.cleared = 1;
       my.clear();
     }
