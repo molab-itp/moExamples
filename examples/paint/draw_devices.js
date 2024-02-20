@@ -2,7 +2,7 @@
 
 function draw_devices() {
   if (layout_needed_check()) {
-    console.log('draw_devices layout_needed_check n', my.devices.length);
+    console.log('draw_devices layout_needed_check n', dbase_a_devices().length);
     build_brushes();
   }
   draw_brushes();
@@ -17,8 +17,6 @@ function draw_brushes() {
   for (let uid in my.brushes) {
     let brush = my.brushes[uid];
     // console.log('draw_brushes brush', brush);
-    // Object.assign(brush, brush.layout.device);
-    // Object.assign(brush, brush.device);
     brush.sync();
     brush.prepare_layer(status);
     image(brush.layer, brush.layout.x0, brush.layout.y0);
@@ -45,7 +43,8 @@ function build_brushes() {
 }
 
 function layout_needed_check() {
-  let ndevices = my.devices.length;
+  let a_devices = dbase_a_devices();
+  let ndevices = a_devices.length;
   if (ndevices != my.lastn) {
     console.log('layout_needed_check new ndevices', ndevices);
     my.lastn = ndevices;
@@ -58,7 +57,8 @@ function layout_needed_check() {
 //
 function layout_devices() {
   my.ndiv = 1;
-  let ndevices = my.devices.length;
+  let a_devices = dbase_a_devices();
+  let ndevices = a_devices.length;
   let more;
   let layouts;
   do {
@@ -72,7 +72,7 @@ function layout_devices() {
     let y = 0;
     layouts = [];
     for (let index = 0; index < ndevices; index++) {
-      let device = my.devices[index];
+      let device = a_devices[index];
       if (!device) {
         console.log('layout_devices no device', index, device);
         return;

@@ -22,9 +22,8 @@ class Brush {
   sync(uid) {
     let my = this;
     uid = uid || my.layout.uid;
-    let device = device_for_uid(uid);
+    let device = dbase_a_device_for_uid(uid);
     // console.log('Brush sync uid', uid, 'device', device);
-
     if (!device) {
       console.log('Brush sync no device uid', uid);
       return;
@@ -46,7 +45,7 @@ class Brush {
     my.brush_y0 = y;
     if (my.db_update) {
       let { brush_x0, brush_y0 } = my;
-      dbase_update_props({}, { brush_x0, brush_y0 });
+      dbase_queue_update({ brush_x0, brush_y0 });
     }
   }
 
@@ -60,7 +59,7 @@ class Brush {
     my.yBottom = my.cross_y0;
     if (my.db_update) {
       let { cross_x0, cross_y0, xLeft, yTop, xRight, yBottom } = my;
-      dbase_update_props({}, { cross_x0, cross_y0, xLeft, yTop, xRight, yBottom });
+      dbase_queue_update({ cross_x0, cross_y0, xLeft, yTop, xRight, yBottom });
     }
   }
 
@@ -104,9 +103,10 @@ class Brush {
       my.hitEdge = 0;
       my.next_crossColor();
     }
+
     if (my.db_update) {
       let { xLeft, yTop, xRight, yBottom } = my;
-      dbase_update_props({}, { xLeft, yTop, xRight, yBottom });
+      dbase_queue_update({ xLeft, yTop, xRight, yBottom });
     }
   }
 
@@ -123,17 +123,15 @@ class Brush {
       my.brush_x1 = mouseX;
       my.brush_y1 = mouseY;
       let { brush_x0, brush_y0, brush_x1, brush_y1 } = my;
-      dbase_update_props({}, { brush_x0, brush_y0, brush_x1, brush_y1 });
+      dbase_queue_update({ brush_x0, brush_y0, brush_x1, brush_y1 });
     }
   }
 
   prepare_layer(status) {
     let my = this;
-    if (my.last_clear_action != my.clear_action) {
-      // console.log('Brush prepare_layer clear_action', my.clear_action);
+    if (dbase_clear_action_check(my)) {
       status.cleared = 1;
       my.clear();
-      my.last_clear_action = my.clear_action;
     }
     my.trackBrush();
     my.render_cross();
@@ -169,7 +167,7 @@ class Brush {
     }
     if (my.db_update) {
       let brush_x1 = -1;
-      dbase_update_props({}, { brush_x1 });
+      dbase_queue_update({ brush_x1 });
     }
   }
 
@@ -179,7 +177,7 @@ class Brush {
     // update_brush(my);
     if (my.db_update) {
       let cross_color_index = my.cross_color_index;
-      dbase_update_props({}, { cross_color_index });
+      dbase_queue_update({ cross_color_index });
     }
   }
 
@@ -189,7 +187,7 @@ class Brush {
     // update_brush(my);
     if (my.db_update) {
       let brush_color_index = my.brush_color_index;
-      dbase_update_props({}, { brush_color_index });
+      dbase_queue_update({ brush_color_index });
     }
   }
 
@@ -205,7 +203,7 @@ class Brush {
     }
     if (my.db_update) {
       let { brush_size } = my;
-      dbase_update_props({}, { brush_size });
+      dbase_queue_update({ brush_size });
     }
   }
 
@@ -216,7 +214,7 @@ class Brush {
     }
     if (my.db_update) {
       let { cross_size } = my;
-      dbase_update_props({}, { cross_size });
+      dbase_queue_update({ cross_size });
     }
   }
 

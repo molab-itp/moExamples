@@ -18,7 +18,6 @@ function setup() {
   my.canvas.mousePressed(canvas_mousePressed);
   my.canvas.mouseReleased(canvas_mouseReleased);
 
-  my.devices = [];
   dbase_app_init({ completed: startup_completed });
 
   background(0);
@@ -62,7 +61,7 @@ function canvas_mouseReleased() {
 function clearAction() {
   background(0);
   my.brush.clear();
-  issue_clear_action();
+  dbase_issue_clear_action();
 }
 
 function smallerCrossSizeAction() {
