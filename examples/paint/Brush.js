@@ -108,9 +108,6 @@ class Brush {
       let { xLeft, yTop, xRight, yBottom } = my;
       dbase_update_props({}, { xLeft, yTop, xRight, yBottom });
     }
-    // if (my.db_update) {
-    //   dbase_update_props({});
-    // }
   }
 
   mouseDragged() {
