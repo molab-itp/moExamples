@@ -31,7 +31,7 @@ function setup() {
   createButton('Brush: Larger').mousePressed(largerBrushSizeAction);
   createButton('Smaller').mousePressed(smallerBrushSizeAction);
 
-  my.brush = new Brush({ width: my.width, height: my.height });
+  my.brush = new Brush({ width: my.width, height: my.height, db_update: 1 });
 }
 
 function draw() {

@@ -11,23 +11,20 @@ function draw_devices() {
 function draw_brushes() {
   //
   // Draw brushes in my.brushes
-  // Reconsile brush properties
-  // cross_x0, //
-  // cross_y0,
-  // cross_size,
-  // cross_color_index,
-  // brush_x0,
-  // brush_y0,
-  // brush_size,
-  // brush_color_index,
-  //
+  //  sync brush properteis from db
+
+  let status = {};
   for (let uid in my.brushes) {
     let brush = my.brushes[uid];
     // console.log('draw_brushes brush', brush);
-    Object.assign(brush, brush.device);
-    brush.trackBrush();
-    brush.render_cross();
+    // Object.assign(brush, brush.layout.device);
+    // Object.assign(brush, brush.device);
+    brush.sync();
+    brush.prepare_layer(status);
     image(brush.layer, brush.layout.x0, brush.layout.y0);
+  }
+  if (status.cleared) {
+    background(0);
   }
 }
 
@@ -39,8 +36,11 @@ function build_brushes() {
 
     // layout = { device, x0: x, y0: y }
     let brush = new Brush({ width: my.xlen, height: my.ylen, layout });
+    brush.sync();
+    // Object.assign(brush, brush.layout.device);
+    // Object.assign(brush, brush.device);
 
-    my.brushes[layout.device.uid] = brush;
+    my.brushes[layout.uid] = brush;
   }
 }
 
@@ -77,7 +77,8 @@ function layout_devices() {
         console.log('layout_devices no device', index, device);
         return;
       }
-      layouts.push({ x0: x, y0: y, device });
+      let uid = device.uid;
+      layouts.push({ x0: x, y0: y, uid });
       // console.log('layout_devices x', x, 'y', y, 'uid', device.uid);
       if (index != ndevices - 1) {
         x += my.xlen;
