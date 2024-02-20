@@ -103,6 +103,18 @@ class Brush {
     my.init_brush(mouseX, mouseY);
   }
 
+  trackBrush() {
+    let my = this;
+    let colr = Brush.colors[my.brush_color_index];
+    my.layer.strokeWeight(my.brush_size);
+    my.layer.stroke(colr);
+    if (my.pmouseX != undefined) {
+      my.layer.line(my.pmouseX, my.pmouseY, my.brush_x0, my.brush_y0);
+    }
+    my.pmouseX = my.brush_x0;
+    my.pmouseY = my.brush_y0;
+  }
+
   next_crossColor() {
     let my = this;
     my.cross_color_index = (my.cross_color_index + 1) % Brush.colors.length;
@@ -125,12 +137,20 @@ class Brush {
     if (delta > 0 || my.brush_size > 1) {
       my.brush_size += delta;
     }
+    {
+      let { brush_size } = my;
+      dbase_update_props({}, { brush_size });
+    }
   }
 
   adjust_cross_size(delta) {
     let my = this;
     if (delta > 0 || my.cross_size > 1) {
       my.cross_size += delta;
+    }
+    {
+      let { cross_size } = my;
+      dbase_update_props({}, { cross_size });
     }
   }
 

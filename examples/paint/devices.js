@@ -2,6 +2,12 @@
 function startup_completed() {
   console.log('startup_completed');
   dbase_event_observe({ changed_key_value, removed_key_value });
+  pingAction();
+}
+
+function pingAction() {
+  let portrait = my.isPortraitView ? 1 : 0;
+  dbase_device_updates({ portrait });
 }
 
 // dbase_event_observe --> dbase_observe_devices
@@ -12,7 +18,8 @@ function changed_key_value(key, value) {
   switch (key) {
     case 'device':
       // value = { uid: { count: xx, vote_count: nn}, ...}
-      my.device_values = { ...value };
+      // my.device_values = { ...value };
+      my.device_values = value;
       // console.log('changed_key_value device_values', my.device_values);
       build_devices();
       break;
@@ -38,12 +45,21 @@ function build_devices() {
   let devices = [];
   for (let index = 0; index < allDevices.length; index++) {
     let adevice = allDevices[index];
-    let device = my.device_values[adevice.uid];
-    if (device && device_uid_isActive(adevice.uid)) {
-      device.uid = adevice.uid;
+    let uid = adevice.uid;
+    let device = my.device_values[uid];
+    if (device && device_uid_isActive(uid)) {
+      // device = { ...device };
+      device.uid = uid;
       device.sortOrder = index;
       // console.log('build_devices device.uid', device.uid, 'sortOrder', device.sortOrder);
+      // console.log('build_devices device.uid', device.uid, 'brush_x0', device.brush_x0);
       devices.push(device);
+      if (my.brushes) {
+        let brush = my.brushes[uid];
+        if (brush) {
+          brush.device = device;
+        }
+      }
     }
   }
   my.devices = devices.sort(function (item1, item2) {
@@ -54,8 +70,10 @@ function build_devices() {
 
 function device_uid_isActive(uid) {
   let device = my.fireb_devices[uid];
-  return dbase_device_isActive(device);
+  // console.log('device_uid_isActive uid', uid, 'portrait', device.serverValues.portrait);
+  return dbase_device_isActive(device) && device.serverValues.portrait;
 }
+
 function issue_clear_action() {
   dbase_update_props({}, { clear_action: dbase_value_increment(1) });
 }
@@ -76,7 +94,7 @@ function update_brush(my) {
   dbase_update_props(
     {},
     {
-      cross_x0, //
+      cross_x0,
       cross_y0,
       cross_size,
       cross_color_index,

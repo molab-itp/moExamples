@@ -25,22 +25,25 @@ function setup() {
 
   createButton('Clear').mousePressed(clearAction);
   createSpan('•');
-  createButton('Cross: Smaller').mousePressed(smallerCrossSizeAction);
-  createButton('Larger').mousePressed(largerCrossSizeAction);
+  createButton('Cross: Larger').mousePressed(largerCrossSizeAction);
+  createButton('Smaller').mousePressed(smallerCrossSizeAction);
   createSpan('•');
-  createButton('Brush: Smaller').mousePressed(smallerBrushSizeAction);
-  createButton('Larger').mousePressed(largerBrushSizeAction);
+  createButton('Brush: Larger').mousePressed(largerBrushSizeAction);
+  createButton('Smaller').mousePressed(smallerBrushSizeAction);
 
   my.brush = new Brush({ width: my.width, height: my.height });
 }
 
 function draw() {
-  if (mouseIsPressed && mouseInCanvas()) {
-    my.brush.mouseDragged();
+  if (my.isPortraitView) {
+    if (mouseIsPressed && mouseInCanvas()) {
+      my.brush.mouseDragged();
+    }
+    my.brush.render_cross();
+    image(my.brush.layer, 0, 0);
+  } else {
+    draw_devices();
   }
-  my.brush.render_cross();
-  image(my.brush.layer, 0, 0);
-  draw_devices();
 }
 
 function mouseInCanvas() {

@@ -9,7 +9,8 @@ function draw_devices() {
 }
 
 function draw_brushes() {
-  // Draw brushes in my.devices order
+  //
+  // Draw brushes in my.brushes
   // Reconsile brush properties
   // cross_x0, //
   // cross_y0,
@@ -19,16 +20,14 @@ function draw_brushes() {
   // brush_y0,
   // brush_size,
   // brush_color_index,
-  // for (let device of my.devices) {
-  //   let brush = my.brushes[device.uid];
-  //   brush.render_cross();
-  //   image(brush.layer, brush.layout.x0, brush.layout.y0);
-  // }
+  //
   for (let uid in my.brushes) {
     let brush = my.brushes[uid];
     // console.log('draw_brushes brush', brush);
-    // brush.render_cross();
-    // image(brush.layer, brush.layout.x0, brush.layout.y0);
+    Object.assign(brush, brush.device);
+    brush.trackBrush();
+    brush.render_cross();
+    image(brush.layer, brush.layout.x0, brush.layout.y0);
   }
 }
 
