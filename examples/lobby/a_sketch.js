@@ -5,11 +5,11 @@
 
 let my = {};
 
-// my.devices.length
-// my.devices[0].uid
-// my.devices[0].serverValues.date_s
-// my.devices[0].serverValues.visit_count
-// my.devices[0].serverValues.userAgent
+// my.site_devices.length
+// my.site_devices[0].uid
+// my.site_devices[0].serverValues.date_s
+// my.site_devices[0].serverValues.visit_count
+// my.site_devices[0].serverValues.userAgent
 
 function my_setup() {
   my.width = windowWidth;
@@ -33,9 +33,9 @@ function setup() {
 
 function draw() {
   background(200);
-  my.devices = dbase_site_devices();
-  if (!my.devices) return;
-  let ndevices = my.devices.length;
+  my.site_devices = dbase_site_devices();
+  if (!my.site_devices) return;
+  let ndevices = my.site_devices.length;
   if (ndevices != my.last_ndevices) {
     console.log('ndevices', ndevices);
     my.ndiv = 1;
@@ -65,9 +65,8 @@ function draw() {
 }
 
 function draw_device(index, x, y) {
-  let device = my.devices[index];
-  if (!device) return;
-  let last = device.index == my.devices.length - 1;
+  let device = my.site_devices[index];
+  let last = device.index == my.site_devices.length - 1;
   let colr = 0;
   fill(colr);
   circle(x, y, my.len);
@@ -91,8 +90,8 @@ function draw_device(index, x, y) {
 }
 
 function downloadAction() {
-  if (!my.devices) return;
-  let str = JSON.stringify(my.devices, undefined, 2);
+  if (!my.site_devices) return;
+  let str = JSON.stringify(my.site_devices, undefined, 2);
   downloadToFile('lobby-' + my.mo_app + '-live' + '.json', str);
   downloadActionShort();
 }
@@ -101,11 +100,11 @@ function downloadActionShort() {
   //
   // remove arrays to short display of summary
   //
-  for (let device of my.devices) {
+  for (let device of my.site_devices) {
     delete device.serverValues.update;
     delete device.serverValues.visit;
   }
-  let str = JSON.stringify(my.devices, undefined, 2);
+  let str = JSON.stringify(my.site_devices, undefined, 2);
   downloadToFile('lobby-short-' + my.mo_app + '-live' + '.json', str);
 }
 

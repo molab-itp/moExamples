@@ -12,7 +12,8 @@ function my_setup() {
   my.width = windowWidth;
   my.height = windowHeight;
   // my.fireb_config = 'jht9629';
-  my.fireb_config = 'jht1493';
+  // my.fireb_config = 'jht1493';
+  my.fireb_config = 'jhtitp';
   my.dbase_rootPath = 'm0-@r-@w-';
   my.roomName = 'room0';
   my.mo_app = 'mo-vote';
@@ -42,7 +43,7 @@ function setup() {
 function draw() {
   background(200);
   //
-  if (!check_devices()) return;
+  // if (!check_devices()) return;
   //
   calc_votes();
   //
@@ -52,37 +53,18 @@ function draw() {
 
 function startup_completed() {
   console.log('startup_completed');
-  dbase_event_observe({ changed_key_value, removed_key_value });
-}
+  // dbase_event_observe({ changed_key_value, removed_key_value });
+  dbase_a_devices_observe({ observed_a_devices, all: 1 });
 
-function changed_key_value(key, value) {
-  console.log('changed_key_value key', key, 'value', value);
-  switch (key) {
-    case 'a_device':
-      // value = { uid: { count: xx, vote_count: nn}, ...}
-      my.device_values = value;
-      //
-      let myprops = my.device_values[my.uid];
-      if (myprops != undefined) {
-        console.log('changed_key_value myprops', myprops);
-        let vc = myprops.vote_count;
-        if (vc != undefined) {
-          my.vote_count = vc;
-        } else {
-          my.vote_count = 0;
-        }
+  function observed_a_devices(key) {
+    console.log('observed_a_devices key', key, 'uid', my.uid);
+    if (key == my.uid) {
+      // console.log('build_devices key', key, 'uid', my.uid);
+      let device = dbase_a_device_for_uid(my.uid);
+      if (device && device.vote_count != undefined) {
+        my.vote_count = device.vote_count;
       }
-      break;
-  }
-}
-
-function removed_key_value(key, value) {
-  console.log('removed_key_value key', key, 'value', value);
-  switch (key) {
-    case 'device':
-      my.device_values = {};
-      my.vote_count = 0;
-      break;
+    }
   }
 }
 
@@ -96,24 +78,11 @@ function voteDown() {
   dbase_update_props({}, { vote_count: dbase_value_increment(-1) });
 }
 
-function check_devices() {
-  my.devices = dbase_site_devices();
-  if (!my.devices) {
-    console.log('no devices yet');
-    return 0;
-  }
-  let ndevices = my.devices.length;
-  if (ndevices != my.last_ndevices) {
-    console.log('ndevices', ndevices);
-  }
-  my.last_ndevices = ndevices;
-  return 1;
-}
-
 function calc_votes() {
   my.vote_total_count = 0;
-  for (let uid in my.device_values) {
-    let device = my.device_values[uid];
+  let a_devices = dbase_a_devices();
+  for (let device of a_devices) {
+    // let device = my.device_values[uid];
     if (device.vote_count != undefined) {
       my.vote_total_count += device.vote_count;
     }
