@@ -62,7 +62,7 @@ function canvas_mouseReleased() {
 function clearAction() {
   background(0);
   my.brush.clear();
-  dbase_issue_clear_action();
+  dbase_issue_actions({ clear_action: 1 });
 }
 
 function smallerCrossSizeAction() {

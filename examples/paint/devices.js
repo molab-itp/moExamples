@@ -84,20 +84,6 @@ function dbase_a_device_for_uid(uid) {
   return my.a_device_values[uid];
 }
 
-function dbase_issue_clear_action() {
-  dbase_queue_update({ clear_action: dbase_value_increment(1) });
-}
-
-function dbase_clear_action_issued(my) {
-  let actionSeen = 0;
-  if (!my.clear_action) my.clear_action = 0;
-  if (my.last_clear_action != my.clear_action) {
-    my.last_clear_action = my.clear_action;
-    actionSeen = 1;
-  }
-  return actionSeen;
-}
-
 // throttle update to queue to time
 //
 function dbase_queue_update(props) {
@@ -126,4 +112,38 @@ function dbase_poll() {
   if (my.db_queue_loop) {
     my.db_queue_loop.step({ loop: 1 });
   }
+}
+
+// dbase_issue_actions( {clear_action: 1} )
+//
+function dbase_issue_actions(actions) {
+  //
+  let nactions = {};
+  for (let act of actions) {
+    nactions[act] = dbase_value_increment(1);
+  }
+  // dbase_queue_update({ clear_action: dbase_value_increment(1) });
+  dbase_queue_update(nactions);
+}
+
+// dbase_actions_issued(my, { clear_action: 1})
+//
+function dbase_actions_issued(my, actions) {
+  //
+  let actionSeen = 0;
+  if (!my.db_actions_state) my.db_actions_state = {};
+  if (!my.db_last_actions_state) my.db_last_actions_state = {};
+  for (let act of actions) {
+    if (my.db_last_actions_state[act] != my.db_actions_state[act]) {
+      my.db_last_actions_state[act] = my.db_actions_state[act];
+      actionSeen++;
+    }
+  }
+  return actionSeen;
+  // if (!my.clear_action) my.clear_action = 0;
+  // if (my.last_clear_action != my.clear_action) {
+  //   my.last_clear_action = my.clear_action;
+  //   actionSeen = 1;
+  // }
+  // return actionSeen;
 }

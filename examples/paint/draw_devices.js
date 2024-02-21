@@ -42,7 +42,7 @@ function build_brushes() {
   for (let layout of layouts) {
     // console.log('build_brushes layout', layout);
 
-    // layout = { device, x0: x, y0: y }
+    // layout = { x0: x, y0: y, uid, width, height }
     let { width, height } = layout;
     let brush = new Brush({ width, height, layout });
     brush.sync();
