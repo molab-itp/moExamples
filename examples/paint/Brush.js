@@ -16,11 +16,26 @@ class Brush {
     my.hitEdge = 0;
     my.brush_size = 4;
     my.cross_size = 4;
+    //
+    my.init_no_update();
+    if (my.db_update) {
+      let { width, height } = my;
+      dbase_queue_update({ width, height });
+    }
+  }
+
+  init_no_update() {
+    let my = this;
+    let db_update = my.db_update;
+    my.db_update = 0;
     my.init_xy();
+    my.db_update = db_update;
+    my.await_sync = my.db_update;
   }
 
   sync(uid) {
     let my = this;
+    my.await_sync = 0;
     uid = uid || my.layout.uid;
     let device = dbase_a_device_for_uid(uid);
     // console.log('Brush sync uid', uid, 'device', device);
@@ -65,6 +80,7 @@ class Brush {
 
   render_cross() {
     let my = this;
+    if (my.await_sync) return;
 
     my.xRight += 1;
     if (my.xRight > my.width) {
@@ -221,6 +237,6 @@ class Brush {
   clear() {
     let my = this;
     my.layer.clear();
-    my.init_xy();
+    // my.init_xy();
   }
 }

@@ -98,24 +98,26 @@ function dbase_clear_action_issued(my) {
   return actionSeen;
 }
 
-// db_update_queue
+// throttle update to queue to time
+//
 function dbase_queue_update(props) {
+  //
   if (!my.db_queue) {
     my.db_queue = {};
-    // troggle update to queue to time
     my.db_queue_loop = new Anim({ time: 0.25, action: check_queue });
     my.db_queue_count = 0;
     my.db_queue_count_last = 0;
-    // my.pingLoop = new Anim({ target: my, time: my.pingTime, action: pingAction });
   }
   Object.assign(my.db_queue, props);
   my.db_queue_count++;
-  // dbase_update_props({}, props);
   function check_queue() {
     // console.log('check_queue db_queue_count_last', my.db_queue_count_last, my.db_queue_count);
     if (my.db_queue_count_last != my.db_queue_count) {
-      dbase_update_props({}, my.db_queue);
       my.db_queue_count_last = my.db_queue_count;
+
+      dbase_update_props({}, my.db_queue);
+
+      my.db_queue = {};
     }
   }
 }

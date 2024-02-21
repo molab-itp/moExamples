@@ -17,11 +17,6 @@ function my_init() {
   my.roomName = 'room0';
   my.mo_app = 'mo-paint';
   my.nameDevice = '';
-  //
-  // my.a_device_values = {};
-  //
-  // my.clear_action = 0;
-  //
   my.isPortraitView = window.innerHeight > window.innerWidth;
 }
 

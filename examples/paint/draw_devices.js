@@ -19,7 +19,17 @@ function draw_brushes() {
     // console.log('draw_brushes brush', brush);
     brush.sync();
     brush.prepare_layer(status);
-    image(brush.layer, brush.layout.x0, brush.layout.y0);
+    {
+      // image(brush.layer, brush.layout.x0, brush.layout.y0);
+      let img = brush.layer;
+      let dx = brush.layout.x0;
+      let dy = brush.layout.y0;
+      let dWidth = my.xlen;
+      let dHeight = my.ylen;
+      let sx = 0;
+      let sy = 0;
+      image(img, dx, dy, dWidth, dHeight, sx, sy, img.width, img.height);
+    }
   }
   if (status.cleared) {
     background(0);
@@ -33,7 +43,8 @@ function build_brushes() {
     // console.log('build_brushes layout', layout);
 
     // layout = { device, x0: x, y0: y }
-    let brush = new Brush({ width: my.xlen, height: my.ylen, layout });
+    let { width, height } = layout;
+    let brush = new Brush({ width, height, layout });
     brush.sync();
     // Object.assign(brush, brush.layout.device);
     // Object.assign(brush, brush.device);
@@ -77,8 +88,10 @@ function layout_devices() {
         console.log('layout_devices no device', index, device);
         return;
       }
-      let uid = device.uid;
-      layouts.push({ x0: x, y0: y, uid });
+      {
+        let { uid, width, height } = device;
+        layouts.push({ x0: x, y0: y, uid, width, height });
+      }
       // console.log('layout_devices x', x, 'y', y, 'uid', device.uid);
       if (index != ndevices - 1) {
         x += my.xlen;
