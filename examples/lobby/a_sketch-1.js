@@ -30,7 +30,7 @@ function setup() {
 
 function draw() {
   background(200);
-  my.devices = dbase_device_summary();
+  my.devices = dbase_site_devices();
   if (!my.devices) return;
   let n = my.devices.length;
   let len = width / n;

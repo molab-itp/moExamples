@@ -33,14 +33,14 @@ function setup() {
 
 function draw() {
   background(200);
-  my.devices = dbase_device_summary();
+  my.devices = dbase_site_devices();
   if (!my.devices) return;
   let ndevices = my.devices.length;
-  if (ndevices != my.lastn) {
+  if (ndevices != my.last_ndevices) {
     console.log('ndevices', ndevices);
     my.ndiv = 1;
   }
-  my.lastn = ndevices;
+  my.last_ndevices = ndevices;
   my.len = width / my.ndiv;
   my.half = my.len / 2;
   my.dotLen = my.len / 3;

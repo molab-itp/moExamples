@@ -46,8 +46,7 @@ function build_brushes() {
     let { width, height } = layout;
     let brush = new Brush({ width, height, layout });
     brush.sync();
-    // Object.assign(brush, brush.layout.device);
-    // Object.assign(brush, brush.device);
+    // Object.assign(my, device);
 
     my.brushes[layout.uid] = brush;
   }
@@ -56,9 +55,9 @@ function build_brushes() {
 function layout_needed_check() {
   let a_devices = dbase_a_devices();
   let ndevices = a_devices.length;
-  if (ndevices != my.lastn) {
+  if (ndevices != my.last_ndevices) {
     console.log('layout_needed_check new ndevices', ndevices);
-    my.lastn = ndevices;
+    my.last_ndevices = ndevices;
     return 1;
   }
   return 0;

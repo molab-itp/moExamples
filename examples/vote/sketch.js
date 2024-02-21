@@ -58,7 +58,7 @@ function startup_completed() {
 function changed_key_value(key, value) {
   console.log('changed_key_value key', key, 'value', value);
   switch (key) {
-    case 'device':
+    case 'a_device':
       // value = { uid: { count: xx, vote_count: nn}, ...}
       my.device_values = value;
       //
@@ -97,16 +97,16 @@ function voteDown() {
 }
 
 function check_devices() {
-  my.devices = dbase_device_summary();
+  my.devices = dbase_site_devices();
   if (!my.devices) {
     console.log('no devices yet');
     return 0;
   }
   let ndevices = my.devices.length;
-  if (ndevices != my.lastn) {
+  if (ndevices != my.last_ndevices) {
     console.log('ndevices', ndevices);
   }
-  my.lastn = ndevices;
+  my.last_ndevices = ndevices;
   return 1;
 }
 
@@ -124,6 +124,6 @@ function calc_votes() {
 // VS Code menu: Run > Start Debugging
 
 // .vscode/launch.json
-//       "url": "http://localhost:5500/p5moExamples/examples/vote",
+//    "url": "http://localhost:5500/examples/vote/",
 
 // https://stackoverflow.com/questions/46945784/how-to-debug-javascript-in-visual-studio-code-with-live-server-running

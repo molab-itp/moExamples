@@ -63,3 +63,19 @@
 
 // ## -
 // function dbase_value_increment(value) {
+
+// ## -
+
+// function dbase_a_devices_observe({ observed_a_devices }) {
+
+// function dbase_a_devices() {
+
+// function dbase_a_device_for_uid(uid) {
+
+// function dbase_queue_update(props) {
+
+// function dbase_poll() {
+
+// function dbase_issue_actions(actions) {
+
+// function dbase_actions_issued(my, actions) {

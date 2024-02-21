@@ -16,21 +16,12 @@ class Brush {
     my.hitEdge = 0;
     my.brush_size = 4;
     my.cross_size = 4;
-    //
-    my.init_no_update();
+    my.await_sync = my.db_update;
+    my.init_xy(0);
     if (my.db_update) {
       let { width, height } = my;
       dbase_queue_update({ width, height });
     }
-  }
-
-  init_no_update() {
-    let my = this;
-    let db_update = my.db_update;
-    my.db_update = 0;
-    my.init_xy();
-    my.db_update = db_update;
-    my.await_sync = my.db_update;
   }
 
   sync(uid) {
@@ -46,25 +37,25 @@ class Brush {
     Object.assign(my, device);
   }
 
-  init_xy() {
+  init_xy(db_update) {
     let my = this;
     let x = my.width * 0.5;
     let y = my.height * 0.5;
-    my.init_brush(x, y);
-    my.init_cross(x, y);
+    my.init_brush(x, y, db_update);
+    my.init_cross(x, y, db_update);
   }
 
-  init_brush(x, y) {
+  init_brush(x, y, db_update) {
     let my = this;
     my.brush_x0 = x;
     my.brush_y0 = y;
-    if (my.db_update) {
+    if (db_update) {
       let { brush_x0, brush_y0 } = my;
       dbase_queue_update({ brush_x0, brush_y0 });
     }
   }
 
-  init_cross(x, y) {
+  init_cross(x, y, db_update) {
     let my = this;
     my.cross_x0 = x;
     my.cross_y0 = y;
@@ -72,7 +63,7 @@ class Brush {
     my.yTop = my.cross_y0;
     my.xRight = my.cross_x0;
     my.yBottom = my.cross_y0;
-    if (my.db_update) {
+    if (db_update) {
       let { cross_x0, cross_y0, xLeft, yTop, xRight, yBottom } = my;
       dbase_queue_update({ cross_x0, cross_y0, xLeft, yTop, xRight, yBottom });
     }
@@ -132,7 +123,6 @@ class Brush {
     my.layer.strokeWeight(my.brush_size);
     my.layer.stroke(colr);
     my.layer.line(pmouseX, pmouseY, mouseX, mouseY);
-    // my.init_brush(mouseX, mouseY);
     if (my.db_update) {
       my.brush_x0 = pmouseX;
       my.brush_y0 = pmouseY;
@@ -176,7 +166,7 @@ class Brush {
   mouseReleased() {
     let my = this;
     if (mouseX == my.lastMouseX && mouseY == my.lastMouseY) {
-      my.init_cross(mouseX, mouseY);
+      my.init_cross(mouseX, mouseY, my.db_update);
       my.next_crossColor();
     } else {
       my.next_brushColor();
@@ -237,6 +227,5 @@ class Brush {
   clear() {
     let my = this;
     my.layer.clear();
-    // my.init_xy();
   }
 }

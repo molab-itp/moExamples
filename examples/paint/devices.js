@@ -2,11 +2,11 @@
 function startup_completed() {
   console.log('startup_completed');
 
-  dbase_a_devices_observe({ observe_a_devices });
+  dbase_a_devices_observe({ observed_a_devices });
 
   pingAction();
 
-  function observe_a_devices(key) {
+  function observed_a_devices(key) {
     // console.log('build_devices key', key, 'uid', my.uid, 'brush', my.brush);
     if (my.isPortraitView && my.brush && key == my.uid) {
       // console.log('build_devices key', key, 'uid', my.uid, 'brush', my.brush);
