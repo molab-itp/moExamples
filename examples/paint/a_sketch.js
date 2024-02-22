@@ -2,6 +2,7 @@
 // p5moExamples vote
 
 // participants can cast a numeric vote up or down
+// must be in portrait orientation to see crosses
 
 let my = {};
 
@@ -29,8 +30,17 @@ function setup() {
   createSpan('•');
   createButton('Brush: Larger').mousePressed(largerBrushSizeAction);
   createButton('Smaller').mousePressed(smallerBrushSizeAction);
+  createSpan('•');
+  createButton('Spawn').mousePressed(spawnAction);
+  my.spawn_count_span = createSpan('');
 
-  my.brush = new Brush({ width: my.width, height: my.height, db_update: 1 });
+  {
+    let width = my.width;
+    let height = my.height;
+    let db_update = 1;
+    let cross_limit = my.cross_limit;
+    my.brush = new Brush({ width, height, db_update, cross_limit });
+  }
 }
 
 function draw() {
@@ -44,6 +54,12 @@ function draw() {
   } else {
     draw_devices();
   }
+}
+
+function mouseDragged() {
+  // console.log('mouseDragged');
+  // return false; // required to prevent touch drag moving canvas on mobile
+  return !mouseInCanvas();
 }
 
 function mouseInCanvas() {
@@ -83,4 +99,8 @@ function smallerBrushSizeAction() {
 function largerBrushSizeAction() {
   my.brush.adjust_brush_size(1);
   my.brush.next_brushColor();
+}
+
+function spawnAction() {
+  //
 }

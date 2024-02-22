@@ -74,7 +74,7 @@ class Brush {
     if (my.await_sync) return;
 
     my.xRight += 1;
-    if (my.xRight > my.width) {
+    if (my.xRight > my.width * my.cross_limit + my.cross_x0) {
       my.hitEdge += 1;
       my.xRight = my.cross_x0;
     }
@@ -83,7 +83,7 @@ class Brush {
     my.layer.line(my.cross_x0, my.cross_y0, my.xRight, my.cross_y0);
 
     my.yBottom += 1;
-    if (my.yBottom > my.height) {
+    if (my.yBottom > my.height * my.cross_limit + my.cross_y0) {
       my.hitEdge += 1;
       my.yBottom = my.cross_y0;
     }
@@ -91,7 +91,7 @@ class Brush {
     my.layer.line(my.cross_x0, my.cross_y0, my.cross_x0, my.yBottom);
 
     my.xLeft -= 1;
-    if (my.xLeft < 0) {
+    if (my.xLeft < my.cross_x0 - my.width * my.cross_limit) {
       my.hitEdge += 1;
       my.xLeft = my.cross_x0;
     }
@@ -99,7 +99,7 @@ class Brush {
     my.layer.line(my.cross_x0, my.cross_y0, my.xLeft, my.cross_y0);
 
     my.yTop -= 1;
-    if (my.yTop < 0) {
+    if (my.yTop < my.cross_y0 - my.height * my.cross_limit) {
       my.hitEdge += 1;
       my.yTop = my.cross_y0;
     }

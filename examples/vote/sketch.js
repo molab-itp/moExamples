@@ -43,8 +43,6 @@ function setup() {
 function draw() {
   background(200);
   //
-  // if (!check_devices()) return;
-  //
   calc_votes();
   //
   my.vote_count_span.html(my.vote_count);
@@ -58,12 +56,12 @@ function startup_completed() {
 
   function observed_a_devices(key) {
     console.log('observed_a_devices key', key, 'uid', my.uid);
-    if (key == my.uid) {
-      // console.log('build_devices key', key, 'uid', my.uid);
-      let device = dbase_a_device_for_uid(my.uid);
-      if (device && device.vote_count != undefined) {
-        my.vote_count = device.vote_count;
-      }
+    if (key != my.uid) return;
+    // console.log('build_devices key', key, 'uid', my.uid);
+    let device = dbase_a_device_for_uid(my.uid);
+    if (!device) return;
+    if (device.vote_count != undefined) {
+      my.vote_count = device.vote_count;
     }
   }
 }
