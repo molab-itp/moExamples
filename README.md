@@ -44,10 +44,6 @@ Copied into to sketches.
 
 ## Plan
 
-- [] lobby delete room function
-
-- [] collab draw example
-
 - [] Document VS Code debugging steps
 
 - [] Document vote example
@@ -61,6 +57,11 @@ Copied into to sketches.
 ## Done
 
 ```
+
+- [x] lobby delete room function
+  - defer: use firebase console
+
+- [x] collab draw example
 
 - [x] Add basic vote sample
 
