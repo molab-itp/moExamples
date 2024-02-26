@@ -68,22 +68,22 @@ function draw() {
 function draw_device(index, x, y) {
   let device = my.site_devices[index];
   let last = device.index == my.site_devices.length - 1;
-  let colr = 0;
-  fill(colr);
+  // Black big circle
+  fill(0);
   circle(x, y, my.len);
   // inner green dot marks active device
   if (dbase_device_isActive(device)) {
     fill('green');
     circle(x, y, my.dotLen);
   }
-  if (last) {
-    fill('red');
-    circle(x, y, my.dotLen * 0.5);
-  }
   // inner yellow dot marks my device
   if (device.uid == my.uid) {
     fill([187, 165, 61]);
     circle(x, y, my.dotLen);
+  }
+  if (last) {
+    fill('red');
+    circle(x, y, my.dotLen * 0.5);
   }
   fill(255);
   let n = device.index + 1;
