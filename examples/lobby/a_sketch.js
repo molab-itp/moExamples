@@ -14,15 +14,26 @@ let my = {};
 function my_setup() {
   my.width = windowWidth;
   my.height = windowHeight;
-  // my.fireb_config = 'jht9629';
+  my.fireb_config = 'jht9629';
   // my.fireb_config = 'jht1493';
-  my.fireb_config = 'jhtitp';
+  // my.fireb_config = 'jhtitp';
+  // my.fireb_config = my_firebaseConfig;
   my.dbase_rootPath = 'm0-@r-@w-';
   my.mo_app = 'mo-blackfacts';
   my.roomName = 'room0';
   my.nameDevice = '';
   my.ndiv = 1;
 }
+
+// Your web app's Firebase configuration
+const my_firebaseConfig = {
+  apiKey: 'AIzaSyBg2bnuULvLvkd6SOAEetErgNtyGsNIb8c',
+  authDomain: 'jhtitp-2417a.firebaseapp.com',
+  projectId: 'jhtitp-2417a',
+  storageBucket: 'jhtitp-2417a.appspot.com',
+  messagingSenderId: '523385422249',
+  appId: '1:523385422249:web:52df2a4c0803b79c2a04b8',
+};
 
 function setup() {
   my_setup();
