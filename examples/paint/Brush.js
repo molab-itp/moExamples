@@ -135,7 +135,7 @@ class Brush {
 
   prepare_layer(status) {
     let my = this;
-    if (dbase_actions_issued(my, { action_clear: 1 })) {
+    if (dbase_actions_issued(my, { clear_action: 1 })) {
       status.cleared = 1;
       my.clear();
     }
