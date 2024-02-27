@@ -7,9 +7,9 @@ let my = {};
 
 // my.site_devices.length
 // my.site_devices[0].uid
-// my.site_devices[0].serverValues.date_s
-// my.site_devices[0].serverValues.visit_count
-// my.site_devices[0].serverValues.userAgent
+// my.site_devices[0].dbase.date_s
+// my.site_devices[0].dbase.visit_count
+// my.site_devices[0].dbase.userAgent
 
 function my_setup() {
   my.width = windowWidth;
@@ -102,8 +102,8 @@ function downloadActionShort() {
   // remove arrays to short display of summary
   //
   for (let device of my.site_devices) {
-    delete device.serverValues.update;
-    delete device.serverValues.visit;
+    delete device.dbase.update;
+    delete device.dbase.visit;
   }
   let str = JSON.stringify(my.site_devices, undefined, 2);
   downloadToFile('lobby-short-' + my.mo_app + '-live' + '.json', str);

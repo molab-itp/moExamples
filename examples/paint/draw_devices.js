@@ -8,11 +8,11 @@ function draw_devices() {
   draw_brushes();
 }
 
+//
+// Draw brushes in my.brushes
+//  sync brush properteis from db
+//
 function draw_brushes() {
-  //
-  // Draw brushes in my.brushes
-  //  sync brush properteis from db
-
   let status = {};
   for (let uid in my.brushes) {
     let brush = my.brushes[uid];
@@ -86,8 +86,10 @@ function layout_devices() {
   let layouts;
   do {
     more = 0;
-    my.xlen = width / my.ndiv;
-    my.ylen = my.xlen * (16 / 9);
+    // my.xlen = width / my.ndiv;
+    // my.ylen = my.xlen * (16 / 9);
+    my.ylen = height / my.ndiv;
+    my.xlen = my.ylen * (9 / 16);
     let xhalf = my.xlen * 0.5;
     let yhalf = my.ylen * 0.5;
     let x0 = 0;

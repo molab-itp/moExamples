@@ -33,6 +33,12 @@ class Brush {
     }
   }
 
+  prepare_layer(status) {
+    let my = this;
+    my.trackBrush();
+    my.render_cross(status);
+  }
+
   sync(uid) {
     let my = this;
     my.await_sync = 0;
@@ -78,9 +84,18 @@ class Brush {
     }
   }
 
-  render_cross() {
+  render_cross(status) {
     let my = this;
     if (my.await_sync) return;
+    if (!status) status = {};
+    if (dbase_actions_issued(my.uid, { clear_action: 1 })) {
+      console.log('Brush render_cross uid', my.uid, 'clear_action', my.clear_action);
+      status.cleared = 1;
+      if (my.isController) {
+        background(0);
+      }
+      my.layer.clear();
+    }
 
     my.xRight += 1;
     if (my.xRight > my.width * my.cross_limit + my.cross_x0) {
@@ -140,16 +155,6 @@ class Brush {
       let { brush_x0, brush_y0, brush_x1, brush_y1 } = my;
       dbase_queue_update({ brush_x0, brush_y0, brush_x1, brush_y1 });
     }
-  }
-
-  prepare_layer(status) {
-    let my = this;
-    if (dbase_actions_issued(my, { clear_action: 1 })) {
-      status.cleared = 1;
-      my.clear();
-    }
-    my.trackBrush();
-    my.render_cross();
   }
 
   trackBrush() {
@@ -233,8 +238,8 @@ class Brush {
     }
   }
 
-  clear() {
-    let my = this;
-    my.layer.clear();
-  }
+  // clear() {
+  //   let my = this;
+  //   my.layer.clear();
+  // }
 }

@@ -17,7 +17,7 @@ function my_init() {
   my.roomName = 'room0';
   my.mo_app = 'mo-paint';
   my.nameDevice = '';
-  my.isPortraitView = window.innerHeight > window.innerWidth;
+  my.isController = my.height > my.width;
   my.spawn_count = 0;
   my.cross_limit = 0.2;
 }

@@ -116,7 +116,6 @@ function dbase_received_cross(device, uid) {
   }
   // Draw the chip on layer that persists
   let chip = device.pixchips;
-  // let chip = device.serverValues.chip;
   if (!chip) {
     return;
   }

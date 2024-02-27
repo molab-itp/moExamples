@@ -6,7 +6,7 @@
 
 let my = {};
 
-// mo-paint/device/{uid}
+// mo-paint/a_device/{uid}
 //  { cross_x0, cross_y0, cross_size,
 //    brush_x0, brush_y0, brush_size,
 //    color_index, width, height
@@ -20,6 +20,7 @@ function setup() {
   my.canvas = createCanvas(my.width, my.height);
   my.canvas.mousePressed(canvas_mousePressed);
   my.canvas.mouseReleased(canvas_mouseReleased);
+  my.canvas.touchEnded(canvas_mouseReleased);
 
   dbase_app_init({ completed: startup_completed });
 
@@ -37,7 +38,7 @@ function setup() {
   // createButton('Spawn').mousePressed(spawnAction);
   // my.spawn_count_span = createSpan('');
 
-  init_brush();
+  // init_brush();
 }
 
 function init_brush() {
@@ -45,12 +46,14 @@ function init_brush() {
   let height = my.height;
   let db_update = 1;
   let cross_limit = my.cross_limit;
-  my.brush = new Brush({ width, height, db_update, cross_limit });
+  let isController = my.isController;
+  my.brush = new Brush({ width, height, db_update, cross_limit, isController });
 }
 
 function draw() {
+  if (!my.brush) return;
   dbase_poll();
-  if (my.isPortraitView) {
+  if (my.isController) {
     if (mouseIsPressed && mouse_in_canvas()) {
       my.brush.mouseDragged();
     }
@@ -58,6 +61,17 @@ function draw() {
     image(my.brush.layer, 0, 0);
   } else {
     draw_devices();
+  }
+}
+
+function clearAction() {
+  if (my.isController) {
+    // my.brush.clear();
+    dbase_issue_actions({ clear_action: 1 });
+  } else {
+    background(0);
+    dbase_a_devices_issue_actions({ clear_action: 1 });
+    deinit_brushes();
   }
 }
 
@@ -80,14 +94,9 @@ function canvas_mouseReleased() {
   my.brush.mouseReleased();
 }
 
-function clearAction() {
-  background(0);
-  my.brush.clear();
-  dbase_issue_actions({ clear_action: 1 });
-  if (!my.isPortraitView) {
-    deinit_brushes();
-  }
-}
+//
+// actions
+//
 
 function smallerCrossSizeAction() {
   my.brush.adjust_cross_size(-1);
