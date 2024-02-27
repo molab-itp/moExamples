@@ -11,7 +11,7 @@ function startup_completed() {
   function observed_a_device(key, device) {
     // console.log('build_devices key', key, 'uid', my.uid, 'brush', my.brush);
     // console.log('build_devices observed key', key, 'uid', my.uid, 'device', device);
-    if (my.isController && my.brush && key == my.uid) {
+    if (my.isRemote && my.brush && key == my.uid) {
       my.brush.sync(device);
     } else if (my.brushes) {
       let brush = my.brushes[key];
@@ -33,11 +33,8 @@ function startup_completed() {
 }
 
 // !!@ Doc
-// dbase_device_updates({ controller });
-// function device_uid_isActive(uid) {
-//   return dbase_device_isActive(fdevice) && fdevice.dbase.controller;
 
 function pingAction() {
-  let controller = my.isController ? 1 : 0;
-  dbase_device_updates({ controller });
+  let remote = my.isRemote ? 1 : 0;
+  dbase_device_updates({ remote });
 }

@@ -87,7 +87,7 @@ class Brush {
     if (dbase_actions_issued(my.uid, { clear_action: 1 })) {
       // console.log('Brush render_cross uid', my.uid, 'clear_action', my.clear_action);
       status.cleared = 1;
-      if (my.isController) {
+      if (my.isRemote) {
         background(0);
       }
       my.layer.clear();

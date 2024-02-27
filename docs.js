@@ -66,7 +66,7 @@
 
 // ## -
 
-// function dbase_a_devices_observe({ observed_a_device }) {
+// function dbase_a_devices_observe({ observed_a_device, removed_a_device, all }) {
 
 // function dbase_a_devices() {
 
@@ -76,6 +76,6 @@
 
 // function dbase_poll() {
 
-// function dbase_issue_actions(actions) {
+// function dbase_actions_issued(uid, actions) {
 
-// function dbase_actions_issued(my, actions) {
+// function dbase_issue_actions(actions, options) {

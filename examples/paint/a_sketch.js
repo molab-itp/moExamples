@@ -46,14 +46,14 @@ function init_brush() {
   let height = my.height;
   let db_update = 1;
   let cross_limit = my.cross_limit;
-  let isController = my.isController;
-  my.brush = new Brush({ width, height, db_update, cross_limit, isController });
+  let isRemote = my.isRemote;
+  my.brush = new Brush({ width, height, db_update, cross_limit, isRemote });
 }
 
 function draw() {
   if (!my.brush) return;
   dbase_poll();
-  if (my.isController) {
+  if (my.isRemote) {
     if (mouseIsPressed && mouse_in_canvas()) {
       my.brush.mouseDragged();
     }
@@ -65,12 +65,13 @@ function draw() {
 }
 
 function clearAction() {
-  if (my.isController) {
+  if (my.isRemote) {
     // my.brush.clear();
     dbase_issue_actions({ clear_action: 1 });
   } else {
     background(0);
-    dbase_a_devices_issue_actions({ clear_action: 1 });
+    dbase_issue_actions({ clear_action: 1 }, { all: 1 });
+    // dbase_a_devices_issue_actions({ clear_action: 1 });
     deinit_brushes();
   }
 }
