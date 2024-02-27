@@ -1,3 +1,4 @@
+//
 class Brush {
   //
   static colorGold = [187, 165, 61];
@@ -11,6 +12,7 @@ class Brush {
     let my = this;
     Object.assign(my, props);
     my.layer = createGraphics(my.width, my.height);
+
     my.brush_color_index = 0;
     my.cross_color_index = 0;
     my.hitEdge = 0;
@@ -21,6 +23,13 @@ class Brush {
     if (my.db_update) {
       let { width, height } = my;
       dbase_queue_update({ width, height });
+    }
+  }
+
+  deinit() {
+    let my = this;
+    if (my.layer) {
+      my.layer.remove();
     }
   }
 

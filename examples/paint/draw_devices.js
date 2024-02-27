@@ -28,12 +28,25 @@ function draw_brushes() {
       let dHeight = my.ylen;
       let sx = 0;
       let sy = 0;
-      image(img, dx, dy, dWidth, dHeight, sx, sy, img.width, img.height);
+      if (img) {
+        image(img, dx, dy, dWidth, dHeight, sx, sy, img.width, img.height);
+      } else {
+        console.log('draw_brushes img', img, 'brush', brush);
+      }
     }
   }
   if (status.cleared) {
     background(0);
   }
+}
+
+function deinit_brushes() {
+  for (let uid in my.brushes) {
+    let brush = my.brushes[uid];
+    brush.deinit();
+  }
+  my.brushes = {};
+  my.last_ndevices = 0;
 }
 
 function build_brushes() {

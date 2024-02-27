@@ -12,6 +12,8 @@ let my = {};
 //    color_index, width, height
 //  };
 
+// p5.disableFriendlyErrors = true; // disables FES to improve performance
+
 function setup() {
   my_init();
 
@@ -30,23 +32,26 @@ function setup() {
   createSpan('•');
   createButton('Brush: Larger').mousePressed(largerBrushSizeAction);
   createButton('Smaller').mousePressed(smallerBrushSizeAction);
-  createSpan('•');
-  createButton('Spawn').mousePressed(spawnAction);
-  my.spawn_count_span = createSpan('');
 
-  {
-    let width = my.width;
-    let height = my.height;
-    let db_update = 1;
-    let cross_limit = my.cross_limit;
-    my.brush = new Brush({ width, height, db_update, cross_limit });
-  }
+  // createSpan('•');
+  // createButton('Spawn').mousePressed(spawnAction);
+  // my.spawn_count_span = createSpan('');
+
+  init_brush();
+}
+
+function init_brush() {
+  let width = my.width;
+  let height = my.height;
+  let db_update = 1;
+  let cross_limit = my.cross_limit;
+  my.brush = new Brush({ width, height, db_update, cross_limit });
 }
 
 function draw() {
   dbase_poll();
   if (my.isPortraitView) {
-    if (mouseIsPressed && mouseInCanvas()) {
+    if (mouseIsPressed && mouse_in_canvas()) {
       my.brush.mouseDragged();
     }
     my.brush.render_cross();
@@ -59,10 +64,10 @@ function draw() {
 function mouseDragged() {
   // console.log('mouseDragged');
   // return false; // required to prevent touch drag moving canvas on mobile
-  return !mouseInCanvas();
+  return !mouse_in_canvas();
 }
 
-function mouseInCanvas() {
+function mouse_in_canvas() {
   return mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY < height;
 }
 
@@ -79,6 +84,9 @@ function clearAction() {
   background(0);
   my.brush.clear();
   dbase_issue_actions({ clear_action: 1 });
+  if (!my.isPortraitView) {
+    deinit_brushes();
+  }
 }
 
 function smallerCrossSizeAction() {
@@ -101,6 +109,6 @@ function largerBrushSizeAction() {
   my.brush.next_brushColor();
 }
 
-function spawnAction() {
-  //
-}
+// // function spawnAction() {
+// //   //
+// // }
