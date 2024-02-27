@@ -17,7 +17,7 @@ function draw_brushes() {
   for (let uid in my.brushes) {
     let brush = my.brushes[uid];
     // console.log('draw_brushes brush', brush);
-    brush.sync();
+    // brush.sync();
     brush.prepare_layer(status);
     {
       // image(brush.layer, brush.layout.x0, brush.layout.y0);
@@ -55,11 +55,10 @@ function build_brushes() {
   for (let layout of layouts) {
     // console.log('build_brushes layout', layout);
 
-    // layout = { x0: x, y0: y, uid, width, height }
-    let { width, height } = layout;
-    let brush = new Brush({ width, height, layout });
-    brush.sync();
-    // Object.assign(my, device);
+    // layout = { x0: x, y0: y, uid, width, height, device }
+    let { width, height, uid } = layout;
+    let brush = new Brush({ width, height, uid, layout });
+    brush.sync(layout.device);
 
     my.brushes[layout.uid] = brush;
   }
@@ -104,7 +103,7 @@ function layout_devices() {
       }
       {
         let { uid, width, height } = device;
-        layouts.push({ x0: x, y0: y, uid, width, height });
+        layouts.push({ x0: x, y0: y, uid, width, height, device });
       }
       // console.log('layout_devices x', x, 'y', y, 'uid', device.uid);
       if (index != ndevices - 1) {

@@ -57,7 +57,7 @@ function draw() {
     if (mouseIsPressed && mouse_in_canvas()) {
       my.brush.mouseDragged();
     }
-    my.brush.render_cross();
+    my.brush.render();
     image(my.brush.layer, 0, 0);
   } else {
     draw_devices();

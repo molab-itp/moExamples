@@ -10,7 +10,9 @@ class Brush {
   // {  width, height, layout, db_update }
   constructor(props) {
     let my = this;
+
     Object.assign(my, props);
+
     my.layer = createGraphics(my.width, my.height);
 
     my.brush_color_index = 0;
@@ -20,6 +22,7 @@ class Brush {
     my.cross_size = 4;
     my.await_sync = my.db_update;
     my.init_xy(0);
+
     if (my.db_update) {
       let { width, height } = my;
       dbase_queue_update({ width, height });
@@ -36,19 +39,12 @@ class Brush {
   prepare_layer(status) {
     let my = this;
     my.trackBrush();
-    my.render_cross(status);
+    my.render(status);
   }
 
-  sync(uid) {
+  sync(device) {
     let my = this;
     my.await_sync = 0;
-    uid = uid || my.layout.uid;
-    let device = dbase_a_device_for_uid(uid);
-    // console.log('Brush sync uid', uid, 'device', device);
-    if (!device) {
-      console.log('Brush sync no device uid', uid);
-      return;
-    }
     Object.assign(my, device);
   }
 
@@ -84,61 +80,19 @@ class Brush {
     }
   }
 
-  render_cross(status) {
+  render(status) {
     let my = this;
     if (my.await_sync) return;
     if (!status) status = {};
     if (dbase_actions_issued(my.uid, { clear_action: 1 })) {
-      console.log('Brush render_cross uid', my.uid, 'clear_action', my.clear_action);
+      // console.log('Brush render_cross uid', my.uid, 'clear_action', my.clear_action);
       status.cleared = 1;
       if (my.isController) {
         background(0);
       }
       my.layer.clear();
     }
-
-    my.xRight += 1;
-    if (my.xRight > my.width * my.cross_limit + my.cross_x0) {
-      my.hitEdge += 1;
-      my.xRight = my.cross_x0;
-    }
-    my.layer.strokeWeight(my.cross_size);
-    my.layer.stroke(my.crossColor(0));
-    my.layer.line(my.cross_x0, my.cross_y0, my.xRight, my.cross_y0);
-
-    my.yBottom += 1;
-    if (my.yBottom > my.height * my.cross_limit + my.cross_y0) {
-      my.hitEdge += 1;
-      my.yBottom = my.cross_y0;
-    }
-    my.layer.stroke(my.crossColor(1));
-    my.layer.line(my.cross_x0, my.cross_y0, my.cross_x0, my.yBottom);
-
-    my.xLeft -= 1;
-    if (my.xLeft < my.cross_x0 - my.width * my.cross_limit) {
-      my.hitEdge += 1;
-      my.xLeft = my.cross_x0;
-    }
-    my.layer.stroke(my.crossColor(2));
-    my.layer.line(my.cross_x0, my.cross_y0, my.xLeft, my.cross_y0);
-
-    my.yTop -= 1;
-    if (my.yTop < my.cross_y0 - my.height * my.cross_limit) {
-      my.hitEdge += 1;
-      my.yTop = my.cross_y0;
-    }
-    my.layer.stroke(my.crossColor(3));
-    my.layer.line(my.cross_x0, my.cross_y0, my.cross_x0, my.yTop);
-
-    if (my.hitEdge >= 4) {
-      my.hitEdge = 0;
-      my.next_crossColor();
-    }
-
-    if (my.db_update) {
-      let { xLeft, yTop, xRight, yBottom } = my;
-      dbase_queue_update({ xLeft, yTop, xRight, yBottom });
-    }
+    my.render_cross();
   }
 
   mouseDragged() {
@@ -238,8 +192,50 @@ class Brush {
     }
   }
 
-  // clear() {
-  //   let my = this;
-  //   my.layer.clear();
-  // }
+  render_cross() {
+    let my = this;
+
+    my.xRight += 1;
+    if (my.xRight > my.width * my.cross_limit + my.cross_x0) {
+      my.hitEdge += 1;
+      my.xRight = my.cross_x0;
+    }
+    my.layer.strokeWeight(my.cross_size);
+    my.layer.stroke(my.crossColor(0));
+    my.layer.line(my.cross_x0, my.cross_y0, my.xRight, my.cross_y0);
+
+    my.yBottom += 1;
+    if (my.yBottom > my.height * my.cross_limit + my.cross_y0) {
+      my.hitEdge += 1;
+      my.yBottom = my.cross_y0;
+    }
+    my.layer.stroke(my.crossColor(1));
+    my.layer.line(my.cross_x0, my.cross_y0, my.cross_x0, my.yBottom);
+
+    my.xLeft -= 1;
+    if (my.xLeft < my.cross_x0 - my.width * my.cross_limit) {
+      my.hitEdge += 1;
+      my.xLeft = my.cross_x0;
+    }
+    my.layer.stroke(my.crossColor(2));
+    my.layer.line(my.cross_x0, my.cross_y0, my.xLeft, my.cross_y0);
+
+    my.yTop -= 1;
+    if (my.yTop < my.cross_y0 - my.height * my.cross_limit) {
+      my.hitEdge += 1;
+      my.yTop = my.cross_y0;
+    }
+    my.layer.stroke(my.crossColor(3));
+    my.layer.line(my.cross_x0, my.cross_y0, my.cross_x0, my.yTop);
+
+    if (my.hitEdge >= 4) {
+      my.hitEdge = 0;
+      my.next_crossColor();
+    }
+
+    if (my.db_update) {
+      let { xLeft, yTop, xRight, yBottom } = my;
+      dbase_queue_update({ xLeft, yTop, xRight, yBottom });
+    }
+  }
 }

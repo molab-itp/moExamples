@@ -66,7 +66,7 @@
 
 // ## -
 
-// function dbase_a_devices_observe({ observed_a_devices }) {
+// function dbase_a_devices_observe({ observed_a_device }) {
 
 // function dbase_a_devices() {
 

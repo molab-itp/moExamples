@@ -68,14 +68,13 @@ function draw() {
 function startup_completed() {
   console.log('startup_completed');
   // dbase_event_observe({ changed_key_value, removed_key_value });
-  dbase_a_devices_observe({ observed_a_devices, all: 1 });
+  dbase_a_devices_observe({ observed_a_device, all: 1 });
 
-  function observed_a_devices(key) {
-    console.log('observed_a_devices key', key, 'uid', my.uid);
-    if (key != my.uid) return;
+  function observed_a_device(key, device) {
+    console.log('observed_a_device key', key, 'uid', my.uid, 'device', device);
+    if (key != my.uid || !device) return;
     // console.log('build_devices key', key, 'uid', my.uid);
-    let device = dbase_a_device_for_uid(my.uid);
-    if (!device) return;
+    // if (!device) return;
     if (device.vote_count != undefined) {
       my.vote_count = device.vote_count;
     }
