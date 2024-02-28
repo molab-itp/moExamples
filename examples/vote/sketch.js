@@ -1,6 +1,8 @@
 // https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1
 // p5moExamples vote
 
+// all the functions start with "dbase_" are from p5moLibrary repo
+
 // participants can cast a numeric vote up or down
 
 let my = {};
