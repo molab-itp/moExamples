@@ -1,7 +1,7 @@
 //
 function dbase_pix_grid_observe() {
   //
-  dbase_event_observe(
+  dbase_app_observe(
     { changed_key_value, removed_key_value }, //
     { app: 'mo-pixgrid', tag: 'dbase_pix_grid_observe' }
   );

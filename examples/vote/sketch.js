@@ -51,7 +51,6 @@ function draw() {
 
 function startup_completed() {
   console.log('startup_completed');
-  // dbase_event_observe({ changed_key_value, removed_key_value });
   dbase_a_devices_observe({ observed_a_device, all: 1 });
 
   function observed_a_device(key, device) {

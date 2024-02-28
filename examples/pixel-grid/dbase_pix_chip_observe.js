@@ -7,7 +7,7 @@
 
 function dbase_pix_chip_observe() {
   //
-  dbase_event_observe(
+  dbase_app_observe(
     { changed_key_value, removed_key_value }, //
     { app: 'mo-pixchip', tag: 'dbase_pix_chip_observe' }
   );

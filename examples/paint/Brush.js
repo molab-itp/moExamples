@@ -8,7 +8,9 @@ class Brush {
 
   //
   // {  width, height, layout, db_update }
+  //
   constructor(props) {
+    //
     let my = this;
 
     Object.assign(my, props);
@@ -148,7 +150,6 @@ class Brush {
   next_crossColor() {
     let my = this;
     my.cross_color_index = (my.cross_color_index + 1) % Brush.colors.length;
-    // update_brush(my);
     if (my.db_update) {
       let cross_color_index = my.cross_color_index;
       dbase_queue_update({ cross_color_index });
@@ -158,7 +159,6 @@ class Brush {
   next_brushColor() {
     let my = this;
     my.brush_color_index = (my.brush_color_index + 1) % Brush.colors.length;
-    // update_brush(my);
     if (my.db_update) {
       let brush_color_index = my.brush_color_index;
       dbase_queue_update({ brush_color_index });

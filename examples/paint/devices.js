@@ -16,7 +16,7 @@ function startup_completed() {
     } else if (my.brushes) {
       let brush = my.brushes[key];
       if (!brush) {
-        console.log('build_devices key', key, 'uid', my.uid, 'brush', my.brush);
+        console.log('build_devices NO brush key', key, 'uid', my.uid, 'brush', brush);
         return;
       }
       // console.log('build_devices sync key', key, 'brush', brush);
@@ -32,9 +32,12 @@ function startup_completed() {
   }
 }
 
-// !!@ Doc
-
+//
+// dbase device remote is set to 1 on startup to indicate
+// in remote controll mode
+//
 function pingAction() {
+  //
   let remote = my.isRemote ? 1 : 0;
   dbase_device_updates({ remote });
 }
