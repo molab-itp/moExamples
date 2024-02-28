@@ -11,11 +11,11 @@ let my = {};
 function my_setup() {
   my.width = windowWidth;
   my.height = windowHeight;
-  my.fireb_config = 'jht9629';
+  my.fireb_config = 'jht9629'; // change to your firebase app
   // my.fireb_config = 'jht1493';
   // my.fireb_config = 'jhtitp';
   my.dbase_rootPath = 'm0-@r-@w-';
-  my.roomName = 'room0';
+  my.roomName = 'room0'; // change to add a room in firebase real-time database
   my.mo_app = 'mo-vote';
   my.nameDevice = '';
   //
@@ -25,30 +25,31 @@ function my_setup() {
 }
 
 function setup() {
-  my_setup();
+  my_setup(); // setup firebase configuration
 
   // my.canvas = createCanvas(my.width, my.height);
   noCanvas();
 
-  dbase_app_init({ completed: startup_completed });
+  dbase_app_init({ completed: startup_completed }); // callback function when app init
 
-  createButton('Vote Up').mousePressed(voteUp);
-  createButton('Vote Down').mousePressed(voteDown);
-  my.vote_count_span = createSpan('' + my.vote_count);
+  createButton('Vote Up').mousePressed(voteUp); // call voteUp() when button press
+  createButton('Vote Down').mousePressed(voteDown); // call voteDown() when button press
+  my.vote_count_span = createSpan('' + my.vote_count); // create a span tag showing current user's vote count
   createElement('br');
   createSpan('Total Vote ');
-  my.vote_total_count_span = createSpan('' + my.vote_total_count);
+  my.vote_total_count_span = createSpan('' + my.vote_total_count); // create a span tag showing real-time total vote count
 }
 
 function draw() {
   background(200);
   //
-  calc_votes();
+  calc_votes(); // calculate votes every frame
   //
-  my.vote_count_span.html(my.vote_count);
-  my.vote_total_count_span.html(my.vote_total_count);
+  my.vote_count_span.html(my.vote_count); // show current user's vote every frame
+  my.vote_total_count_span.html(my.vote_total_count); // show real-time total votes every frame
 }
 
+// check device exists in db
 function startup_completed() {
   console.log('startup_completed');
   dbase_a_devices_observe({ observed_a_device, all: 1 });
