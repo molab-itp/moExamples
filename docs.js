@@ -55,6 +55,8 @@
 //   { observed_key, removed_key }, //
 //   { app: 'mo-pix-chip', tag: 'dbase_pix_chip_observe' }
 // );
+// dbase_app_observe uses firebase realtime db's built in functions
+// see https://firebase.google.com/docs/database/web/lists-of-data
 
 // dbase_app_observe(
 //   { observed_key, removed_key }, //
