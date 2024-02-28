@@ -62,7 +62,7 @@ function ui_init_row_2() {
     scrollFlag_changed(this.checked());
   });
 
-  if (isPortraitView()) {
+  if (isRemote()) {
     ui_break();
   }
 
@@ -105,7 +105,7 @@ function ui_init_row_3() {
 
   ui_nstep_selection();
 
-  if (isPortraitView()) {
+  if (isRemote()) {
     ui_break();
   }
 
@@ -162,7 +162,7 @@ function ui_init_update_rgb() {
   let g = colr[1];
   let b = colr[2];
 
-  if (isPortraitView()) {
+  if (isRemote()) {
     ui_break();
   }
 
@@ -203,7 +203,7 @@ function updateBtn_action() {
 }
 
 function resetBtn_action() {
-  dbase_remove();
+  app_pix_grid_remove();
   ui_log_clear();
   localStorage.clear();
   location.reload();

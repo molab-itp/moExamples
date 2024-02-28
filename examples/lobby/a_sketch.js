@@ -5,23 +5,35 @@
 
 let my = {};
 
-// my.devices.length
-// my.devices[0].uid
-// my.devices[0].serverValues.date_s
-// my.devices[0].serverValues.visit_count
-// my.devices[0].serverValues.userAgent
+// my.site_devices.length
+// my.site_devices[0].uid
+// my.site_devices[0].dbase.date_s
+// my.site_devices[0].dbase.visit_count
+// my.site_devices[0].dbase.userAgent
 
 function my_setup() {
   my.width = windowWidth;
   my.height = windowHeight;
   my.fireb_config = 'jht9629';
   // my.fireb_config = 'jht1493';
+  // my.fireb_config = 'jhtitp';
+  // my.fireb_config = my_firebaseConfig;
   my.dbase_rootPath = 'm0-@r-@w-';
   my.mo_app = 'mo-blackfacts';
   my.roomName = 'room0';
   my.nameDevice = '';
   my.ndiv = 1;
 }
+
+// Your web app's Firebase configuration
+const my_firebaseConfig = {
+  apiKey: 'AIzaSyBg2bnuULvLvkd6SOAEetErgNtyGsNIb8c',
+  authDomain: 'jhtitp-2417a.firebaseapp.com',
+  projectId: 'jhtitp-2417a',
+  storageBucket: 'jhtitp-2417a.appspot.com',
+  messagingSenderId: '523385422249',
+  appId: '1:523385422249:web:52df2a4c0803b79c2a04b8',
+};
 
 function setup() {
   my_setup();
@@ -33,14 +45,14 @@ function setup() {
 
 function draw() {
   background(200);
-  my.devices = dbase_device_summary();
-  if (!my.devices) return;
-  let ndevices = my.devices.length;
-  if (ndevices != my.lastn) {
+  my.site_devices = dbase_site_devices();
+  if (!my.site_devices) return;
+  let ndevices = my.site_devices.length;
+  if (ndevices != my.last_ndevices) {
     console.log('ndevices', ndevices);
     my.ndiv = 1;
   }
-  my.lastn = ndevices;
+  my.last_ndevices = ndevices;
   my.len = width / my.ndiv;
   my.half = my.len / 2;
   my.dotLen = my.len / 3;
@@ -48,8 +60,9 @@ function draw() {
   let y = my.half;
   let x = x0;
   for (let index = 0; index < ndevices; index++) {
+    let last = index == ndevices - 1;
     draw_device(index, x, y);
-    if (index != ndevices - 1) {
+    if (!last) {
       x += my.len;
     }
     if (x > width) {
@@ -64,10 +77,10 @@ function draw() {
 }
 
 function draw_device(index, x, y) {
-  let device = my.devices[index];
-  if (!device) return;
-  let colr = 0;
-  fill(colr);
+  let device = my.site_devices[index];
+  let last = device.index == my.site_devices.length - 1;
+  // Black big circle
+  fill(0);
   circle(x, y, my.len);
   // inner green dot marks active device
   if (dbase_device_isActive(device)) {
@@ -76,17 +89,21 @@ function draw_device(index, x, y) {
   }
   // inner yellow dot marks my device
   if (device.uid == my.uid) {
-    fill('yellow');
+    fill([187, 165, 61]);
     circle(x, y, my.dotLen);
   }
+  if (last) {
+    fill('red');
+    circle(x, y, my.dotLen * 0.5);
+  }
   fill(255);
-  let n = device.index;
+  let n = device.index + 1;
   text(n + '', x, y);
 }
 
 function downloadAction() {
-  if (!my.devices) return;
-  let str = JSON.stringify(my.devices, undefined, 2);
+  if (!my.site_devices) return;
+  let str = JSON.stringify(my.site_devices, undefined, 2);
   downloadToFile('lobby-' + my.mo_app + '-live' + '.json', str);
   downloadActionShort();
 }
@@ -95,11 +112,11 @@ function downloadActionShort() {
   //
   // remove arrays to short display of summary
   //
-  for (let device of my.devices) {
-    delete device.serverValues.update;
-    delete device.serverValues.visit;
+  for (let device of my.site_devices) {
+    delete device.dbase.update;
+    delete device.dbase.visit;
   }
-  let str = JSON.stringify(my.devices, undefined, 2);
+  let str = JSON.stringify(my.site_devices, undefined, 2);
   downloadToFile('lobby-short-' + my.mo_app + '-live' + '.json', str);
 }
 

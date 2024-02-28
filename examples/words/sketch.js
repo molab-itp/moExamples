@@ -1,22 +1,24 @@
-// https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1
-// p5moExamples vote
+// https://editor.p5js.org/jht9629-nyu/sketches/xxxx
+// p5moExamples words
 
-// participants can cast a numeric vote up or down
+// overlay qrcode on a website
+// [] convert to vanilla js
+// [] action example
 
 let my = {};
 
-// mo-vote/device/{uid}/vote
+// mo-words/device/{uid}/vote
 //    individual vote
 
 function my_setup() {
   my.width = windowWidth;
   my.height = windowHeight;
-  my.fireb_config = 'jht9629'; // change to your firebase app
+  my.fireb_config = 'jht9629';
   // my.fireb_config = 'jht1493';
   // my.fireb_config = 'jhtitp';
   my.dbase_rootPath = 'm0-@r-@w-';
-  my.roomName = 'room0'; // change to add a room in firebase real-time database
-  my.mo_app = 'mo-vote';
+  my.roomName = 'room0';
+  my.mo_app = 'mo-words';
   my.nameDevice = '';
   //
   my.vote_count = 0;
@@ -25,33 +27,47 @@ function my_setup() {
 }
 
 function setup() {
-  my_setup(); // setup firebase configuration
+  my_setup();
+
+  create_my_iframe();
 
   // my.canvas = createCanvas(my.width, my.height);
   noCanvas();
 
-  dbase_app_init({ completed: startup_completed }); // callback function when app init
+  dbase_app_init({ completed: startup_completed });
 
-  createButton('Vote Up').mousePressed(voteUp); // call voteUp() when button press
-  createButton('Vote Down').mousePressed(voteDown); // call voteDown() when button press
-  my.vote_count_span = createSpan('' + my.vote_count); // create a span tag showing current user's vote count
+  createButton('Vote Up').mousePressed(voteUp);
+  createButton('Vote Down').mousePressed(voteDown);
+  my.vote_count_span = createSpan('' + my.vote_count);
   createElement('br');
   createSpan('Total Vote ');
-  my.vote_total_count_span = createSpan('' + my.vote_total_count); // create a span tag showing real-time total vote count
+  my.vote_total_count_span = createSpan('' + my.vote_total_count);
+
+  // Move the canvas below all the ui elements
+  let body_elt = document.querySelector('body');
+  let other_elt = my.iframe_element.elt;
+  body_elt.insertBefore(other_elt, null);
+}
+
+function create_my_iframe() {
+  my.iframe_element = createElement('iframe');
+  my.iframe_element.elt.src = 'https://www.merriam-webster.com/word-of-the-day/2023-01-01';
+  my.iframe_element.elt.width = windowWidth;
+  my.iframe_element.elt.height = windowHeight;
 }
 
 function draw() {
   background(200);
   //
-  calc_votes(); // calculate votes every frame
+  calc_votes();
   //
-  my.vote_count_span.html(my.vote_count); // show current user's vote every frame
-  my.vote_total_count_span.html(my.vote_total_count); // show real-time total votes every frame
+  my.vote_count_span.html(my.vote_count);
+  my.vote_total_count_span.html(my.vote_total_count);
 }
 
-// check device exists in db
 function startup_completed() {
   console.log('startup_completed');
+
   dbase_a_devices_observe({ observed_a_device, all: 1 });
 
   function observed_a_device(key, device) {
@@ -93,3 +109,20 @@ function calc_votes() {
 //    "url": "http://localhost:5500/examples/vote/",
 
 // https://stackoverflow.com/questions/46945784/how-to-debug-javascript-in-visual-studio-code-with-live-server-running
+
+/*
+
+https://www.merriam-webster.com/word-of-the-day/2023-01-01
+Annus mirabilis means “a remarkable or notable year.”
+
+https://www.merriam-webster.com/word-of-the-day/2024-01-01
+Incipient is used to describe things which are 
+beginning to come into being 
+or which are to become apparent.
+
+https://www.w3schools.com/tags/tag_iframe.ASP
+
+
+my.iframe_element.elt.src = 'https://www.merriam-webster.com/word-of-the-day/2023-01-01'
+
+*/

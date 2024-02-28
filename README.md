@@ -2,11 +2,12 @@
 
 - p5js examples for [p5moLibrary](https://github.com/molab-itp/p5moLibrary.git)
 
-## [github.io p5moExamples](https://molab-itp.github.io/p5moExamples?v=005)
+## [github.io p5moExamples](https://molab-itp.github.io/p5moExamples?v=012)
 
-- [examples/vote](examples/vote?v=005)
-- [examples/lobby](examples/lobby?v=005)
-- [examples/pixel-grid](examples/pixel-grid?v=005)
+- [examples/vote](examples/vote?v=012)
+- [examples/lobby](examples/lobby?v=012)
+- [examples/pixel-grid](examples/pixel-grid?v=012)
+- [examples/paint](examples/paint?v=012)
 
 ## Add your example
 
@@ -43,8 +44,6 @@ Copied into to sketches.
 
 ## Plan
 
-- [] collab draw example
-
 - [] Document VS Code debugging steps
 
 - [] Document vote example
@@ -58,6 +57,11 @@ Copied into to sketches.
 ## Done
 
 ```
+
+- [x] lobby delete room function
+  - defer: use firebase console
+
+- [x] collab draw example
 
 - [x] Add basic vote sample
 

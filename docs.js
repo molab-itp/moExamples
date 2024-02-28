@@ -40,9 +40,9 @@
 //    dbase_device_updates({}, { event: 'update', count: 'update_count' });
 
 // ## -
-// function dbase_event_observe({ changed_key_value, removed_key_value }, apps) {
+// function dbase_app_observe({ observed_key, removed_key }, apps) {
 
-// dbase_event_observe({ changed_key_value: mo_app_key_value });
+// dbase_app_observe({ changed_key_value: mo_app_key_value });
 //
 // function mo_app_key_value(key, value) {
 // switch (key) {
@@ -51,15 +51,31 @@
 //  case 'device':
 //  case 'group':
 
-// dbase_event_observe(
-//   { changed_key_value, removed_key_value }, //
+// dbase_app_observe(
+//   { observed_key, removed_key }, //
 //   { app: 'mo-pix-chip', tag: 'dbase_pix_chip_observe' }
 // );
 
-// dbase_event_observe(
-//   { changed_key_value, removed_key_value }, //
+// dbase_app_observe(
+//   { observed_key, removed_key }, //
 //   { app: 'mo-pix-grid', tag: 'dbase_pix_grid_observe' }
 // );
 
 // ## -
 // function dbase_value_increment(value) {
+
+// ## -
+
+// function dbase_a_devices_observe({ observed_a_device, removed_a_device, all }) {
+
+// function dbase_a_devices() {
+
+// function dbase_a_device_for_uid(uid) {
+
+// function dbase_queue_update(props) {
+
+// function dbase_poll() {
+
+// function dbase_actions_issued(uid, actions) {
+
+// function dbase_issue_actions(actions, options) {

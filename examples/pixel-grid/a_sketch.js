@@ -25,8 +25,8 @@ function setup() {
 }
 
 function dbase_host_init() {
-  dbase_pix_grid_observe();
-  dbase_pix_chip_observe();
+  pix_grid_observe();
+  pix_chip_observe();
 }
 
 function anim_init() {
@@ -56,17 +56,17 @@ function draw_frame() {
   }
 
   // if (!my.storeFlag) {
-  dbase_received();
+  render_pix_devices();
   // }
 }
 
 function updateAction() {
   if (my.storeFlag) {
-    dbase_send(my.videoImg);
+    pix_grid_update(my.videoImg);
   }
   if (my.scanFlag) {
     draw_cross_hair_update();
-    dbase_pix_chip_update();
+    pix_chip_update();
   }
 }
 
@@ -152,7 +152,7 @@ function mouseDragged() {
 function windowResized() {
   // console.log('windowResized windowHeight', windowHeight, 'windowWidth', windowWidth);
   // my.isPortrait = windowHeight > windowWidth;
-  if (isPortraitView()) {
+  if (isRemote()) {
     return;
   }
   resizeCanvas(windowWidth, windowHeight);
@@ -160,7 +160,7 @@ function windowResized() {
 }
 
 // https://editor.p5js.org/jht9629-nyu/sketches/7Wjlo3pPU
-// mo-pixel-grid jht9629 fireb_firebase.js
+// mo-pix-chip-grid jht9629 fireb_firebase.js
 
 // https://editor.p5js.org/jht9629-nyu/sketches/twgS6eWRZ
 // pixel-grid

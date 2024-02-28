@@ -27,7 +27,7 @@ function my_init2() {
 }
 
 function localStore_get() {
-  let str = localStorage.getItem('mo-pixel-grid');
+  let str = localStorage.getItem('mo-pix-chip-grid');
   if (!str) {
     return;
   }
@@ -45,7 +45,7 @@ function localStore_set() {
     values[prop] = my[prop];
   }
   let str = JSON.stringify(values);
-  localStorage.setItem('mo-pixel-grid', str);
+  localStorage.setItem('mo-pix-chip-grid', str);
   console.log('localStore_set n str', str.length);
 }
 
@@ -61,7 +61,7 @@ function init_query() {
   }
   console.log('init_query windowHeight', windowHeight, 'windowWidth', windowWidth);
   // my.isPortrait = windowHeight > windowWidth;
-  if (isPortraitView()) {
+  if (isRemote()) {
     my.width = my.vwidth;
     my.height = my.vheight * 4;
   } else {
@@ -72,7 +72,7 @@ function init_query() {
   }
 }
 
-function isPortraitView() {
+function isRemote() {
   return windowHeight > windowWidth;
 }
 
