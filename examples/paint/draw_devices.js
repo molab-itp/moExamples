@@ -3,27 +3,25 @@
 function draw_devices() {
   if (layout_needed_check()) {
     console.log('draw_devices layout_needed_check n', dbase_a_devices().length);
-    build_brushes();
+    build_panes();
   }
-  draw_brushes();
+  draw_panes();
 }
 
 //
-// Draw brushes in my.brushes
-//  sync brush properteis from db
+// Draw panes in my.panes
 //
-function draw_brushes() {
+function draw_panes() {
   let status = {};
-  for (let uid in my.brushes) {
-    let brush = my.brushes[uid];
-    // console.log('draw_brushes brush', brush);
-    // brush.sync();
-    brush.prepare_layer(status);
+  for (let uid in my.panes) {
+    let pane = my.panes[uid];
+    // console.log('draw_panes pane', pane);
+    pane.prepare_layer(status);
     {
-      // image(brush.layer, brush.layout.x0, brush.layout.y0);
-      let img = brush.layer;
-      let dx = brush.layout.x0;
-      let dy = brush.layout.y0;
+      // image(pane.layer, pane.layout.x0, pane.layout.y0);
+      let img = pane.layer;
+      let dx = pane.layout.x0;
+      let dy = pane.layout.y0;
       let dWidth = my.xlen;
       let dHeight = my.ylen;
       let sx = 0;
@@ -31,7 +29,7 @@ function draw_brushes() {
       if (img) {
         image(img, dx, dy, dWidth, dHeight, sx, sy, img.width, img.height);
       } else {
-        console.log('draw_brushes img', img, 'brush', brush);
+        console.log('draw_panes img', img, 'pane', pane);
       }
     }
   }
@@ -40,27 +38,27 @@ function draw_brushes() {
   }
 }
 
-function deinit_brushes() {
-  for (let uid in my.brushes) {
-    let brush = my.brushes[uid];
-    brush.deinit();
+function deinit_panes() {
+  for (let uid in my.panes) {
+    let pane = my.panes[uid];
+    pane.deinit();
   }
-  my.brushes = {};
+  my.panes = {};
   my.last_ndevices = 0;
 }
 
-function build_brushes() {
+function build_panes() {
   let layouts = layout_devices();
-  my.brushes = {};
+  my.panes = {};
   for (let layout of layouts) {
-    // console.log('build_brushes layout', layout);
+    // console.log('build_panes layout', layout);
 
     // layout = { x0: x, y0: y, uid, width, height, device }
     let { width, height, uid } = layout;
-    let brush = new Brush({ width, height, uid, layout });
-    brush.sync(layout.device);
+    let pane = new Pane({ width, height, uid, layout });
+    pane.sync(layout.device);
 
-    my.brushes[layout.uid] = brush;
+    my.panes[layout.uid] = pane;
   }
 }
 
@@ -103,7 +101,9 @@ function layout_devices() {
       }
       {
         let { uid, width, height } = device;
-        layouts.push({ x0: x, y0: y, uid, width, height, device });
+        if (width != undefined) {
+          layouts.push({ x0: x, y0: y, uid, width, height, device });
+        }
       }
       // console.log('layout_devices x', x, 'y', y, 'uid', device.uid);
       if (index != ndevices - 1) {

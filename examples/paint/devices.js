@@ -6,29 +6,31 @@ function startup_completed() {
 
   pingAction();
 
-  init_brush();
+  init_pane();
 
   function observed_a_device(key, device) {
-    // console.log('build_devices key', key, 'uid', my.uid, 'brush', my.brush);
+    // console.log('build_devices key', key, 'uid', my.uid, 'pane', my.pane);
     // console.log('build_devices observed key', key, 'uid', my.uid, 'device', device);
-    if (my.isRemote && my.brush && key == my.uid) {
-      my.brush.sync(device);
-    } else if (my.brushes) {
-      let brush = my.brushes[key];
-      if (!brush) {
-        console.log('build_devices NO brush key', key, 'uid', my.uid, 'brush', brush);
+    if (my.isRemote && my.pane && key == my.uid) {
+      my.pane.sync(device);
+    } else if (my.panes) {
+      let pane = my.panes[key];
+      if (!pane) {
+        console.log('build_devices NO pane key', key, 'uid', my.uid, 'pane', pane);
         return;
       }
-      // console.log('build_devices sync key', key, 'brush', brush);
-      brush.sync(device);
+      // console.log('build_devices sync key', key, 'pane', pane);
+      pane.sync(device);
     }
   }
 
   function removed_a_device(key) {
-    console.log('build_devices removed key', key, 'uid', my.uid, 'brush', my.brush);
-    if (my.brushes) {
-      delete my.brushes[key];
-    }
+    console.log('build_devices removed key', key, 'uid', my.uid, 'pane', my.pane);
+    my.panes = {};
+    my.last_ndevices = 0;
+    // if (my.panes) {
+    //   delete my.panes[key];
+    // }
   }
 }
 

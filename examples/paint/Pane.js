@@ -1,13 +1,8 @@
 //
-class Brush {
+class Pane {
   //
-  static colorGold = [187, 165, 61];
-  // static colors = ['red', 'green', Brush.colorGold, 0];
-  // static colors = [[255, 0, 0], [0, 255, 0], Brush.colorGold, 0];
-  static colors = [[255, 0, 0], [0, 255, 0], Brush.colorGold];
-
-  //
-  // {  width, height, layout, db_update }
+  // { width, height, db_update, cross_limit, isRemote }
+  // { width, height, uid, layout }
   //
   constructor(props) {
     //
@@ -87,7 +82,7 @@ class Brush {
     if (my.await_sync) return;
     if (!status) status = {};
     if (dbase_actions_issued(my.uid, { clear_action: 1 })) {
-      // console.log('Brush render_cross uid', my.uid, 'clear_action', my.clear_action);
+      // console.log('Pane render_cross uid', my.uid, 'clear_action', my.clear_action);
       status.cleared = 1;
       if (my.isRemote) {
         background(0);
@@ -99,7 +94,7 @@ class Brush {
 
   mouseDragged() {
     let my = this;
-    let colr = Brush.colors[my.brush_color_index];
+    let colr = Pane.colors[my.brush_color_index];
     my.layer.strokeWeight(my.brush_size);
     my.layer.stroke(colr);
     my.layer.line(pmouseX, pmouseY, mouseX, mouseY);
@@ -115,7 +110,7 @@ class Brush {
 
   trackBrush() {
     let my = this;
-    let colr = Brush.colors[my.brush_color_index];
+    let colr = Pane.colors[my.brush_color_index];
     my.layer.strokeWeight(my.brush_size);
     my.layer.stroke(colr);
     if (my.brush_px1 != undefined) {
@@ -149,7 +144,7 @@ class Brush {
 
   next_crossColor() {
     let my = this;
-    my.cross_color_index = (my.cross_color_index + 1) % Brush.colors.length;
+    my.cross_color_index = (my.cross_color_index + 1) % Pane.colors.length;
     if (my.db_update) {
       let cross_color_index = my.cross_color_index;
       dbase_queue_update({ cross_color_index });
@@ -158,7 +153,7 @@ class Brush {
 
   next_brushColor() {
     let my = this;
-    my.brush_color_index = (my.brush_color_index + 1) % Brush.colors.length;
+    my.brush_color_index = (my.brush_color_index + 1) % Pane.colors.length;
     if (my.db_update) {
       let brush_color_index = my.brush_color_index;
       dbase_queue_update({ brush_color_index });
@@ -167,7 +162,7 @@ class Brush {
 
   crossColor() {
     let my = this;
-    return Brush.colors[my.cross_color_index];
+    return Pane.colors[my.cross_color_index];
   }
 
   adjust_brush_size(delta) {
@@ -237,5 +232,11 @@ class Brush {
       let { xLeft, yTop, xRight, yBottom } = my;
       dbase_queue_update({ xLeft, yTop, xRight, yBottom });
     }
-  }
+  } // render_cross
+
+  //
+  static colorGold = [187, 165, 61];
+  // static colors = ['red', 'green', Pane.colorGold, 0];
+  // static colors = [[255, 0, 0], [0, 255, 0], Pane.colorGold, 0];
+  static colors = [[255, 0, 0], [0, 255, 0], Pane.colorGold];
 }

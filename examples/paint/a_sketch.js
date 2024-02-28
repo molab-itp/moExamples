@@ -37,28 +37,26 @@ function setup() {
   // createSpan('•');
   // createButton('Spawn').mousePressed(spawnAction);
   // my.spawn_count_span = createSpan('');
-
-  // init_brush();
 }
 
-function init_brush() {
+function init_pane() {
   let width = my.width;
   let height = my.height;
   let db_update = 1;
   let cross_limit = my.cross_limit;
   let isRemote = my.isRemote;
-  my.brush = new Brush({ width, height, db_update, cross_limit, isRemote });
+  my.pane = new Pane({ width, height, db_update, cross_limit, isRemote });
 }
 
 function draw() {
-  if (!my.brush) return;
+  if (!my.pane) return;
   dbase_poll();
   if (my.isRemote) {
     if (mouseIsPressed && mouse_in_canvas()) {
-      my.brush.mouseDragged();
+      my.pane.mouseDragged();
     }
-    my.brush.render();
-    image(my.brush.layer, 0, 0);
+    my.pane.render();
+    image(my.pane.layer, 0, 0);
   } else {
     draw_devices();
   }
@@ -66,13 +64,13 @@ function draw() {
 
 function clearAction() {
   if (my.isRemote) {
-    // my.brush.clear();
+    // my.pane.clear();
     dbase_issue_actions({ clear_action: 1 });
   } else {
     background(0);
     dbase_issue_actions({ clear_action: 1 }, { all: 1 });
     // dbase_a_devices_issue_actions({ clear_action: 1 });
-    deinit_brushes();
+    deinit_panes();
   }
 }
 
@@ -88,11 +86,11 @@ function mouse_in_canvas() {
 
 function canvas_mousePressed() {
   // console.log('mousePressed mouseX', mouseX, 'mouseY', mouseY);
-  my.brush.mousePressed();
+  my.pane.mousePressed();
 }
 
 function canvas_mouseReleased() {
-  my.brush.mouseReleased();
+  my.pane.mouseReleased();
 }
 
 //
@@ -100,23 +98,23 @@ function canvas_mouseReleased() {
 //
 
 function smallerCrossSizeAction() {
-  my.brush.adjust_cross_size(-1);
-  my.brush.next_crossColor();
+  my.pane.adjust_cross_size(-1);
+  my.pane.next_crossColor();
 }
 
 function largerCrossSizeAction() {
-  my.brush.adjust_cross_size(1);
-  my.brush.next_crossColor();
+  my.pane.adjust_cross_size(1);
+  my.pane.next_crossColor();
 }
 
 function smallerBrushSizeAction() {
-  my.brush.adjust_brush_size(-1);
-  my.brush.next_brushColor();
+  my.pane.adjust_brush_size(-1);
+  my.pane.next_brushColor();
 }
 
 function largerBrushSizeAction() {
-  my.brush.adjust_brush_size(1);
-  my.brush.next_brushColor();
+  my.pane.adjust_brush_size(1);
+  my.pane.next_brushColor();
 }
 
 // // function spawnAction() {
