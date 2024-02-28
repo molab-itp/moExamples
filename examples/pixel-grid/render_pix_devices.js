@@ -36,7 +36,7 @@ function render_pix_devices_uid(uid) {
 
 function render_pix_devices_image(uid) {
   // let device = my.fireb_devices[uid];
-  let device = dbase_device_fetch_pix(uid);
+  let device = device_with_layers(uid);
   // console.log('render_pix_devices device', device);
   if (!device) return;
 

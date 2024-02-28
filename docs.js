@@ -40,7 +40,7 @@
 //    dbase_device_updates({}, { event: 'update', count: 'update_count' });
 
 // ## -
-// function dbase_app_observe({ observed_device, removed_device }, apps) {
+// function dbase_app_observe({ observed_key, removed_key }, apps) {
 
 // dbase_app_observe({ changed_key_value: mo_app_key_value });
 //
@@ -52,12 +52,12 @@
 //  case 'group':
 
 // dbase_app_observe(
-//   { observed_device, removed_device }, //
+//   { observed_key, removed_key }, //
 //   { app: 'mo-pix-chip', tag: 'dbase_pix_chip_observe' }
 // );
 
 // dbase_app_observe(
-//   { observed_device, removed_device }, //
+//   { observed_key, removed_key }, //
 //   { app: 'mo-pix-grid', tag: 'dbase_pix_grid_observe' }
 // );
 

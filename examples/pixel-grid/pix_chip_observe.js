@@ -8,23 +8,23 @@
 function pix_chip_observe() {
   //
   dbase_app_observe(
-    { observed_device, removed_device }, //
+    { observed_key, removed_key }, //
     { app: 'mo-pix-chip', tag: 'pix_chip_observe' }
   );
   // let path = `${my.dbase_rootPath}/${my.roomName}/mo-pix-chip`;
 
-  function observed_device(key, value) {
-    let device = dbase_device_fetch_pix(key);
+  function observed_key(key, value) {
+    let device = device_with_layers(key);
     device.pixchips = value;
   }
-  function removed_device(key, value) {
-    let device = dbase_device_fetch_pix(key);
+  function removed_key(key, value) {
+    let device = device_with_layers(key);
     delete device.pixchips;
   }
 }
 
-function dbase_device_fetch_pix(key) {
-  let device = dbase_device_fetch(key);
+function device_with_layers(key) {
+  let device = dbase_fireb_device(key);
   if (!device.layer) {
     device.layer = createGraphics(my.vwidth, my.vheight);
     device.crossLayer = createGraphics(my.vwidth, my.vheight);
