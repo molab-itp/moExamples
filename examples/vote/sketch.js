@@ -22,26 +22,31 @@ function my_setup() {
   my.vote_count = 0;
   my.vote_total_count = 0;
   my.device_values = {};
+
+  my.x = 0;
+  my.y = my.height / 2;
+  my.xstep = 1;
+  my.len = my.width * 0.8;
+  my.color = 'red';
 }
 
 function setup() {
   my_setup();
 
-  // my.canvas = createCanvas(my.width, my.height);
-  noCanvas();
+  my.canvas = createCanvas(my.width, my.height);
+  // noCanvas();
 
   dbase_app_init({ completed: startup_completed });
 
-  createButton('Vote Up').mousePressed(voteUp);
-  createButton('Vote Down').mousePressed(voteDown);
-  my.vote_count_span = createSpan('' + my.vote_count);
-  createElement('br');
-  createSpan('Total Vote ');
-  my.vote_total_count_span = createSpan('' + my.vote_total_count);
+  create_ui();
 }
 
 function draw() {
-  background(200);
+  background(0);
+  //
+  fill(my.color);
+  circle(my.x, my.y, my.len);
+  my.x = (my.x + my.xstep + width) % width;
   //
   calc_votes();
   //
@@ -49,29 +54,47 @@ function draw() {
   my.vote_total_count_span.html(my.vote_total_count);
 }
 
+function create_ui() {
+  createButton('Direction').mousePressed(switchDirectionAction);
+
+  createButton('Vote Up').mousePressed(voteUpAction);
+
+  createButton('Vote Down').mousePressed(voteDownAction);
+
+  my.vote_count_span = createSpan('' + my.vote_count);
+
+  createElement('br');
+
+  createSpan('Total Votes ');
+  my.vote_total_count_span = createSpan('' + my.vote_total_count);
+}
+
 function startup_completed() {
   console.log('startup_completed');
+  //
   dbase_a_devices_observe({ observed_a_device, all: 1 });
 
   function observed_a_device(key, device) {
-    console.log('observed_a_device key', key, 'uid', my.uid, 'device', device);
+    // console.log('observed_a_device key', key, 'uid', my.uid, 'device', device);
     if (key != my.uid || !device) return;
-    // console.log('build_devices key', key, 'uid', my.uid);
-    // if (!device) return;
     if (device.vote_count != undefined) {
       my.vote_count = device.vote_count;
     }
   }
 }
 
-function voteUp() {
+function voteUpAction() {
   console.log('Vote Up');
   dbase_update_props({}, { vote_count: dbase_value_increment(1) });
 }
 
-function voteDown() {
+function voteDownAction() {
   console.log('Vote Down');
   dbase_update_props({}, { vote_count: dbase_value_increment(-1) });
+}
+
+function switchDirectionAction() {
+  my.xstep = my.xstep * -1;
 }
 
 function calc_votes() {
