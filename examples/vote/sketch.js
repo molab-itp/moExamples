@@ -27,7 +27,9 @@ function my_setup() {
   my.y = my.height / 2;
   my.xstep = 1;
   my.len = my.width * 0.8;
-  my.color = 'red';
+
+  my.colorGold = [187, 165, 61];
+  my.colors = [[255, 0, 0], [0, 255, 0], my.colorGold];
 }
 
 function setup() {
@@ -44,7 +46,7 @@ function setup() {
 function draw() {
   background(0);
   //
-  fill(my.color);
+  fill(my.colors[abs(my.vote_count) % my.colors.length]);
   circle(my.x, my.y, my.len);
   my.x = (my.x + my.xstep + width) % width;
   //
