@@ -52,6 +52,10 @@ function draw() {
   //
   my.vote_count_span.html(my.vote_count);
   my.vote_total_count_span.html(my.vote_total_count);
+  //
+  if (dbase_actions_issued(my.uid, { switch_action: 1 })) {
+    switchDirection();
+  }
 }
 
 function create_ui() {
@@ -94,6 +98,10 @@ function voteDownAction() {
 }
 
 function switchDirectionAction() {
+  dbase_issue_actions({ switch_action: 1 }, { all: 1 });
+}
+
+function switchDirection() {
   my.xstep = my.xstep * -1;
 }
 
@@ -101,7 +109,6 @@ function calc_votes() {
   my.vote_total_count = 0;
   let a_devices = dbase_a_devices();
   for (let device of a_devices) {
-    // let device = my.device_values[uid];
     if (device.vote_count != undefined) {
       my.vote_total_count += device.vote_count;
     }
