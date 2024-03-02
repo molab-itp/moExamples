@@ -62,17 +62,9 @@ function draw() {
   }
 }
 
-function clearAction() {
-  if (my.isRemote) {
-    // my.pane.clear();
-    dbase_issue_actions({ clear_action: 1 });
-  } else {
-    background(0);
-    dbase_issue_actions({ clear_action: 1 }, { all: 1 });
-    // dbase_a_devices_issue_actions({ clear_action: 1 });
-    deinit_panes();
-  }
-}
+//
+// mouse events
+//
 
 function mouseDragged() {
   // console.log('mouseDragged');
@@ -96,6 +88,17 @@ function canvas_mouseReleased() {
 //
 // actions
 //
+
+function clearAction() {
+  if (my.isRemote) {
+    // my.pane.clear();
+    dbase_issue_actions({ clear_action: 1 });
+  } else {
+    background(0);
+    dbase_issue_actions({ clear_action: 1 }, { all: 1 });
+    deinit_panes();
+  }
+}
 
 function smallerCrossSizeAction() {
   my.pane.adjust_cross_size(-1);

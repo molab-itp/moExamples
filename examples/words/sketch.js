@@ -7,8 +7,8 @@
 
 let my = {};
 
-// mo-words/device/{uid}/vote
-//    individual vote
+// mo-words/device/{uid}/word
+//    individual word
 
 function my_setup() {
   my.width = windowWidth;
@@ -21,8 +21,8 @@ function my_setup() {
   my.mo_app = 'mo-words';
   my.nameDevice = '';
   //
-  my.vote_count = 0;
-  my.vote_total_count = 0;
+  my.word_count = 0;
+  my.word_total_count = 0;
   my.device_values = {};
 }
 
@@ -36,12 +36,12 @@ function setup() {
 
   dbase_app_init({ completed: startup_completed });
 
-  createButton('Vote Up').mousePressed(voteUp);
-  createButton('Vote Down').mousePressed(voteDown);
-  my.vote_count_span = createSpan('' + my.vote_count);
+  createButton('Word Up').mousePressed(wordUp);
+  createButton('Word Down').mousePressed(wordDown);
+  my.word_count_span = createSpan('' + my.word_count);
   createElement('br');
-  createSpan('Total Vote ');
-  my.vote_total_count_span = createSpan('' + my.vote_total_count);
+  createSpan('Total Word ');
+  my.word_total_count_span = createSpan('' + my.word_total_count);
 
   // Move the canvas below all the ui elements
   let body_elt = document.querySelector('body');
@@ -59,56 +59,48 @@ function create_my_iframe() {
 function draw() {
   background(200);
   //
-  calc_votes();
+  calc_words();
   //
-  my.vote_count_span.html(my.vote_count);
-  my.vote_total_count_span.html(my.vote_total_count);
+  my.word_count_span.html(my.word_count);
+  my.word_total_count_span.html(my.word_total_count);
 }
 
 function startup_completed() {
   console.log('startup_completed');
 
-  dbase_a_devices_observe({ observed_a_device, all: 1 });
+  dbase_devices_observe({ observed_key, all: 1 });
 
-  function observed_a_device(key, device) {
+  function observed_key(key, device) {
     console.log('observed_a_device key', key, 'uid', my.uid, 'device', device);
     if (key != my.uid || !device) return;
     // console.log('build_devices key', key, 'uid', my.uid);
     // if (!device) return;
-    if (device.vote_count != undefined) {
-      my.vote_count = device.vote_count;
+    if (device.word_count != undefined) {
+      my.word_count = device.word_count;
     }
   }
 }
 
-function voteUp() {
+function wordUp() {
   console.log('Vote Up');
-  dbase_update_props({}, { vote_count: dbase_value_increment(1) });
+  dbase_update_props({ word_count: dbase_increment(1) });
 }
 
-function voteDown() {
+function wordDown() {
   console.log('Vote Down');
-  dbase_update_props({}, { vote_count: dbase_value_increment(-1) });
+  dbase_update_props({ word_count: dbase_increment(-1) });
 }
 
-function calc_votes() {
-  my.vote_total_count = 0;
+function calc_words() {
+  my.word_total_count = 0;
   let a_devices = dbase_a_devices();
   for (let device of a_devices) {
     // let device = my.device_values[uid];
-    if (device.vote_count != undefined) {
-      my.vote_total_count += device.vote_count;
+    if (device.word_count != undefined) {
+      my.word_total_count += device.word_count;
     }
   }
 }
-
-// F5 to select chrome
-// VS Code menu: Run > Start Debugging
-
-// .vscode/launch.json
-//    "url": "http://localhost:5500/examples/vote/",
-
-// https://stackoverflow.com/questions/46945784/how-to-debug-javascript-in-visual-studio-code-with-live-server-running
 
 /*
 

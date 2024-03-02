@@ -2,13 +2,13 @@
 function startup_completed() {
   console.log('startup_completed');
 
-  dbase_a_devices_observe({ observed_a_device, removed_a_device });
+  dbase_devices_observe({ observed_key, removed_key });
 
   pingAction();
 
   init_pane();
 
-  function observed_a_device(key, device) {
+  function observed_key(key, device) {
     // console.log('build_devices key', key, 'uid', my.uid, 'pane', my.pane);
     // console.log('build_devices observed key', key, 'uid', my.uid, 'device', device);
     if (my.isRemote && my.pane && key == my.uid) {
@@ -24,7 +24,7 @@ function startup_completed() {
     }
   }
 
-  function removed_a_device(key) {
+  function removed_key(key) {
     console.log('build_devices removed key', key, 'uid', my.uid, 'pane', my.pane);
     my.panes = {};
     my.last_ndevices = 0;
@@ -36,10 +36,10 @@ function startup_completed() {
 
 //
 // dbase device remote is set to 1 on startup to indicate
-// in remote controll mode
+// device is remote control mode
 //
 function pingAction() {
   //
   let remote = my.isRemote ? 1 : 0;
-  dbase_device_updates({ remote });
+  dbase_site_updates({ remote });
 }
