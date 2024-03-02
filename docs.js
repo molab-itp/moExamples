@@ -1,5 +1,11 @@
 //
 
+/*
+2024-03-02 jht:  
+  renamed dbase_value_increment --> dbase_increment
+
+*/
+
 // # --
 // How to debug from VS Code
 //
@@ -26,8 +32,8 @@
 // function dbase_update_props(props, deviceProps, groupProps) {
 //  default deviceProps = { count: increment(1) };
 
-// dbase_update_props({}, { vote_count: dbase_value_increment(1) });  -- vote
-// dbase_update_props({}, { vote_count: dbase_value_increment(-1) }); -- vote
+// dbase_update_props({}, { vote_count: dbase_increment(1) });  -- vote
+// dbase_update_props({}, { vote_count: dbase_increment(-1) }); -- vote
 // dbase_update_props({ group: group }, {}, { echo_delay: 0 });   -- mo-blackfacts
 // dbase_update_props({ group: group }, {}, { echo_delay });      -- mo-blackfacts
 // dbase_update_props({}, { startup_time: timeSecs });            -- mo-blackfacts
@@ -71,7 +77,7 @@
 // );
 
 // ## -
-// function dbase_value_increment(value) {
+// function dbase_increment(value) {
 
 // ## -
 

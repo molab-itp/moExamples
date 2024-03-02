@@ -83,12 +83,12 @@ function startup_completed() {
 
 function wordUp() {
   console.log('Vote Up');
-  dbase_update_props({}, { word_count: dbase_value_increment(1) });
+  dbase_update_props({}, { word_count: dbase_increment(1) });
 }
 
 function wordDown() {
   console.log('Vote Down');
-  dbase_update_props({}, { word_count: dbase_value_increment(-1) });
+  dbase_update_props({}, { word_count: dbase_increment(-1) });
 }
 
 function calc_words() {
