@@ -82,11 +82,11 @@
 // );
 
 // ## -
-// function dbase_devices_observe({ observed_a_device, removed_a_device, all }) {
+// function dbase_devices_observe({ observed_key, removed_key, all }) {
 
-// dbase_devices_observe({ observed_a_device, removed_a_device }); // paint
-// dbase_devices_observe({ observed_a_device, all: 1 }); // vote
-// dbase_devices_observe({ observed_a_device, all: 1 }); // word
+// dbase_devices_observe({ observed_key, removed_key }); // paint
+// dbase_devices_observe({ observed_key, all: 1 }); // vote
+// dbase_devices_observe({ observed_key, all: 1 }); // word
 
 // ## -
 // function dbase_increment(value) {
