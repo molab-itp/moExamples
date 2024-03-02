@@ -36,7 +36,7 @@ function startup_completed() {
 
 //
 // dbase device remote is set to 1 on startup to indicate
-// in remote controll mode
+// device is remote control mode
 //
 function pingAction() {
   //

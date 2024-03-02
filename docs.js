@@ -16,20 +16,29 @@
 
 // ## -
 // function dbase_app_init({ completed }) {
-
-//   dbase_app_init({ completed: dbase_host_init });
-//   dbase_app_init({ completed: dbase_host_init });
-//   dbase_app_init({ completed: dbase_host_init });
+// dbase_app_init({});                                -- lobby
+// dbase_app_init({ completed: startup_completed });  -- paint
+// dbase_app_init({ completed: dbase_host_init });    -- pixel-grid
+// dbase_app_init({ completed: startup_completed });  -- vote
+// dbase_app_init({ completed: startup_completed });  -- words
 
 // ## -
 // function dbase_update_props(props, deviceProps, groupProps) {
 //  default deviceProps = { count: increment(1) };
 
-//  dbase_update_props({ qrcode });
-//  dbase_update_props({}, {}, { group: my.group, index });
-//  dbase_update_props({ index });
-//  dbase_update_props({}, { startup_time: timeSecs });
-//  dbase_update_props({}); // Send initial ping
+// dbase_update_props({ group: group }, {}, { echo_delay: 0 });
+// dbase_update_props({ group: group }, {}, { echo_delay });
+// dbase_update_props({}, { startup_time: timeSecs });
+// dbase_update_props({}, { startup_stall: increment(1) });
+// dbase_update_props({}, my.db_queue);
+// dbase_update_props({});
+// dbase_update_props({ group: group }, {}, item);  -- dbase_update_item
+// dbase_update_props({}, { vote_count: dbase_value_increment(1) });
+// dbase_update_props({}, { vote_count: dbase_value_increment(-1) });
+
+// ## -
+// function dbase_update_item(item) {
+//    dbase_update_props({ group: group }, {}, item);
 
 // ## -
 // function dbase_device_updates(updates, keys) {
@@ -79,3 +88,5 @@
 // function dbase_actions_issued(uid, actions) {
 
 // function dbase_issue_actions(actions, options) {
+
+// function dbase_remove_room() {

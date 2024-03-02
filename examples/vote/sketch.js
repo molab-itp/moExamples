@@ -45,19 +45,19 @@ function setup() {
 
 function draw() {
   background(0);
-  //
   fill(my.colors[abs(my.vote_count) % my.colors.length]);
   circle(my.x, my.y, my.len);
   my.x = (my.x + my.xstep + width) % width;
-  //
+
   calc_votes();
-  //
+
   my.vote_count_span.html(my.vote_count);
   my.vote_total_count_span.html(my.vote_total_count);
-  //
+
   if (dbase_actions_issued(my.uid, { switch_action: 1 })) {
     switchDirection();
   }
+  dbase_poll();
 }
 
 function create_ui() {
