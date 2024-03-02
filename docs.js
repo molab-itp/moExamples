@@ -26,15 +26,15 @@
 // function dbase_update_props(props, deviceProps, groupProps) {
 //  default deviceProps = { count: increment(1) };
 
-// dbase_update_props({ group: group }, {}, { echo_delay: 0 });
-// dbase_update_props({ group: group }, {}, { echo_delay });
-// dbase_update_props({}, { startup_time: timeSecs });
-// dbase_update_props({}, { startup_stall: increment(1) });
-// dbase_update_props({}, my.db_queue);
-// dbase_update_props({});
+// dbase_update_props({}, { vote_count: dbase_value_increment(1) });  -- vote
+// dbase_update_props({}, { vote_count: dbase_value_increment(-1) }); -- vote
+// dbase_update_props({ group: group }, {}, { echo_delay: 0 });   -- mo-blackfacts
+// dbase_update_props({ group: group }, {}, { echo_delay });      -- mo-blackfacts
+// dbase_update_props({}, { startup_time: timeSecs });            -- mo-blackfacts
+// dbase_update_props({}, { startup_stall: increment(1) });       -- mo-blackfacts
+// dbase_update_props({}, my.db_queue);             -- dbase_queue_update
+// dbase_update_props({});                          -- dbase_app_init
 // dbase_update_props({ group: group }, {}, item);  -- dbase_update_item
-// dbase_update_props({}, { vote_count: dbase_value_increment(1) });
-// dbase_update_props({}, { vote_count: dbase_value_increment(-1) });
 
 // ## -
 // function dbase_update_item(item) {
