@@ -68,9 +68,9 @@ function draw() {
 function startup_completed() {
   console.log('startup_completed');
 
-  dbase_devices_observe({ observed_a_device, all: 1 });
+  dbase_devices_observe({ observed_key, all: 1 });
 
-  function observed_a_device(key, device) {
+  function observed_key(key, device) {
     console.log('observed_a_device key', key, 'uid', my.uid, 'device', device);
     if (key != my.uid || !device) return;
     // console.log('build_devices key', key, 'uid', my.uid);

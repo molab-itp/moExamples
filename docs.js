@@ -1,6 +1,7 @@
 //
 
 /*
+
 2024-03-02 jht:  
   renamed dbase_value_increment --> dbase_increment
 
@@ -10,6 +11,11 @@
 
   dbase_devices_ --> dbase_site_
   dbase_a_devices_ --> dbase_devices_
+
+  function dbase_devices_observe({ observed_a_device, removed_a_device, all }) {
+    -->
+    function dbase_devices_observe({ observed_key, removed_key, all }) {
+
 */
 
 // # --
@@ -62,32 +68,30 @@
 // ## -
 // function dbase_app_observe({ observed_key, removed_key }, apps) {
 
-// dbase_app_observe({ changed_key_value: mo_app_key_value });
+// dbase_app_observe({ observed_item });      // mo-blackfacts
 //
-// function mo_app_key_value(key, value) {
-// switch (key) {
-//  case 'index':
-//  case 'qrcode':
-//  case 'device':
-//  case 'group':
 
-// dbase_app_observe(
+// dbase_app_observe(                         // pixel-grid
 //   { observed_key, removed_key }, //
 //   { app: 'mo-pix-chip', tag: 'dbase_pix_chip_observe' }
 // );
 
-// dbase_app_observe(
+// dbase_app_observe(                        // pixel-grid
 //   { observed_key, removed_key }, //
 //   { app: 'mo-pix-grid', tag: 'dbase_pix_grid_observe' }
 // );
 
 // ## -
+// function dbase_devices_observe({ observed_a_device, removed_a_device, all }) {
+
+// dbase_devices_observe({ observed_a_device, removed_a_device }); // paint
+// dbase_devices_observe({ observed_a_device, all: 1 }); // vote
+// dbase_devices_observe({ observed_a_device, all: 1 }); // word
+
+// ## -
 // function dbase_increment(value) {
 
 // ## -
-
-// function dbase_devices_observe({ observed_a_device, removed_a_device, all }) {
-
 // function dbase_a_devices() {
 
 // function dbase_a_device_for_uid(uid) {
