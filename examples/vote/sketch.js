@@ -91,12 +91,12 @@ function startup_completed() {
 
 function voteUpAction() {
   console.log('Vote Up');
-  dbase_update_props({}, { vote_count: dbase_increment(1) });
+  dbase_update_props({ vote_count: dbase_increment(1) });
 }
 
 function voteDownAction() {
   console.log('Vote Down');
-  dbase_update_props({}, { vote_count: dbase_increment(-1) });
+  dbase_update_props({ vote_count: dbase_increment(-1) });
 }
 
 function switchDirectionAction() {

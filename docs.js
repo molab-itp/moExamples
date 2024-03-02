@@ -3,6 +3,10 @@
 /*
 2024-03-02 jht:  
   renamed dbase_value_increment --> dbase_increment
+    function dbase_update_props(options, deviceProps, groupProps) {
+      -->
+      function dbase_update_props(props, options) {
+
 
 */
 
@@ -22,25 +26,24 @@
 
 // ## -
 // function dbase_app_init({ completed }) {
-// dbase_app_init({});                                -- lobby
-// dbase_app_init({ completed: startup_completed });  -- paint
-// dbase_app_init({ completed: dbase_host_init });    -- pixel-grid
-// dbase_app_init({ completed: startup_completed });  -- vote
-// dbase_app_init({ completed: startup_completed });  -- words
+// dbase_app_init({});                                // lobby
+// dbase_app_init({ completed: startup_completed });  // paint
+// dbase_app_init({ completed: dbase_host_init });    // pixel-grid
+// dbase_app_init({ completed: startup_completed });  // vote
+// dbase_app_init({ completed: startup_completed });  // words
 
 // ## -
-// function dbase_update_props(props, deviceProps, groupProps) {
-//  default deviceProps = { count: increment(1) };
+// function dbase_update_props(props, options) {
 
-// dbase_update_props({}, { vote_count: dbase_increment(1) });  -- vote
-// dbase_update_props({}, { vote_count: dbase_increment(-1) }); -- vote
-// dbase_update_props({ group: group }, {}, { echo_delay: 0 });   -- mo-blackfacts
-// dbase_update_props({ group: group }, {}, { echo_delay });      -- mo-blackfacts
-// dbase_update_props({}, { startup_time: timeSecs });            -- mo-blackfacts
-// dbase_update_props({}, { startup_stall: increment(1) });       -- mo-blackfacts
-// dbase_update_props({}, my.db_queue);             -- dbase_queue_update
-// dbase_update_props({});                          -- dbase_app_init
-// dbase_update_props({ group: group }, {}, item);  -- dbase_update_item
+// dbase_update_props({ vote_count: dbase_increment(1) });  // vote
+// dbase_update_props({ vote_count: dbase_increment(-1) }); // vote
+// dbase_update_props({ echo_delay: 0 }, { group: group });   // mo-blackfacts
+// dbase_update_props({ echo_delay }, { group: group });      // mo-blackfacts
+// dbase_update_props({ startup_time: timeSecs });            // mo-blackfacts
+// dbase_update_props({ startup_stall: increment(1) });       // mo-blackfacts
+// dbase_update_props(my.db_queue);             // dbase_queue_update
+// dbase_update_props({}, { count: 1 });        // dbase_app_init
+// dbase_update_props(item, { group: group });  // dbase_update_item
 
 // ## -
 // function dbase_update_item(item) {
