@@ -2,7 +2,7 @@
 function startup_completed() {
   console.log('startup_completed');
 
-  dbase_a_devices_observe({ observed_a_device, removed_a_device });
+  dbase_devices_observe({ observed_a_device, removed_a_device });
 
   pingAction();
 
@@ -41,5 +41,5 @@ function startup_completed() {
 function pingAction() {
   //
   let remote = my.isRemote ? 1 : 0;
-  dbase_device_updates({ remote });
+  dbase_site_updates({ remote });
 }

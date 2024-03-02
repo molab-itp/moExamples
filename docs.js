@@ -3,11 +3,13 @@
 /*
 2024-03-02 jht:  
   renamed dbase_value_increment --> dbase_increment
-    function dbase_update_props(options, deviceProps, groupProps) {
-      -->
-      function dbase_update_props(props, options) {
 
+  function dbase_update_props(options, deviceProps, groupProps) {
+    -->
+    function dbase_update_props(props, options) {
 
+  dbase_devices_ --> dbase_site_
+  dbase_a_devices_ --> dbase_devices_
 */
 
 // # --
@@ -50,12 +52,12 @@
 //    dbase_update_props({ group: group }, {}, item);
 
 // ## -
-// function dbase_device_updates(updates, keys) {
+// function dbase_site_updates(updates, keys) {
 
-//  dbase_device_updates({ portrait, group });
-//  dbase_device_updates({}, keys);
-//    dbase_device_updates({}, { event: 'visit', count: 'visit_count' });
-//    dbase_device_updates({}, { event: 'update', count: 'update_count' });
+//  dbase_site_updates({ portrait, group });
+//  dbase_site_updates({}, keys);
+//    dbase_site_updates({}, { event: 'visit', count: 'visit_count' });
+//    dbase_site_updates({}, { event: 'update', count: 'update_count' });
 
 // ## -
 // function dbase_app_observe({ observed_key, removed_key }, apps) {
@@ -84,7 +86,7 @@
 
 // ## -
 
-// function dbase_a_devices_observe({ observed_a_device, removed_a_device, all }) {
+// function dbase_devices_observe({ observed_a_device, removed_a_device, all }) {
 
 // function dbase_a_devices() {
 

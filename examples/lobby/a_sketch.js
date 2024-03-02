@@ -83,7 +83,7 @@ function draw_device(index, x, y) {
   fill(0);
   circle(x, y, my.len);
   // inner green dot marks active device
-  if (dbase_device_isActive(device)) {
+  if (dbase_site_isActive(device)) {
     fill('green');
     circle(x, y, my.dotLen);
   }

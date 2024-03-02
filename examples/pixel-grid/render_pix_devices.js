@@ -111,7 +111,7 @@ function render_pix_devices_device(device, pixs) {
 function render_pix_devices_cross(device, uid) {
   let crossLayer = device.crossLayer;
   crossLayer.clear();
-  if (!dbase_device_isActive(device)) {
+  if (!dbase_site_isActive(device)) {
     return;
   }
   // Draw the chip on layer that persists

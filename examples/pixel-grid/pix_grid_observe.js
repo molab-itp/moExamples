@@ -60,7 +60,7 @@ function pix_grid_remove() {
 }
 
 function app_pix_grid_remove() {
-  dbase_device_remove();
+  dbase_site_remove();
   pix_grid_remove();
   delete my.fireb_devices;
 }
