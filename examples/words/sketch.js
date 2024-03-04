@@ -20,10 +20,8 @@ function my_setup() {
   my.roomName = 'room0';
   my.mo_app = 'mo-words';
   my.nameDevice = '';
-  //
-  my.word_count = 0;
-  my.word_total_count = 0;
-  my.device_values = {};
+
+  my.word_date = new Date();
 }
 
 function setup() {
@@ -36,12 +34,13 @@ function setup() {
 
   dbase_app_init({ completed: startup_completed });
 
-  createButton('Word Up').mousePressed(wordUp);
-  createButton('Word Down').mousePressed(wordDown);
-  my.word_count_span = createSpan('' + my.word_count);
-  createElement('br');
-  createSpan('Total Word ');
-  my.word_total_count_span = createSpan('' + my.word_total_count);
+  createButton('Word Up').mousePressed(wordUp_action);
+  createButton('Word Down').mousePressed(wordDown_action);
+  createButton('To Day').mousePressed(toDay_action);
+  // my.word_count_span = createSpan('' + my.word_count);
+  // createElement('br');
+  createSpan(' Date ');
+  my.word_date_span = createSpan(formatDate(my.word_date));
 
   // Move the canvas below all the ui elements
   let body_elt = document.querySelector('body');
@@ -59,10 +58,7 @@ function create_my_iframe() {
 function draw() {
   background(200);
   //
-  calc_words();
-  //
-  my.word_count_span.html(my.word_count);
-  my.word_total_count_span.html(my.word_total_count);
+  my.word_date_span.html(my.word_date.toDateString());
 }
 
 function startup_completed() {
@@ -72,31 +68,42 @@ function startup_completed() {
 
   function observed_item(device) {
     console.log('observed_item device', device);
-    if (device.word_count != undefined) {
-      my.word_count = device.word_count;
+    if (device.word_date != undefined) {
+      my.word_date = new Date(device.word_date);
+      let fdate = formatDate(my.word_date);
+      my.iframe_element.elt.src = 'https://www.merriam-webster.com/word-of-the-day/' + fdate;
     }
   }
 }
 
-function wordUp() {
+function toDay_action() {
+  my.word_date = new Date();
+  dbase_update_props({ word_date: adjust_word_date(0) });
+}
+
+function wordUp_action() {
   console.log('Word Up');
-  dbase_update_props({ word_count: dbase_increment(1) });
+  // dbase_update_props({ word_count: dbase_increment(1) });
+  dbase_update_props({ word_date: adjust_word_date(1) });
 }
 
-function wordDown() {
+function wordDown_action() {
   console.log('Word Down');
-  dbase_update_props({ word_count: dbase_increment(-1) });
+  // dbase_update_props({ word_count: dbase_increment(-1) });
+  dbase_update_props({ word_date: adjust_word_date(-1) });
 }
 
-function calc_words() {
-  my.word_total_count = 0;
-  let a_devices = dbase_a_devices();
-  for (let device of a_devices) {
-    // let device = my.device_values[uid];
-    if (device.word_count != undefined) {
-      my.word_total_count += device.word_count;
-    }
-  }
+function adjust_word_date(delta) {
+  my.word_date = adjustDate(my.word_date, delta);
+  // return formatDate(my.word_date);
+  return my.word_date.toDateString();
+}
+
+function adjustDate(date, delta) {
+  const nextDay = new Date(date);
+  nextDay.setDate(nextDay.getDate() + delta);
+  console.log('adjustDate date', date.getDate(), 'getDate', nextDay.getDate());
+  return nextDay;
 }
 
 /*
@@ -115,3 +122,39 @@ https://www.w3schools.com/tags/tag_iframe.ASP
 my.iframe_element.elt.src = 'https://www.merriam-webster.com/word-of-the-day/2023-01-01'
 
 */
+
+// https://chat.openai.com/share/688a2050-26d6-465f-ab2b-2d3f2bcd7243
+// javascript to format date as YYYY-MM-DD
+
+function formatDate(date) {
+  // Extract year, month, and day from the date object
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is zero-indexed
+  const day = String(date.getDate()).padStart(2, '0');
+
+  // Construct the formatted date string
+  const formattedDate = `${year}-${month}-${day}`;
+
+  return formattedDate;
+}
+
+// Example usage:
+const date = new Date(); // This will get the current date and time
+const formattedDate = formatDate(date);
+console.log('formattedDate', formattedDate); // Output: "2024-03-03" (if today is March 3rd, 2024)
+
+// https://chat.openai.com/share/688a2050-26d6-465f-ab2b-2d3f2bcd7243
+// javascript to advance date to next day
+
+function advanceToNextDay(date, delta) {
+  // Clone the date object to avoid mutating the original date
+  const nextDay = new Date(date);
+  nextDay.setDate(nextDay.getDate() + delta);
+  return nextDay;
+}
+
+// Example usage:
+const currentDate = new Date(); // This will get the current date and time
+const nextDay = advanceToNextDay(currentDate, -1);
+// console.log('nextDay', nextDay.toDateString()); // Output: The date string representing the next day
+console.log('nextDay', formatDate(nextDay)); // Output: The date string representing the next day
