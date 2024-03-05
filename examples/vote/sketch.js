@@ -9,8 +9,9 @@ let my = {};
 //    individual vote
 
 function my_setup() {
+  let lowerMargin = 80; // Room for buttons
   my.width = windowWidth;
-  my.height = windowHeight;
+  my.height = windowHeight - lowerMargin;
   my.fireb_config = 'jht9629'; // change to your firebase app
   // my.fireb_config = 'jht1493';
   // my.fireb_config = 'jhtitp';
