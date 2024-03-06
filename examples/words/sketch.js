@@ -42,7 +42,7 @@ function setup() {
   createSpan(' Date ');
   my.word_date_span = createSpan(formatDate(my.word_date));
 
-  // Move the canvas below all the ui elements
+  // Move the iframe below all the ui elements
   let body_elt = document.querySelector('body');
   let other_elt = my.iframe_element.elt;
   body_elt.insertBefore(other_elt, null);
