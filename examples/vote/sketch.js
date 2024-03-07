@@ -62,11 +62,9 @@ function draw() {
 }
 
 function create_ui() {
-  createButton('Direction').mousePressed(switchDirectionAction);
-
   createButton('Vote Up').mousePressed(voteUpAction);
 
-  createButton('Vote Down').mousePressed(voteDownAction);
+  createButton('Down').mousePressed(voteDownAction);
 
   my.vote_count_span = createSpan('' + my.vote_count);
 
@@ -75,10 +73,14 @@ function create_ui() {
   createSpan('Total Votes ');
   my.vote_total_count_span = createSpan('' + my.vote_total_count);
 
-  // Move the canvas below all the ui elements
-  let body_elt = document.querySelector('body');
-  let main_elt = document.querySelector('main');
-  body_elt.insertBefore(main_elt, null);
+  createElement('br');
+
+  createButton('Direction').mousePressed(switchDirectionAction);
+
+  // // Move the canvas below all the ui elements
+  // let body_elt = document.querySelector('body');
+  // let main_elt = document.querySelector('main');
+  // body_elt.insertBefore(main_elt, null);
 }
 
 // check device exists in db
@@ -89,6 +91,7 @@ function startup_completed() {
 
   function observed_key(key, device) {
     // console.log('observed_a_device key', key, 'uid', my.uid, 'device', device);
+    console.log('observed_a_device key', key, 'device.vote_count', device && device.vote_count);
     if (key != my.uid || !device) return;
     if (device.vote_count != undefined) {
       my.vote_count = device.vote_count;
