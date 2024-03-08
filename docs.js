@@ -105,3 +105,9 @@
 // function dbase_issue_actions(actions, options) {
 
 // function dbase_remove_room() {
+
+/*
+
+ ./p5moLibrary/bin/build.sh --src ./ --files examples,README.md --prod
+
+ */
