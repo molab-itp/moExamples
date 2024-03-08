@@ -108,6 +108,8 @@
 
 /*
 
- ./p5moLibrary/bin/build.sh --src ./ --files examples,README.md --prod
+bin/git-release.sh
+
+./p5moLibrary/bin/build.sh --src ./ --files examples,README.md --prod
 
  */

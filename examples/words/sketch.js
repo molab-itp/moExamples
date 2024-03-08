@@ -106,6 +106,18 @@ function adjustDate(date, delta) {
   return nextDay;
 }
 
+function formatDate(date) {
+  // Extract year, month, and day from the date object
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is zero-indexed
+  const day = String(date.getDate()).padStart(2, '0');
+
+  // Construct the formatted date string
+  const formattedDate = `${year}-${month}-${day}`;
+
+  return formattedDate;
+}
+
 /*
 
 https://www.merriam-webster.com/word-of-the-day/2023-01-01
@@ -123,38 +135,4 @@ my.iframe_element.elt.src = 'https://www.merriam-webster.com/word-of-the-day/202
 
 */
 
-// https://chat.openai.com/share/688a2050-26d6-465f-ab2b-2d3f2bcd7243
-// javascript to format date as YYYY-MM-DD
-
-function formatDate(date) {
-  // Extract year, month, and day from the date object
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is zero-indexed
-  const day = String(date.getDate()).padStart(2, '0');
-
-  // Construct the formatted date string
-  const formattedDate = `${year}-${month}-${day}`;
-
-  return formattedDate;
-}
-
-// Example usage:
-const date = new Date(); // This will get the current date and time
-const formattedDate = formatDate(date);
-console.log('formattedDate', formattedDate); // Output: "2024-03-03" (if today is March 3rd, 2024)
-
-// https://chat.openai.com/share/688a2050-26d6-465f-ab2b-2d3f2bcd7243
-// javascript to advance date to next day
-
-function advanceToNextDay(date, delta) {
-  // Clone the date object to avoid mutating the original date
-  const nextDay = new Date(date);
-  nextDay.setDate(nextDay.getDate() + delta);
-  return nextDay;
-}
-
-// Example usage:
-const currentDate = new Date(); // This will get the current date and time
-const nextDay = advanceToNextDay(currentDate, -1);
-// console.log('nextDay', nextDay.toDateString()); // Output: The date string representing the next day
-console.log('nextDay', formatDate(nextDay)); // Output: The date string representing the next day
+// Issue: lots of debug noise for iframe web site

@@ -7,8 +7,8 @@
 - [examples/vote](examples/vote?v=20)
 - [examples/words](examples/words?v=20)
 - [examples/lobby](examples/lobby?v=20)
-- [examples/pixel-grid](examples/pixel-grid?v=20)
 - [examples/paint](examples/paint?v=20)
+- [examples/pixel-grid](examples/pixel-grid?v=20)
 
 ## Add your example
 
@@ -53,11 +53,11 @@ Copied into to sketches.
 
 - [] Document manual version ?v=x to bust the browser cache for github pages deploy
 
-- [] Consider sharing build.sh to version this code
-
 ## Done
 
 ```
+
+- [x] Consider sharing build.sh to version this code
 
 - [x] lobby delete room function
   - defer: use firebase console

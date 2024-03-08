@@ -77,6 +77,10 @@ function create_ui() {
 
   createButton('Direction').mousePressed(switchDirectionAction);
 
+  createElement('br');
+
+  createButton('Reset').mousePressed(voteResetAction);
+
   // // Move the canvas below all the ui elements
   // let body_elt = document.querySelector('body');
   // let main_elt = document.querySelector('main');
@@ -87,12 +91,15 @@ function create_ui() {
 function startup_completed() {
   console.log('startup_completed');
   //
-  dbase_devices_observe({ observed_key, all: 1 });
+  dbase_devices_observe({ observed_key, observed_item, all: 1 });
 
   function observed_key(key, device) {
     // console.log('observed_a_device key', key, 'uid', my.uid, 'device', device);
     console.log('observed_a_device key', key, 'device.vote_count', device && device.vote_count);
-    if (key != my.uid || !device) return;
+  }
+
+  function observed_item(device) {
+    console.log('observed_item device.vote_count', device.vote_count);
     if (device.vote_count != undefined) {
       my.vote_count = device.vote_count;
     }
@@ -111,6 +118,10 @@ function voteDownAction() {
 
 function switchDirectionAction() {
   dbase_issue_actions({ switch_action: 1 }, { all: 1 });
+}
+
+function voteResetAction() {
+  dbase_remove_mo_app();
 }
 
 function switchDirection() {
