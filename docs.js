@@ -106,6 +106,8 @@
 
 // function dbase_remove_room() {
 
+// function dbase_remove_mo_app() {
+
 /*
 
 bin/git-release.sh

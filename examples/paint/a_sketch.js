@@ -1,5 +1,5 @@
-// https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1
-// p5moExamples vote
+// https://editor.p5js.org/jht9629-nyu/sketches/xxxxx
+// p5moExamples paint
 
 // participants can cast a numeric vote up or down
 // must be in portrait orientation to see crosses
