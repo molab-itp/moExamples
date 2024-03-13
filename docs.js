@@ -108,6 +108,8 @@
 
 // function dbase_remove_mo_app() {
 
+// export function get_url_params() {
+
 /*
 
 bin/git-release.sh

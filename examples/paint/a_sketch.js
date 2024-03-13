@@ -33,6 +33,8 @@ function setup() {
   createSpan('•');
   createButton('Brush: Larger').mousePressed(largerBrushSizeAction);
   createButton('Smaller').mousePressed(smallerBrushSizeAction);
+  createElement('br');
+  createButton('Reset').mousePressed(resetAction);
 
   // createSpan('•');
   // createButton('Spawn').mousePressed(spawnAction);
@@ -94,9 +96,7 @@ function clearAction() {
     // my.pane.clear();
     dbase_issue_actions({ clear_action: 1 });
   } else {
-    background(0);
-    dbase_issue_actions({ clear_action: 1 }, { all: 1 });
-    deinit_panes();
+    clear_all();
   }
 }
 
@@ -120,6 +120,12 @@ function largerBrushSizeAction() {
   my.pane.next_brushColor();
 }
 
-// // function spawnAction() {
-// //   //
-// // }
+function resetAction() {
+  dbase_remove_mo_app();
+}
+
+function clear_all() {
+  background(0);
+  dbase_issue_actions({ clear_action: 1 }, { all: 1 });
+  deinit_panes();
+}
