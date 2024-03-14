@@ -1,5 +1,5 @@
-// https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1
-// p5moExamples vote
+// https://editor.p5js.org/jht9629-nyu/sketches/B2hlGkA
+// p5moExamples vote_DOMjs 47
 
 // participants can cast a numeric vote up or down
 
