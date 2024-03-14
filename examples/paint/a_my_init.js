@@ -15,7 +15,7 @@ function my_init() {
   // my.fireb_config = 'jhtitp';
 
   my.dbase_rootPath = 'm0-@r-@w-';
-  my.roomName = 'room0';
+  my.roomName = 'room1';
   my.mo_app = 'mo-paint';
   my.nameDevice = '';
   my.spawn_count = 0;

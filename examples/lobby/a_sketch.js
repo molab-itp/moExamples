@@ -20,9 +20,15 @@ function my_setup() {
   // my.fireb_config = my_firebaseConfig;
   my.dbase_rootPath = 'm0-@r-@w-';
   my.mo_app = 'mo-blackfacts';
-  my.roomName = 'room0';
   my.nameDevice = '';
   my.ndiv = 1;
+
+  my.query = get_url_params();
+
+  my.roomName = 'room1';
+  if (my.query) {
+    my.roomName = my.query.room || my.roomName;
+  }
 }
 
 // Your web app's Firebase configuration

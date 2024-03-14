@@ -152,7 +152,7 @@ function mouseDragged() {
 function windowResized() {
   // console.log('windowResized windowHeight', windowHeight, 'windowWidth', windowWidth);
   // my.isPortrait = windowHeight > windowWidth;
-  if (isRemote()) {
+  if (my.isRemote) {
     return;
   }
   resizeCanvas(windowWidth, windowHeight);

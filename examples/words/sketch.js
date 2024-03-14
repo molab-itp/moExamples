@@ -17,7 +17,7 @@ function my_setup() {
   // my.fireb_config = 'jht1493';
   // my.fireb_config = 'jhtitp';
   my.dbase_rootPath = 'm0-@r-@w-';
-  my.roomName = 'room0';
+  my.roomName = 'room1';
   my.mo_app = 'mo-words';
   my.nameDevice = '';
 

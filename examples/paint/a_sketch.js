@@ -34,7 +34,7 @@ function setup() {
   createButton('Brush: Larger').mousePressed(largerBrushSizeAction);
   createButton('Smaller').mousePressed(smallerBrushSizeAction);
   createElement('br');
-  createButton('Reset').mousePressed(resetAction);
+  createButton('Remove App').mousePressed(removeAppAction);
 
   // createSpan('•');
   // createButton('Spawn').mousePressed(spawnAction);
@@ -120,7 +120,8 @@ function largerBrushSizeAction() {
   my.pane.next_brushColor();
 }
 
-function resetAction() {
+function removeAppAction() {
+  clear_all();
   dbase_remove_mo_app();
 }
 

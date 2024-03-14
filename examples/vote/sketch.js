@@ -12,11 +12,17 @@ function my_setup() {
   let lowerMargin = 80; // Room for buttons
   my.width = windowWidth;
   my.height = windowHeight - lowerMargin;
-  my.fireb_config = 'jht9629'; // change to your firebase app
+
+  // change to your firebase app
+  my.fireb_config = 'jht9629';
   // my.fireb_config = 'jht1493';
   // my.fireb_config = 'jhtitp';
+
   my.dbase_rootPath = 'm0-@r-@w-';
-  my.roomName = 'room0'; // change to add a room in firebase real-time database
+
+  // change to add a room in firebase real-time database
+  my.roomName = 'room1';
+
   my.mo_app = 'mo-vote';
   my.nameDevice = '';
   //
@@ -79,7 +85,7 @@ function create_ui() {
 
   createElement('br');
 
-  createButton('Reset').mousePressed(voteResetAction);
+  createButton('Remove App').mousePressed(removeAppAction);
 
   // // Move the canvas below all the ui elements
   // let body_elt = document.querySelector('body');
@@ -120,7 +126,7 @@ function switchDirectionAction() {
   dbase_issue_actions({ switch_action: 1 }, { all: 1 });
 }
 
-function voteResetAction() {
+function removeAppAction() {
   dbase_remove_mo_app();
 }
 
