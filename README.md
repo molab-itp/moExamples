@@ -20,17 +20,20 @@
 
 ```
 
+// https://editor.p5js.org/jht9629-nyu/sketches/vP6sWN4Cu
+// p5moExamples lobby
+
+// https://editor.p5js.org/jht9629-nyu/sketches/nBefVKAbH
+// p5moExamples paint
+
+// https://editor.p5js.org/jht9629-nyu/sketches/CntV1JQNp
+// p5moExamples pixel-grid
+
 // https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1
 // p5moExamples vote
 
 // https://editor.p5js.org/jht9629-nyu/sketches/23h3z1G82
 // p5moExamples words
-
-// https://editor.p5js.org/jht9629-nyu/sketches/vP6sWN4Cu
-// p5moExamples lobby
-
-// https://editor.p5js.org/jht9629-nyu/sketches/CntV1JQNp
-// p5moExamples pixel-grid
 
 
 Copied into to sketches.

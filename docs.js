@@ -1,23 +1,5 @@
 //
 
-/*
-
-2024-03-02 jht:  
-  renamed dbase_value_increment --> dbase_increment
-
-  function dbase_update_props(options, deviceProps, groupProps) {
-    -->
-    function dbase_update_props(props, options) {
-
-  dbase_devices_ --> dbase_site_
-  dbase_a_devices_ --> dbase_devices_
-
-  function dbase_devices_observe({ observed_a_device, removed_a_device, all }) {
-    -->
-    function dbase_devices_observe({ observed_key, removed_key, all }) {
-
-*/
-
 // # --
 // How to debug from VS Code
 //
@@ -110,10 +92,26 @@
 
 // export function get_url_params() {
 
-/*
-
+/* --
 bin/git-release.sh
 
 ./p5moLibrary/bin/build.sh --src ./ --files examples,README.md --prod
 
  */
+
+/* --
+2024-03-02 jht:  
+  renamed dbase_value_increment --> dbase_increment
+
+  function dbase_update_props(options, deviceProps, groupProps) {
+    -->
+    function dbase_update_props(props, options) {
+
+  dbase_devices_ --> dbase_site_
+  dbase_a_devices_ --> dbase_devices_
+
+  function dbase_devices_observe({ observed_a_device, removed_a_device, all }) {
+    -->
+    function dbase_devices_observe({ observed_key, removed_key, all }) {
+
+*/
