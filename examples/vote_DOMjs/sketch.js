@@ -1,7 +1,8 @@
-// https://editor.p5js.org/jht9629-nyu/sketches/B2hlGkA
+// https://editor.p5js.org/jht9629-nyu/sketches/xxx
 // p5moExamples vote_DOMjs 47
 
 // participants can cast a numeric vote up or down
+// buttons to flip and coup: reset the database
 
 let my = {};
 
@@ -16,7 +17,7 @@ function setup() {
 
   dbase_app_init({ completed: startup_completed }); // callback function when app init
 
-  test_DOMjs();
+  // test_DOMjs();
 
   create_ui();
 }
@@ -29,39 +30,13 @@ function draw() {
 
   calc_votes();
 
-  my.vote_count_span.html(my.vote_count);
-  my.vote_total_count_span.html(my.vote_total_count);
+  id_vote_count_span.innerHTML = my.vote_count;
+  id_vote_total_count_span.innerHTML = my.vote_total_count;
 
   if (dbase_actions_issued(my.uid, { switch_action: 1 })) {
     switchDirection();
   }
   dbase_poll();
-}
-
-function create_ui() {
-  createButton('Vote Up').mousePressed(voteUpAction);
-
-  createButton('Down').mousePressed(voteDownAction);
-
-  my.vote_count_span = createSpan('' + my.vote_count);
-
-  createElement('br');
-
-  createSpan('Total Votes ');
-  my.vote_total_count_span = createSpan('' + my.vote_total_count);
-
-  createElement('br');
-
-  createButton('Direction').mousePressed(switchDirectionAction);
-
-  createElement('br');
-
-  createButton('Remove App').mousePressed(removeAppAction);
-
-  // // Move the canvas below all the ui elements
-  // let body_elt = document.querySelector('body');
-  // let main_elt = document.querySelector('main');
-  // body_elt.insertBefore(main_elt, null);
 }
 
 // check device exists in db
@@ -108,11 +83,26 @@ function switchDirection() {
 function calc_votes() {
   my.vote_total_count = 0;
   let a_devices = dbase_a_devices();
+  let items = [];
   for (let device of a_devices) {
+    // console.log('device', device);
     if (device.vote_count != undefined) {
       my.vote_total_count += device.vote_count;
+      let { uid, vote_count } = device;
+      let item = `uid ${uid} vote_count ${vote_count}`;
+      items.push(item);
     }
   }
+  //
+  // !!@ how to attach at li
+  id_ul.innerHTML = items.join('<br>');
+
+  // li: {
+  //   id: "listedThings",
+  //   style: "font-weight:bold",
+  //   height: "20px ",
+  //   content: ["first item", "second item", "a third for good meassure"],
+  // },
 }
 
 // https://github.com/lenincompres/DOM.js
