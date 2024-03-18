@@ -86,9 +86,9 @@ function calc_votes() {
   let items = [];
   for (let device of a_devices) {
     // console.log('device', device);
-    if (device.vote_count != undefined) {
-      my.vote_total_count += device.vote_count;
-      let { uid, vote_count } = device;
+    let { uid, vote_count } = device;
+    if (vote_count != undefined) {
+      my.vote_total_count += vote_count;
       let item = `uid ${uid} vote_count ${vote_count}`;
       items.push(item);
     }
