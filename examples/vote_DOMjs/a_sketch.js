@@ -3,6 +3,7 @@
 
 // participants can cast a numeric vote up or down
 // buttons to flip and coup: reset the database
+// display list of participants using DOMjs id_ul.innerHTML
 
 let my = {};
 
@@ -82,7 +83,10 @@ function switchDirection() {
 
 function calc_votes() {
   my.vote_total_count = 0;
-  let a_devices = dbase_a_devices();
+  // Make a copy of device list
+  let a_devices = [...dbase_a_devices()];
+  // Sort by uid so order is consistent
+  a_devices = a_devices.sort(sort_by_uid);
   let items = [];
   for (let device of a_devices) {
     // console.log('device', device);
@@ -90,6 +94,9 @@ function calc_votes() {
     if (vote_count != undefined) {
       my.vote_total_count += vote_count;
       let item = `uid ${uid} vote_count ${vote_count}`;
+      if (my.uid == uid) {
+        item = `<b>${item}</b>`;
+      }
       items.push(item);
     }
   }
@@ -105,6 +112,10 @@ function calc_votes() {
   // },
 }
 
+// (item1, item2) => item1.uid.localeCompare(item2.uid)
+function sort_by_uid(item1, item2) {
+  return item1.uid.localeCompare(item2.uid);
+}
 // https://github.com/lenincompres/DOM.js
 
 // F5 to select chrome
