@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
+    <script src="https://p5livemedia.itp.io/simplepeer.min.js"></script>
+    <script src="https://p5livemedia.itp.io/socket.io.js"></script>
+    <script src="https://p5livemedia.itp.io/p5livemedia.js"></script>
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+    <!--   
+    <script src="./external/lib/p5.min.js"></script>
+    <script src="./external/lib/p5.sound.min.js"></script>
+    <script src="./external/lib/simplepeer.min.js?v={{vers}}"></script>
+    <script src="./external/lib/socket.io.js"></script>
+    <script src="./external/lib/p5livemedia.js"></script>
+    <script src="./external/lib/ml5.min.js"></script>
+    -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script>
+      // track startup time for debugging
+      let a_start_now = window.performance.now();
+    </script>
+
+    <!-- <link rel="stylesheet" type="text/css" href="style.css" /> 
+    jht doesn't want clutter of external css file
+    hence the minimal css inside this file
+    -->
+    <style>
+      @media only screen and (max-width: 600px) {
+        body,
+        button,
+        select,
+        input {
+          font-size: 4vw;
+        }
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+    <meta charset="utf-8" />
+  </head>
+
+  <body>
+    <!--   -->
+    <!-- <script src="videoKit/p5videoKit.js?v={{vers}}"></script> -->
+
+    <script src="../../p5videoKit/src/videoKit/p5videoKit.js?v=23"></script>
+
+    <script src="sketch.js?v=23"></script>
+    <!-- <div id="imsg" style="font-size: 7vw; display: none"></div> -->
+  </body>
+</html>
