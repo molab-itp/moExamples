@@ -123,7 +123,7 @@ function downloadActionShort() {
     delete device.dbase.visit;
   }
   let str = JSON.stringify(my.site_devices, undefined, 2);
-  downloadToFile('lobby-short-' + my.mo_app + '-live' + '.json', str);
+  downloadToFile('lobby-' + my.mo_app + '-live-short' + '.json', str);
 }
 
 // https://stackoverflow.com/questions/3665115/how-to-create-a-file-in-memory-for-user-to-download-but-not-through-server
