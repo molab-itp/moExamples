@@ -2,14 +2,14 @@
 
 - p5js examples for [p5moLibrary](https://github.com/molab-itp/p5moLibrary.git)
 
-## [github.io p5moExamples](https://molab-itp.github.io/p5moExamples?v=23)
+## [github.io p5moExamples](https://molab-itp.github.io/p5moExamples?v=24)
 
-- [examples/vote](examples/vote?v=23)
-- [examples/words](examples/words?v=23)
-- [examples/lobby](examples/lobby?v=23)
-- [examples/paint](examples/paint?v=23)
-- [examples/pixel-grid](examples/pixel-grid?v=23)
-- [examples/vote_DOMjs](examples/vote_DOMjs?v=23)
+- [examples/vote](examples/vote?v=24)
+- [examples/words](examples/words?v=24)
+- [examples/lobby](examples/lobby?v=24)
+- [examples/paint](examples/paint?v=24)
+- [examples/pixel-grid](examples/pixel-grid?v=24)
+- [examples/vote_DOMjs](examples/vote_DOMjs?v=24)
 
 ## Add your example
 
