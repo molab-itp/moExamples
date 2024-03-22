@@ -6,8 +6,8 @@
 
 - [examples/vote](examples/vote?v=25)
 - [examples/words](examples/words?v=25)
-- [examples/lobby room0](examples/lobby?v=25?room=room0)
-- [examples/lobby room1](examples/lobby?v=25?room=room1)
+- [examples/lobby room0](examples/lobby?v=25&room=room0)
+- [examples/lobby room1](examples/lobby?v=25&room=room1)
 - [examples/paint](examples/paint?v=25)
 - [examples/pixel-grid](examples/pixel-grid?v=25)
 - [examples/vote_DOMjs](examples/vote_DOMjs?v=25)
