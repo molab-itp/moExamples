@@ -11,6 +11,7 @@
 - [examples/paint](examples/paint?v=26)
 - [examples/pixel-grid](examples/pixel-grid?v=26)
 - [examples/vote_DOMjs](examples/vote_DOMjs?v=26)
+- [examples/video](examples/video?v=26)
 
 ## Add your example
 
