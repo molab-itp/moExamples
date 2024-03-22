@@ -1,6 +1,6 @@
-// p5LiveVideo example dashboard
-// https://github.com/jht1493/p5videoKit
-//
+// https://editor.p5js.org/jht9629-nyu/sketches/KeRAIMzHN
+// p5moExamples video 366
+
 let videoKit; // home for library routines
 
 p5.disableFriendlyErrors = true; // disables FES to improve performance
@@ -28,7 +28,7 @@ function draw() {
 }
 
 let a_config = {
-  // hide_ui: 1,
+  hide_ui: 1,
   // effects for import, will appear at top of the effect menu
   // an EFFECT can have many PROPERTIES specific to the effect
   // for example canvas size, color, cell size,
@@ -49,6 +49,9 @@ let a_config = {
   // { label: 'videoKit', import_path: 'settings/videoKit.json' },
   // ],
 };
+
+// https://molab-itp.github.io/p5moExamples/examples/video/?a=%7B%22setting%22%3A%22%22%2C%22comment%22%3A%22bright%20%7C%20diff%22%2C%22back_color%22%3A200%2C%22room_name%22%3A%22VideoKit-Room-1%22%2C%22patch_layout%22%3A%22Single%22%2C%22canvas_size%22%3A%22960x540%22%2C%22capture_size%22%3A%22default%22%2C%22render_size%22%3A%22Canvas%22%2C%22chat_name%22%3A%22jht%22%2C%22chat_chk%22%3A0%2C%22live_index%22%3A0%2C%22live_chk%22%3A0%2C%22urects_lock%22%3A0%2C%22urects_count%22%3A2%2C%22canvas_resize_ref%22%3A%22%22%2C%22canvas_data_chk%22%3A0%2C%22mediaDiv_states%22%3A%5Bnull%2C%7B%22vis%22%3A0%2C%22mute%22%3A1%7D%5D%2C%22patches%22%3A%5B%7B%22eff_spec%22%3A%7B%22ipatch%22%3A0%2C%22imedia%22%3A1%2C%22eff_label%22%3A%22bright%22%2C%22urect%22%3A%7B%22width%22%3A960%2C%22height%22%3A540%2C%22x0%22%3A0%2C%22y0%22%3A0%7D%7D%2C%22eff_props%22%3A%7B%22ncell%22%3A16%2C%22back_color%22%3A0%2C%22src_color%22%3A255%2C%22fill%22%3A1%2C%22invert%22%3A1%2C%22shape%22%3A%22rect%22%7D%7D%2C%7B%22eff_spec%22%3A%7B%22ipatch%22%3A1%2C%22imedia%22%3A1%2C%22eff_label%22%3A%22diff%22%2C%22urect%22%3A%7B%22width%22%3A960%2C%22height%22%3A540%2C%22x0%22%3A0%2C%22y0%22%3A0%7D%7D%2C%22eff_props%22%3A%7B%22threshold%22%3A16%2C%22period%22%3A0%2C%22back_color%22%3A%22clear%22%2C%22smooth%22%3A0%2C%22hold%22%3A0%7D%7D%5D%7D
+// bright | diff
 
 // https://editor.p5js.org/shawn/sketches/jZQ64AMJc
 // p5LiveMedia Test Video
