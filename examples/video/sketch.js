@@ -28,31 +28,26 @@ function draw() {
 }
 
 let a_config = {
+  // hide_ui: 1,
   // effects for import, will appear at top of the effect menu
-
   // an EFFECT can have many PROPERTIES specific to the effect
   // for example canvas size, color, cell size,
   // to see this, choose "circle" in Effect1 and Effect2,
   // then choose different properties like number of circles per frame
   // or the video source
-
   // the "effects" array creates a pull-down menu
   // which offers a first selection of effects added to the VideoKit library,
   // you could add some more !!!!
-
-  effects: [
-    // { label: 'a_slit_scan', import_path: 'effects/eff_a_slit_scan.js' },
-  ],
-
+  // effects: [
+  // { label: 'a_slit_scan', import_path: 'effects/eff_a_slit_scan.js' },
+  // ],
   // settings for import, will appear in the settings menu
-
   // SETTINGS will load a save .json file with predefined values
   // for all the settings associated with the effect
   // "settings" is an array of
-
-  settings: [
-    // { label: 'videoKit', import_path: 'settings/videoKit.json' },
-  ],
+  // settings: [
+  // { label: 'videoKit', import_path: 'settings/videoKit.json' },
+  // ],
 };
 
 // https://editor.p5js.org/shawn/sketches/jZQ64AMJc
