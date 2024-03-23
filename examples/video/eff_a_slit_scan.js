@@ -16,31 +16,33 @@ class eff_a_slit_scan {
   ];
 
   constructor(props) {
+    let my = this;
     //
-    Object.assign(this, props);
+    Object.assign(my, props);
     console.log('eff_a_slit_scan props.expand', props.expand);
     // console.log('eff_a_slit_scan constructor width, height', width, height);
 
-    this.vw = this.input.width;
-    this.vh = this.input.height;
-    console.log('eff_a_slit_scan constructor input vw vh', this.vw, this.vh);
+    my.vw = my.input.width;
+    my.vh = my.input.height;
+    console.log('eff_a_slit_scan constructor input vw vh', my.vw, my.vh);
 
-    this.output = createGraphics(this.vw * this.expand, this.vh);
-    // this.output.background(255);
+    my.output = createGraphics(my.vw * my.expand, my.vh);
+    // my.output.background(255);
 
-    this.x = 0;
+    my.x = 0;
 
-    this.period_timer = new this.videoKit.PeriodTimer(this.period);
+    my.period_timer = new my.videoKit.PeriodTimer(my.period);
   }
   prepareOutput() {
-    this.input.loadPixels();
-    this.output.copy(this.input, this.vw / 2, 0, 1, this.vh, this.x, 0, 1, this.vh);
-    this.x = this.x + this.step;
-    if (this.x > this.output.width) {
-      this.x = 0;
+    let my = this;
+    my.input.loadPixels();
+    my.output.copy(my.input, my.vw / 2, 0, 1, my.vh, my.x, 0, 1, my.vh);
+    my.x = my.x + my.step;
+    if (my.x > my.output.width) {
+      my.x = 0;
     }
-    if (this.period_timer.check()) {
-      this.output.clear();
+    if (my.period_timer.check()) {
+      my.output.clear();
     }
   }
 }
