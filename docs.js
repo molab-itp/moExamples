@@ -81,3 +81,21 @@
 // function dbase_actions_issued(uid, actions) {
 
 // function dbase_issue_actions(actions, options) {
+
+// ## -
+// examples are located in /examples
+// examples include:
+
+// lobby:
+// serve as a device watcher/observer for the POWER TO THE PEOPLE exhibition by John Henry Thompson at the Clive Davis Gallery
+// count the current available devices watching the exhibition
+
+// paint
+// real-time multi-user drawing canvas controlled with both landscape(desktop) and portrait(cellphone) mode
+
+// pixel-grid
+
+// vote:
+// real-time voting examples that count your own votes and total votes from available devices; built with firebase
+
+// words
