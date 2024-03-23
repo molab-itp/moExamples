@@ -206,7 +206,8 @@ function removeAppAction() {
   app_pix_grid_remove();
   ui_log_clear();
 
-  dbase_remove_mo_app();
+  // dbase_remove_mo_app();
+  dbase_remove_room();
 
   localStorage.clear();
   location.reload();
