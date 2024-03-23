@@ -5,13 +5,24 @@
 ## [github.io p5moExamples](https://molab-itp.github.io/p5moExamples?v=29)
 
 - [examples/vote](examples/vote?v=29)
+- [examples/vote_DOMjs](examples/vote_DOMjs?v=29)
 - [examples/words](examples/words?v=29)
-- [examples/lobby room0](examples/lobby?v=29&room=room0)
-- [examples/lobby room1](examples/lobby?v=29&room=room1)
 - [examples/paint](examples/paint?v=29)
 - [examples/pixel-grid](examples/pixel-grid?v=29)
-- [examples/vote_DOMjs](examples/vote_DOMjs?v=29)
 - [examples/video](examples/video?v=29)
+
+- [examples/lobby room0](examples/lobby?v=29&room=room0)
+- [examples/lobby room1](examples/lobby?v=29&room=room1)
+
+## p5js versions of examples
+
+- [p5moExamples lobby](https://editor.p5js.org/jht9629-nyu/sketches/vP6sWN4Cu)
+- [p5moExamples paint](https://editor.p5js.org/jht9629-nyu/sketches/nBefVKAbH)
+- [p5moExamples pixel-grid](https://editor.p5js.org/jht9629-nyu/sketches/CntV1JQNp)
+- [p5moExamples video](https://editor.p5js.org/jht9629-nyu/sketches/KeRAIMzHN)
+- [p5moExamples vote](https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1)
+- [p5moExamples vote_DOMjs](https://editor.p5js.org/jht9629-nyu/sketches/CAgivET8K)
+- [p5moExamples words](https://editor.p5js.org/jht9629-nyu/sketches/23h3z1G82)
 
 ## Add your example
 
@@ -22,22 +33,6 @@
 ## Notes
 
 ```
-
-// https://editor.p5js.org/jht9629-nyu/sketches/vP6sWN4Cu
-// p5moExamples lobby
-
-// https://editor.p5js.org/jht9629-nyu/sketches/nBefVKAbH
-// p5moExamples paint
-
-// https://editor.p5js.org/jht9629-nyu/sketches/CntV1JQNp
-// p5moExamples pixel-grid
-
-// https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1
-// p5moExamples vote
-
-// https://editor.p5js.org/jht9629-nyu/sketches/23h3z1G82
-// p5moExamples words
-
 
 Copied into to sketches.
 
