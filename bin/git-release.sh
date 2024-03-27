@@ -20,7 +20,7 @@ git commit $quiet -m "`cat gen/build_ver.txt`"
 git push $quiet
 # in main
 git checkout main $quiet
-git merge next
+git merge next $quiet
 git push $quiet
 # in next
 git checkout next $quiet
