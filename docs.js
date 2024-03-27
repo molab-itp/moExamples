@@ -88,6 +88,12 @@
 
 // function dbase_issue_actions(actions, options) {
 
+// function dbase_remove_room() {
+
+// function dbase_remove_mo_app() {
+
+// export function get_url_params() {
+
 // ## -
 // examples are located in /examples
 // examples include:
@@ -105,11 +111,7 @@
 // real-time voting examples that count your own votes and total votes from available devices; built with firebase
 
 // words
-// function dbase_remove_room() {
-
-// function dbase_remove_mo_app() {
-
-// export function get_url_params() {
+// ## -
 
 /* --
 bin/git-release.sh
