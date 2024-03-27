@@ -2,19 +2,19 @@
 
 - p5js examples for [p5moLibrary](https://github.com/molab-itp/p5moLibrary.git)
 
-## [github.io p5moExamples](https://molab-itp.github.io/p5moExamples?v=46)
+## [github.io p5moExamples](https://molab-itp.github.io/p5moExamples?v=47)
 
-- [examples/vote](examples/vote?v=46)
-- [examples/vote_DOMjs](examples/vote_DOMjs?v=46)
-- [examples/words](examples/words?v=46)
-- [examples/video](examples/video?v=46)
+- [examples/vote](examples/vote?v=47)
+- [examples/vote_DOMjs](examples/vote_DOMjs?v=47)
+- [examples/words](examples/words?v=47)
+- [examples/video](examples/video?v=47)
 
-- [examples/lobby room0](examples/lobby?v=46&room=room0)
-- [examples/lobby room1](examples/lobby?v=46&room=room1)
-- [examples/paint](examples/paint?v=46)
-- [examples/paint remote=0](examples/paint?v=46&remote=0)
-- [examples/pixel-grid](examples/pixel-grid?v=46)
-- [examples/pixel-grid remote=0](examples/pixel-grid?v=46&remote=0)
+- [examples/lobby room0](examples/lobby?v=47&room=room0)
+- [examples/lobby room1](examples/lobby?v=47&room=room1)
+- [examples/paint](examples/paint?v=47)
+- [examples/paint remote=0](examples/paint?v=47&remote=0)
+- [examples/pixel-grid](examples/pixel-grid?v=47)
+- [examples/pixel-grid remote=0](examples/pixel-grid?v=47&remote=0)
 
 ## p5js versions of examples
 
