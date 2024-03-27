@@ -12,19 +12,19 @@
 - [p5js p5moExamples vote_DOMjs](https://editor.p5js.org/jht9629-nyu/sketches/CAgivET8K)
 - [p5js p5moExamples words](https://editor.p5js.org/jht9629-nyu/sketches/23h3z1G82)
 
-## [github.io versions of examples](https://molab-itp.github.io/p5moExamples?v=49)
+## [github.io versions of examples](https://molab-itp.github.io/p5moExamples?v=50)
 
-- [examples/vote](examples/vote?v=49)
-- [examples/vote_DOMjs](examples/vote_DOMjs?v=49)
-- [examples/words](examples/words?v=49)
-- [examples/video](examples/video?v=49)
+- [examples/vote](examples/vote?v=50)
+- [examples/vote_DOMjs](examples/vote_DOMjs?v=50)
+- [examples/words](examples/words?v=50)
+- [examples/video](examples/video?v=50)
 
-- [examples/lobby room0](examples/lobby?v=49&room=room0)
-- [examples/lobby room1](examples/lobby?v=49&room=room1)
-- [examples/paint](examples/paint?v=49)
-- [examples/paint remote=0](examples/paint?v=49&remote=0)
-- [examples/pixel-grid](examples/pixel-grid?v=49)
-- [examples/pixel-grid remote=0](examples/pixel-grid?v=49&remote=0)
+- [examples/lobby room0](examples/lobby?v=50&room=room0)
+- [examples/lobby room1](examples/lobby?v=50&room=room1)
+- [examples/paint](examples/paint?v=50)
+- [examples/paint remote=0](examples/paint?v=50&remote=0)
+- [examples/pixel-grid](examples/pixel-grid?v=50)
+- [examples/pixel-grid remote=0](examples/pixel-grid?v=50&remote=0)
 
 ## Add your example
 
