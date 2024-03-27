@@ -2,29 +2,29 @@
 
 - p5js examples for [p5moLibrary](https://github.com/molab-itp/p5moLibrary.git)
 
-## [github.io p5moExamples](https://molab-itp.github.io/p5moExamples?v=48)
-
-- [examples/vote](examples/vote?v=48)
-- [examples/vote_DOMjs](examples/vote_DOMjs?v=48)
-- [examples/words](examples/words?v=48)
-- [examples/video](examples/video?v=48)
-
-- [examples/lobby room0](examples/lobby?v=48&room=room0)
-- [examples/lobby room1](examples/lobby?v=48&room=room1)
-- [examples/paint](examples/paint?v=48)
-- [examples/paint remote=0](examples/paint?v=48&remote=0)
-- [examples/pixel-grid](examples/pixel-grid?v=48)
-- [examples/pixel-grid remote=0](examples/pixel-grid?v=48&remote=0)
-
 ## p5js versions of examples
 
-- [p5moExamples lobby](https://editor.p5js.org/jht9629-nyu/sketches/vP6sWN4Cu)
-- [p5moExamples paint](https://editor.p5js.org/jht9629-nyu/sketches/nBefVKAbH)
-- [p5moExamples pixel-grid](https://editor.p5js.org/jht9629-nyu/sketches/CntV1JQNp)
-- [p5moExamples video](https://editor.p5js.org/jht9629-nyu/sketches/KeRAIMzHN)
-- [p5moExamples vote](https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1)
-- [p5moExamples vote_DOMjs](https://editor.p5js.org/jht9629-nyu/sketches/CAgivET8K)
-- [p5moExamples words](https://editor.p5js.org/jht9629-nyu/sketches/23h3z1G82)
+- [p5js p5moExamples lobby](https://editor.p5js.org/jht9629-nyu/sketches/vP6sWN4Cu)
+- [p5js p5moExamples paint](https://editor.p5js.org/jht9629-nyu/sketches/nBefVKAbH)
+- [p5js p5moExamples pixel-grid](https://editor.p5js.org/jht9629-nyu/sketches/CntV1JQNp)
+- [p5js p5moExamples video](https://editor.p5js.org/jht9629-nyu/sketches/KeRAIMzHN)
+- [p5js p5moExamples vote](https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1)
+- [p5js p5moExamples vote_DOMjs](https://editor.p5js.org/jht9629-nyu/sketches/CAgivET8K)
+- [p5js p5moExamples words](https://editor.p5js.org/jht9629-nyu/sketches/23h3z1G82)
+
+## [github.io versions of examples](https://molab-itp.github.io/p5moExamples?v=49)
+
+- [examples/vote](examples/vote?v=49)
+- [examples/vote_DOMjs](examples/vote_DOMjs?v=49)
+- [examples/words](examples/words?v=49)
+- [examples/video](examples/video?v=49)
+
+- [examples/lobby room0](examples/lobby?v=49&room=room0)
+- [examples/lobby room1](examples/lobby?v=49&room=room1)
+- [examples/paint](examples/paint?v=49)
+- [examples/paint remote=0](examples/paint?v=49&remote=0)
+- [examples/pixel-grid](examples/pixel-grid?v=49)
+- [examples/pixel-grid remote=0](examples/pixel-grid?v=49&remote=0)
 
 ## Add your example
 

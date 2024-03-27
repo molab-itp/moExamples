@@ -1,7 +1,7 @@
 //
 function my_init1() {
   // updated to verify change on mobile
-  my.version = '?v=48';
+  my.version = '?v=49';
   my.isRemote = 1;
   // Aspect ratio of video capture
   my.vwidth = 480;
