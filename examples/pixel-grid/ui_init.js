@@ -62,7 +62,7 @@ function ui_init_row_2() {
     scrollFlag_changed(this.checked());
   });
 
-  if (isRemote()) {
+  if (my.isRemote) {
     ui_break();
   }
 
@@ -105,15 +105,15 @@ function ui_init_row_3() {
 
   ui_nstep_selection();
 
-  if (isRemote()) {
+  if (my.isRemote) {
     ui_break();
   }
 
   my.updateBtn = ui_createButton('Update');
   my.updateBtn.mousePressed(updateBtn_action);
 
-  my.resetBtn = ui_createButton(' Reset');
-  my.resetBtn.mousePressed(resetBtn_action);
+  my.removeAppBtn = ui_createButton(' Remove App');
+  my.removeAppBtn.mousePressed(removeAppAction);
 
   ui_break();
 }
@@ -162,7 +162,7 @@ function ui_init_update_rgb() {
   let g = colr[1];
   let b = colr[2];
 
-  if (isRemote()) {
+  if (my.isRemote) {
     ui_break();
   }
 
@@ -202,9 +202,13 @@ function updateBtn_action() {
   // location.reload();
 }
 
-function resetBtn_action() {
+function removeAppAction() {
   app_pix_grid_remove();
   ui_log_clear();
+
+  // dbase_remove_mo_app();
+  dbase_remove_room();
+
   localStorage.clear();
   location.reload();
 }

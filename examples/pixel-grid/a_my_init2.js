@@ -56,24 +56,18 @@ function init_query() {
     my.roomName = my.query.room || my.roomName;
     my.storeFlag = parseFloat(my.query.store || my.storeFlag);
     my.nstep = parseFloat(my.query.nstep || my.nstep);
-    // my.perFrame = parseFloat(my.query.perFrame || my.perFrame);
-    // my.byLine = parseFloat(my.query.byLine || my.byLine);
+    my.isRemote = parseFloat(my.query.remote || my.isRemote);
   }
   console.log('init_query windowHeight', windowHeight, 'windowWidth', windowWidth);
   // my.isPortrait = windowHeight > windowWidth;
-  if (isRemote()) {
+
+  if (my.isRemote) {
     my.width = my.vwidth;
     my.height = my.vheight * 4;
   } else {
     my.width = windowWidth;
     my.height = windowHeight;
-    // my.width = displayWidth;
-    // my.height = displayHeight;
   }
-}
-
-function isRemote() {
-  return windowHeight > windowWidth;
 }
 
 function nstep_init() {

@@ -1,5 +1,5 @@
-// https://editor.p5js.org/jht9629-nyu/sketches/xxxx
-// p5moExamples words
+// https://editor.p5js.org/jht9629-nyu/sketches/23h3z1G82
+// p5moExamples words 47
 
 // overlay qrcode on a website
 // [] convert to vanilla js
@@ -7,8 +7,8 @@
 
 let my = {};
 
-// mo-words/device/{uid}/vote
-//    individual vote
+// mo-words/device/{uid}/word
+//    individual word
 
 function my_setup() {
   my.width = windowWidth;
@@ -17,13 +17,11 @@ function my_setup() {
   // my.fireb_config = 'jht1493';
   // my.fireb_config = 'jhtitp';
   my.dbase_rootPath = 'm0-@r-@w-';
-  my.roomName = 'room0';
+  my.roomName = 'room1';
   my.mo_app = 'mo-words';
   my.nameDevice = '';
-  //
-  my.vote_count = 0;
-  my.vote_total_count = 0;
-  my.device_values = {};
+
+  my.word_date = new Date();
 }
 
 function setup() {
@@ -36,14 +34,15 @@ function setup() {
 
   dbase_app_init({ completed: startup_completed });
 
-  createButton('Vote Up').mousePressed(voteUp);
-  createButton('Vote Down').mousePressed(voteDown);
-  my.vote_count_span = createSpan('' + my.vote_count);
-  createElement('br');
-  createSpan('Total Vote ');
-  my.vote_total_count_span = createSpan('' + my.vote_total_count);
+  createButton('Word Up').mousePressed(wordUp_action);
+  createButton('Word Down').mousePressed(wordDown_action);
+  createButton('To Day').mousePressed(toDay_action);
+  // my.word_count_span = createSpan('' + my.word_count);
+  // createElement('br');
+  createSpan(' Date ');
+  my.word_date_span = createSpan(formatDate(my.word_date));
 
-  // Move the canvas below all the ui elements
+  // Move the iframe below all the ui elements
   let body_elt = document.querySelector('body');
   let other_elt = my.iframe_element.elt;
   body_elt.insertBefore(other_elt, null);
@@ -59,56 +58,65 @@ function create_my_iframe() {
 function draw() {
   background(200);
   //
-  calc_votes();
-  //
-  my.vote_count_span.html(my.vote_count);
-  my.vote_total_count_span.html(my.vote_total_count);
+  my.word_date_span.html(my.word_date.toDateString());
 }
 
 function startup_completed() {
   console.log('startup_completed');
 
-  dbase_a_devices_observe({ observed_a_device, all: 1 });
+  dbase_devices_observe({ observed_item, all: 1 });
 
-  function observed_a_device(key, device) {
-    console.log('observed_a_device key', key, 'uid', my.uid, 'device', device);
-    if (key != my.uid || !device) return;
-    // console.log('build_devices key', key, 'uid', my.uid);
-    // if (!device) return;
-    if (device.vote_count != undefined) {
-      my.vote_count = device.vote_count;
+  function observed_item(device) {
+    console.log('observed_item device', device);
+    if (device.word_date != undefined) {
+      my.word_date = new Date(device.word_date);
+      let fdate = formatDate(my.word_date);
+      my.iframe_element.elt.src = 'https://www.merriam-webster.com/word-of-the-day/' + fdate;
     }
   }
 }
 
-function voteUp() {
-  console.log('Vote Up');
-  dbase_update_props({}, { vote_count: dbase_value_increment(1) });
+function toDay_action() {
+  my.word_date = new Date();
+  dbase_update_props({ word_date: adjust_word_date(0) });
 }
 
-function voteDown() {
-  console.log('Vote Down');
-  dbase_update_props({}, { vote_count: dbase_value_increment(-1) });
+function wordUp_action() {
+  console.log('Word Up');
+  // dbase_update_props({ word_count: dbase_increment(1) });
+  dbase_update_props({ word_date: adjust_word_date(1) });
 }
 
-function calc_votes() {
-  my.vote_total_count = 0;
-  let a_devices = dbase_a_devices();
-  for (let device of a_devices) {
-    // let device = my.device_values[uid];
-    if (device.vote_count != undefined) {
-      my.vote_total_count += device.vote_count;
-    }
-  }
+function wordDown_action() {
+  console.log('Word Down');
+  // dbase_update_props({ word_count: dbase_increment(-1) });
+  dbase_update_props({ word_date: adjust_word_date(-1) });
 }
 
-// F5 to select chrome
-// VS Code menu: Run > Start Debugging
+function adjust_word_date(delta) {
+  my.word_date = adjustDate(my.word_date, delta);
+  // return formatDate(my.word_date);
+  return my.word_date.toDateString();
+}
 
-// .vscode/launch.json
-//    "url": "http://localhost:5500/examples/vote/",
+function adjustDate(date, delta) {
+  const nextDay = new Date(date);
+  nextDay.setDate(nextDay.getDate() + delta);
+  console.log('adjustDate date', date.getDate(), 'getDate', nextDay.getDate());
+  return nextDay;
+}
 
-// https://stackoverflow.com/questions/46945784/how-to-debug-javascript-in-visual-studio-code-with-live-server-running
+function formatDate(date) {
+  // Extract year, month, and day from the date object
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is zero-indexed
+  const day = String(date.getDate()).padStart(2, '0');
+
+  // Construct the formatted date string
+  const formattedDate = `${year}-${month}-${day}`;
+
+  return formattedDate;
+}
 
 /*
 
@@ -126,3 +134,5 @@ https://www.w3schools.com/tags/tag_iframe.ASP
 my.iframe_element.elt.src = 'https://www.merriam-webster.com/word-of-the-day/2023-01-01'
 
 */
+
+// Issue: lots of debug noise for iframe web site

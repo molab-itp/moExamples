@@ -1,5 +1,5 @@
 // https://editor.p5js.org/jht9629-nyu/sketches/CntV1JQNp
-// p5moExamples pixel-grid
+// p5moExamples pixel-grid 47
 
 let my = {};
 
@@ -152,7 +152,7 @@ function mouseDragged() {
 function windowResized() {
   // console.log('windowResized windowHeight', windowHeight, 'windowWidth', windowWidth);
   // my.isPortrait = windowHeight > windowWidth;
-  if (isRemote()) {
+  if (my.isRemote) {
     return;
   }
   resizeCanvas(windowWidth, windowHeight);

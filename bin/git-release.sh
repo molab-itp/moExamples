@@ -11,9 +11,12 @@ quiet=--quiet
 # merge branch next in to branch main
 # switch back to branch next
 #
-echo `date -u +"%Y-%m-%dT%H:%M:%SZ"` "?v=012" > src/gen/build_ver.txt
+# echo `date -u +"%Y-%m-%dT%H:%M:%SZ"` "?v=016" > gen/build_ver.txt
+
+./p5moLibrary/bin/build.sh --src ./ --files examples,README.md --prod $quiet
+
 git add . 
-git commit $quiet -m "`cat src/gen/build_ver.txt`"
+git commit $quiet -m "`cat gen/build_ver.txt`"
 git push $quiet
 # in main
 git checkout main $quiet
@@ -21,12 +24,9 @@ git merge next $quiet
 git push $quiet
 # in next
 git checkout next $quiet
-# bin/build.sh --prod $quiet
-# git add . 
-# git commit -m "`cat src/gen/build_ver.txt`" $quiet
-# git push $quiet
+
 echo
-echo "build `cat src/gen/build_ver.txt`"
+echo "build `cat gen/build_ver.txt`"
 
 # https://stackoverflow.com/questions/7216358/date-command-on-os-x-doesnt-have-iso-8601-i-option
 # date -u +"%Y-%m-%dT%H:%M:%SZ"

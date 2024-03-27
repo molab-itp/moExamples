@@ -20,9 +20,15 @@ function my_setup() {
   // my.fireb_config = my_firebaseConfig;
   my.dbase_rootPath = 'm0-@r-@w-';
   my.mo_app = 'mo-blackfacts';
-  my.roomName = 'room0';
   my.nameDevice = '';
   my.ndiv = 1;
+
+  my.query = get_url_params();
+
+  my.roomName = 'room1';
+  if (my.query) {
+    my.roomName = my.query.room || my.roomName;
+  }
 }
 
 // Your web app's Firebase configuration
@@ -83,7 +89,7 @@ function draw_device(index, x, y) {
   fill(0);
   circle(x, y, my.len);
   // inner green dot marks active device
-  if (dbase_device_isActive(device)) {
+  if (dbase_site_isActive(device)) {
     fill('green');
     circle(x, y, my.dotLen);
   }
@@ -117,7 +123,7 @@ function downloadActionShort() {
     delete device.dbase.visit;
   }
   let str = JSON.stringify(my.site_devices, undefined, 2);
-  downloadToFile('lobby-short-' + my.mo_app + '-live' + '.json', str);
+  downloadToFile('lobby-' + my.mo_app + '-live-short' + '.json', str);
 }
 
 // https://stackoverflow.com/questions/3665115/how-to-create-a-file-in-memory-for-user-to-download-but-not-through-server

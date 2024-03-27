@@ -1,45 +1,14 @@
-// https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1
-// p5moExamples vote 47
-
-// all the functions start with "dbase_" are from p5moLibrary repo
+// https://editor.p5js.org/jht9629-nyu/sketches/CAgivET8K
+// p5moExamples vote_DOMjs 47
 
 // participants can cast a numeric vote up or down
+// buttons to flip and coup: reset the database
+// display list of participants using DOMjs id_ul.innerHTML
 
 let my = {};
 
 // mo-vote/device/{uid}/vote
 //    individual vote
-
-function my_setup() {
-  let lowerMargin = 80; // Room for buttons
-  my.width = windowWidth;
-  my.height = windowHeight - lowerMargin;
-
-  // change to your firebase app
-  my.fireb_config = 'jht9629';
-  // my.fireb_config = 'jht1493';
-  // my.fireb_config = 'jhtitp';
-
-  my.dbase_rootPath = 'm0-@r-@w-';
-
-  // change to add a room in firebase real-time database
-  my.roomName = 'room1';
-
-  my.mo_app = 'mo-vote';
-  my.nameDevice = '';
-  //
-  my.vote_count = 0;
-  my.vote_total_count = 0;
-  my.device_values = {};
-
-  my.x = 0;
-  my.y = my.height / 2;
-  my.xstep = 1;
-  my.len = my.width * 0.8;
-
-  my.colorGold = [187, 165, 61];
-  my.colors = [[255, 0, 0], [0, 255, 0], my.colorGold];
-}
 
 function setup() {
   my_setup(); // setup firebase configuration
@@ -48,6 +17,8 @@ function setup() {
   // noCanvas();
 
   dbase_app_init({ completed: startup_completed }); // callback function when app init
+
+  // test_DOMjs();
 
   create_ui();
 }
@@ -60,39 +31,13 @@ function draw() {
 
   calc_votes();
 
-  my.vote_count_span.html(my.vote_count);
-  my.vote_total_count_span.html(my.vote_total_count);
+  id_vote_count_span.innerHTML = my.vote_count;
+  id_vote_total_count_span.innerHTML = my.vote_total_count;
 
   if (dbase_actions_issued(my.uid, { switch_action: 1 })) {
     switchDirection();
   }
   dbase_poll();
-}
-
-function create_ui() {
-  createButton('Vote Up').mousePressed(voteUpAction);
-
-  createButton('Down').mousePressed(voteDownAction);
-
-  my.vote_count_span = createSpan('' + my.vote_count);
-
-  createElement('br');
-
-  createSpan('Total Votes ');
-  my.vote_total_count_span = createSpan('' + my.vote_total_count);
-
-  createElement('br');
-
-  createButton('Direction').mousePressed(switchDirectionAction);
-
-  createElement('br');
-
-  createButton('Remove App').mousePressed(removeAppAction);
-
-  // // Move the canvas below all the ui elements
-  // let body_elt = document.querySelector('body');
-  // let main_elt = document.querySelector('main');
-  // body_elt.insertBefore(main_elt, null);
 }
 
 // check device exists in db
@@ -138,13 +83,40 @@ function switchDirection() {
 
 function calc_votes() {
   my.vote_total_count = 0;
-  let a_devices = dbase_a_devices();
+  // Make a copy of device list
+  let a_devices = [...dbase_a_devices()];
+  // Sort by uid so order is consistent
+  a_devices = a_devices.sort(sort_by_uid);
+  let items = [];
   for (let device of a_devices) {
-    if (device.vote_count != undefined) {
-      my.vote_total_count += device.vote_count;
+    // console.log('device', device);
+    let { uid, vote_count } = device;
+    if (vote_count != undefined) {
+      my.vote_total_count += vote_count;
+      let item = `uid ${uid} vote_count ${vote_count}`;
+      if (my.uid == uid) {
+        item = `<b>${item}</b>`;
+      }
+      items.push(item);
     }
   }
+  //
+  // !!@ how to attach at li
+  id_ul.innerHTML = items.join('<br>');
+
+  // li: {
+  //   id: "listedThings",
+  //   style: "font-weight:bold",
+  //   height: "20px ",
+  //   content: ["first item", "second item", "a third for good meassure"],
+  // },
 }
+
+// (item1, item2) => item1.uid.localeCompare(item2.uid)
+function sort_by_uid(item1, item2) {
+  return item1.uid.localeCompare(item2.uid);
+}
+// https://github.com/lenincompres/DOM.js
 
 // F5 to select chrome
 // VS Code menu: Run > Start Debugging

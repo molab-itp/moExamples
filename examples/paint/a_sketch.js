@@ -1,5 +1,5 @@
-// https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1
-// p5moExamples vote
+// https://editor.p5js.org/jht9629-nyu/sketches/nBefVKAbH
+// p5moExamples paint
 
 // participants can cast a numeric vote up or down
 // must be in portrait orientation to see crosses
@@ -33,6 +33,8 @@ function setup() {
   createSpan('•');
   createButton('Brush: Larger').mousePressed(largerBrushSizeAction);
   createButton('Smaller').mousePressed(smallerBrushSizeAction);
+  createElement('br');
+  createButton('Remove App').mousePressed(removeAppAction);
 
   // createSpan('•');
   // createButton('Spawn').mousePressed(spawnAction);
@@ -62,17 +64,9 @@ function draw() {
   }
 }
 
-function clearAction() {
-  if (my.isRemote) {
-    // my.pane.clear();
-    dbase_issue_actions({ clear_action: 1 });
-  } else {
-    background(0);
-    dbase_issue_actions({ clear_action: 1 }, { all: 1 });
-    // dbase_a_devices_issue_actions({ clear_action: 1 });
-    deinit_panes();
-  }
-}
+//
+// mouse events
+//
 
 function mouseDragged() {
   // console.log('mouseDragged');
@@ -97,6 +91,15 @@ function canvas_mouseReleased() {
 // actions
 //
 
+function clearAction() {
+  if (my.isRemote) {
+    // my.pane.clear();
+    dbase_issue_actions({ clear_action: 1 });
+  } else {
+    clear_all();
+  }
+}
+
 function smallerCrossSizeAction() {
   my.pane.adjust_cross_size(-1);
   my.pane.next_crossColor();
@@ -117,6 +120,13 @@ function largerBrushSizeAction() {
   my.pane.next_brushColor();
 }
 
-// // function spawnAction() {
-// //   //
-// // }
+function removeAppAction() {
+  clear_all();
+  dbase_remove_mo_app();
+}
+
+function clear_all() {
+  background(0);
+  dbase_issue_actions({ clear_action: 1 }, { all: 1 });
+  deinit_panes();
+}

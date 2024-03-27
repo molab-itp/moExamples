@@ -26,3 +26,16 @@ if [ ! -e "$dest" ]; then
   exit
 fi
 
+# check for destination p5videoKit
+dest=p5videoKit
+if [ ! -e "$dest" ]; then
+  git clone https://github.com/molab-itp/$dest.git $dest
+  pushd $dest > /dev/null
+  git checkout next
+  popd > /dev/null
+fi
+if [ ! -e "$dest" ]; then
+  echo "fail to clone to $dest"
+  exit
+fi
+
