@@ -57,6 +57,8 @@
 //   { observed_key, removed_key }, //
 //   { app: 'mo-pix-chip', tag: 'dbase_pix_chip_observe' }
 // );
+// dbase_app_observe uses firebase realtime db's built in functions
+// see https://firebase.google.com/docs/database/web/lists-of-data
 
 // dbase_app_observe(                        // pixel-grid
 //   { observed_key, removed_key }, //
@@ -86,6 +88,23 @@
 
 // function dbase_issue_actions(actions, options) {
 
+// ## -
+// examples are located in /examples
+// examples include:
+
+// lobby:
+// serve as a device watcher/observer for the POWER TO THE PEOPLE exhibition by John Henry Thompson at the Clive Davis Gallery
+// count the current available devices watching the exhibition
+
+// paint
+// real-time multi-user drawing canvas controlled with both landscape(desktop) and portrait(cellphone) mode
+
+// pixel-grid
+
+// vote:
+// real-time voting examples that count your own votes and total votes from available devices; built with firebase
+
+// words
 // function dbase_remove_room() {
 
 // function dbase_remove_mo_app() {
