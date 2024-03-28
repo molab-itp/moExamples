@@ -1,4 +1,4 @@
-# [p5moExamples](https://github.com/molab-itp/p5moExamples.git) version ?v=52
+# [p5moExamples](https://github.com/molab-itp/p5moExamples.git) ?v=52
 
 - p5js examples for [p5moLibrary](https://github.com/molab-itp/p5moLibrary.git)
 
@@ -26,9 +26,9 @@
 - [examples/pixel-grid](examples/pixel-grid?v=52)
 - [examples/pixel-grid remote=0](examples/pixel-grid?v=52&remote=0)
 
-## p5mirror-jht9629-gmail
+## github.io of p5mirror-jht9629-nyu
 
-- [p5mirror-jht9629-gmail](https://github.com/jht9629-gmail/p5mirror-jht9629-gmail)
+- [p5mirror-jht9629-nyu](https://jht9629-nyu.github.io/p5mirror-jht9629-nyu/p5projects-index.html)
 
 ## Add your example
 
