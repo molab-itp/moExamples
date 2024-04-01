@@ -11,6 +11,7 @@
 - [p5js p5moExamples vote](https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1)
 - [p5js p5moExamples vote_DOMjs](https://editor.p5js.org/jht9629-nyu/sketches/CAgivET8K)
 - [p5js p5moExamples words](https://editor.p5js.org/jht9629-nyu/sketches/23h3z1G82)
+- [p5js p5moExamples photo-booth](https://editor.p5js.org/jht9629-nyu/sketches/5VKqK34Ps)
 
 ## [github.io versions of examples](https://molab-itp.github.io/p5moExamples?v=52)
 
@@ -18,6 +19,7 @@
 - [examples/vote_DOMjs](examples/vote_DOMjs?v=52)
 - [examples/words](examples/words?v=52)
 - [examples/video](examples/video?v=52)
+- [examples/photo-booth](examples/photo-booth?v=52)
 
 - [examples/lobby room0](examples/lobby?v=52&room=room0)
 - [examples/lobby room1](examples/lobby?v=52&room=room1)
