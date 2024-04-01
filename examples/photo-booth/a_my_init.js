@@ -9,7 +9,7 @@ function my_init() {
   my.imageQuality = 0.1;
   my.imageExt = '.jpg';
   // my.imageExt = '.png';
-  my.thumbWidth = 128;
+  my.thumbWidth = 512;
 
   // Aspect ratio of video capture on mobile device
   my.vwidth = 480;

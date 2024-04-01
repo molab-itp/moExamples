@@ -29,7 +29,7 @@ function setup() {
   my.xstep = 1;
   my.radius = int(my.width / 10);
 
-  my.slit_scan = 0;
+  my.slit_scan = 1;
 }
 
 function startup_completed() {
