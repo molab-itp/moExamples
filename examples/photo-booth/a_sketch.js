@@ -28,6 +28,8 @@ function setup() {
   my.y = my.height / 2;
   my.xstep = 1;
   my.radius = int(my.width / 10);
+
+  my.slit_scan = 1;
 }
 
 function startup_completed() {
@@ -61,17 +63,26 @@ function draw() {
 function draw_frame() {
   if (my.videoFlag && !video_ready()) return;
 
-  background(0);
-
   if (my.videoFlag) {
     // faster to get entire video frame as an image
     my.videoImg = my.video.get();
-    image(my.videoImg, 0, 0);
   }
 
-  noStroke();
-  fill(my.colors[my.photo_count % my.colors.length]);
-  circle(my.x, my.y, my.radius);
+  if (my.slit_scan) {
+    //
+    my.videoImg.loadPixels();
+    let w = my.videoImg.width;
+    let h = my.videoImg.height;
+    copy(my.videoImg, w / 2, 0, 1, h, my.x, 0, 1, h);
+    //
+  } else if (my.videoImg) {
+    // background(0);
+    image(my.videoImg, 0, 0);
+
+    noStroke();
+    fill(my.colors[my.photo_count % my.colors.length]);
+    circle(my.x, my.y, my.radius);
+  }
   my.x = (my.x + my.xstep) % my.width;
 
   my.photo_count_span.html(my.photo_count);
