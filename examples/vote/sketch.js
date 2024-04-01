@@ -103,7 +103,7 @@ function startup_completed() {
 
   function observed_key(key, device) {
     // console.log('observed_a_device key', key, 'uid', my.uid, 'device', device);
-    console.log('observed_a_device key', key, 'device.vote_count', device && device.vote_count);
+    console.log('observed_key key', key, 'device.vote_count', device && device.vote_count);
   }
 
   function observed_item(device) {
