@@ -1,4 +1,4 @@
-# [p5moExamples](https://github.com/molab-itp/p5moExamples.git) ?v=52
+# [p5moExamples](https://github.com/molab-itp/p5moExamples.git) ?v=53
 
 - p5js examples for [p5moLibrary](https://github.com/molab-itp/p5moLibrary.git)
 
@@ -13,20 +13,20 @@
 - [p5js p5moExamples words](https://editor.p5js.org/jht9629-nyu/sketches/23h3z1G82)
 - [p5js p5moExamples photo-booth](https://editor.p5js.org/jht9629-nyu/sketches/5VKqK34Ps)
 
-## [github.io versions of examples](https://molab-itp.github.io/p5moExamples?v=52)
+## [github.io versions of examples](https://molab-itp.github.io/p5moExamples?v=53)
 
-- [examples/vote](examples/vote?v=52)
-- [examples/vote_DOMjs](examples/vote_DOMjs?v=52)
-- [examples/words](examples/words?v=52)
-- [examples/video](examples/video?v=52)
-- [examples/photo-booth](examples/photo-booth?v=52)
+- [examples/vote](examples/vote?v=53)
+- [examples/vote_DOMjs](examples/vote_DOMjs?v=53)
+- [examples/words](examples/words?v=53)
+- [examples/video](examples/video?v=53)
+- [examples/photo-booth](examples/photo-booth?v=53)
 
-- [examples/lobby room0](examples/lobby?v=52&room=room0)
-- [examples/lobby room1](examples/lobby?v=52&room=room1)
-- [examples/paint](examples/paint?v=52)
-- [examples/paint remote=0](examples/paint?v=52&remote=0)
-- [examples/pixel-grid](examples/pixel-grid?v=52)
-- [examples/pixel-grid remote=0](examples/pixel-grid?v=52&remote=0)
+- [examples/lobby room0](examples/lobby?v=53&room=room0)
+- [examples/lobby room1](examples/lobby?v=53&room=room1)
+- [examples/paint](examples/paint?v=53)
+- [examples/paint remote=0](examples/paint?v=53&remote=0)
+- [examples/pixel-grid](examples/pixel-grid?v=53)
+- [examples/pixel-grid remote=0](examples/pixel-grid?v=53&remote=0)
 
 ## github.io of p5mirror-jht9629-nyu
 
