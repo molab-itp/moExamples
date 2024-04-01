@@ -26,7 +26,8 @@ function add_action() {
 }
 
 function remove_action() {
-  console.log('remove_action');
+  console.log('remove_action my.photo_count', my.photo_count);
+  if (my.photo_count < 1) return;
 
   let path = photo_path(my.uid, my.photo_count);
 
