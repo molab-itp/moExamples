@@ -21,6 +21,7 @@ function my_setup() {
   my.mo_app = 'mo-words';
   my.nameDevice = '';
 
+  my.iframe_src = 'https://www.merriam-webster.com/word-of-the-day/';
   my.word_date = new Date();
 }
 
@@ -50,7 +51,7 @@ function setup() {
 
 function create_my_iframe() {
   my.iframe_element = createElement('iframe');
-  my.iframe_element.elt.src = 'https://www.merriam-webster.com/word-of-the-day/2023-01-01';
+  my.iframe_element.elt.src = my.iframe_src + '2023-01-01';
   my.iframe_element.elt.width = windowWidth;
   my.iframe_element.elt.height = windowHeight;
 }
@@ -71,7 +72,7 @@ function startup_completed() {
     if (device.word_date != undefined) {
       my.word_date = new Date(device.word_date);
       let fdate = formatDate(my.word_date);
-      my.iframe_element.elt.src = 'https://www.merriam-webster.com/word-of-the-day/' + fdate;
+      my.iframe_element.elt.src = my.iframe_src + fdate;
     }
   }
 }
