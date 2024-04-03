@@ -22,7 +22,7 @@ function my_setup() {
 
   my.item_index = 0;
   my.items = [];
-  my.items.push('https://molab-itp.github.io/p5moExamples/examples/lobby/?v=54&room=room0');
+  my.items.push('https://molab-itp.github.io/p5moExamples/examples/lobby/?v=55&room=room0');
   my.items.push(
     'https://leey611.github.io/p5mirror-leey611/p5projects/Bezier%20Curve%20Interactive%20Tangents%20copy-ZfRGzFyhK/'
   );
