@@ -4,14 +4,15 @@
 
 ## p5js versions of examples
 
+- [p5js p5moExamples iframe_player](https://editor.p5js.org/jht9629-nyu/sketches/88yxquMBl)
 - [p5js p5moExamples lobby](https://editor.p5js.org/jht9629-nyu/sketches/vP6sWN4Cu)
 - [p5js p5moExamples paint](https://editor.p5js.org/jht9629-nyu/sketches/nBefVKAbH)
+- [p5js p5moExamples photo-booth](https://editor.p5js.org/jht9629-nyu/sketches/5VKqK34Ps)
 - [p5js p5moExamples pixel-grid](https://editor.p5js.org/jht9629-nyu/sketches/CntV1JQNp)
 - [p5js p5moExamples video](https://editor.p5js.org/jht9629-nyu/sketches/KeRAIMzHN)
-- [p5js p5moExamples vote](https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1)
 - [p5js p5moExamples vote_DOMjs](https://editor.p5js.org/jht9629-nyu/sketches/CAgivET8K)
+- [p5js p5moExamples vote](https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1)
 - [p5js p5moExamples words](https://editor.p5js.org/jht9629-nyu/sketches/23h3z1G82)
-- [p5js p5moExamples photo-booth](https://editor.p5js.org/jht9629-nyu/sketches/5VKqK34Ps)
 
 ## [github.io versions of examples](https://molab-itp.github.io/p5moExamples?v=56)
 
@@ -20,6 +21,7 @@
 - [examples/words](examples/words?v=56)
 - [examples/video](examples/video?v=56)
 - [examples/photo-booth](examples/photo-booth?v=56)
+- [examples/iframe_player](examples/iframe_player?v=56)
 
 - [examples/lobby room0](examples/lobby?v=56&room=room0)
 - [examples/lobby room1](examples/lobby?v=56&room=room1)
