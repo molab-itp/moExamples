@@ -98,6 +98,14 @@
 // examples are located in /examples
 // examples include:
 
+// iframe_player:
+// a website playlist made using iframes
+// using item_index in the server to play real-time in available devices 
+
+// photo-booth:
+// take up to maximum 3 photos with add button
+// save and delete photos in the server
+
 // lobby:
 // serve as a device watcher/observer for the POWER TO THE PEOPLE exhibition by John Henry Thompson at the Clive Davis Gallery
 // count the current available devices watching the exhibition
