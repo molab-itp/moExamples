@@ -1,14 +1,10 @@
-// https://editor.p5js.org/jht9629-nyu/sketches/23h3z1G82
-// p5moExamples words 47
-
-// overlay qrcode on a website
-// [] convert to vanilla js
-// [] action example
+// https://editor.p5js.org/jht9629-nyu/sketches/88yxquMBl
+// p5moExamples iframe_player 47
 
 let my = {};
 
-// mo-words/device/{uid}/word
-//    individual word
+// harvesting sketches from
+// https://github.com/molab-itp/p5mirror/forks
 
 function my_setup() {
   my.width = windowWidth;
@@ -18,13 +14,22 @@ function my_setup() {
   // my.fireb_config = 'jhtitp';
   my.dbase_rootPath = 'm0-@r-@w-';
   my.roomName = 'room1';
-  my.mo_app = 'mo-words';
+  my.mo_app = 'mo-iframe_player';
   my.nameDevice = '';
 
-  my.word_date = new Date();
-
-  // 'https://www.merriam-webster.com/word-of-the-day/2023-01-01';
-  my.play_item = 'https://molab-itp.github.io/p5moExamples/examples/lobby/?v=54&room=room0';
+  my.item_index = 0;
+  my.items = [];
+  my.items.push('https://molab-itp.github.io/p5moExamples/examples/lobby/?v=54&room=room0');
+  my.items.push(
+    'https://leey611.github.io/p5mirror-leey611/p5projects/Bezier%20Curve%20Interactive%20Tangents%20copy-ZfRGzFyhK/'
+  );
+  my.items.push('https://karakkzzk.github.io/p5mirror-karakkzzk/p5projects/Innovative%20crafter-OcjJ4foZE/');
+  my.items.push('https://paulineium.github.io/p5mirror-pk2196/p5projects/ims01-paulineium-CHGZXqDjz/');
+  my.items.push('https://jiaying0412.github.io/p5mirror---jiaying0822/p5projects/ims01-Jiaz-jYTEhmWCm/');
+  my.items.push(
+    'https://newbenjaminb.github.io/p5mirror-bb/p5projects/%20W6.4-1v4%20colliding%20balls%20DONE-VbVQXinn1/'
+  );
+  my.iframe_src = my.items[my.item_index];
 }
 
 function setup() {
@@ -37,13 +42,11 @@ function setup() {
 
   dbase_app_init({ completed: startup_completed });
 
-  createButton('Word Up').mousePressed(wordUp_action);
-  createButton('Word Down').mousePressed(wordDown_action);
-  createButton('To Day').mousePressed(toDay_action);
-  // my.word_count_span = createSpan('' + my.word_count);
-  // createElement('br');
-  createSpan(' Date ');
-  my.word_date_span = createSpan(formatDate(my.word_date));
+  createButton('Next').mousePressed(next_action);
+  createButton('Previous').mousePressed(previous_action);
+  createButton('First').mousePressed(first_action);
+  createSpan(' Index ');
+  my.item_index_span = createSpan(my.item_index);
 
   // Move the iframe below all the ui elements
   let body_elt = document.querySelector('body');
@@ -53,7 +56,7 @@ function setup() {
 
 function create_my_iframe() {
   my.iframe_element = createElement('iframe');
-  my.iframe_element.elt.src = my.play_item;
+  my.iframe_element.elt.src = my.iframe_src;
   my.iframe_element.elt.width = windowWidth;
   my.iframe_element.elt.height = windowHeight;
 }
@@ -61,7 +64,7 @@ function create_my_iframe() {
 function draw() {
   background(200);
   //
-  my.word_date_span.html(my.word_date.toDateString());
+  my.item_index_span.html(my.item_index);
 }
 
 function startup_completed() {
@@ -71,72 +74,35 @@ function startup_completed() {
 
   function observed_item(device) {
     console.log('observed_item device', device);
-    if (device.word_date != undefined) {
-      my.word_date = new Date(device.word_date);
-      let fdate = formatDate(my.word_date);
-      // my.iframe_element.elt.src = 'https://www.merriam-webster.com/word-of-the-day/' + fdate;
-      my.iframe_element.elt.src = my.play_item;
+    if (device.item_index != undefined) {
+      my.item_index = device.item_index;
+      my.iframe_src = my.items[my.item_index];
+      my.iframe_element.elt.src = my.iframe_src;
     }
   }
 }
 
-function toDay_action() {
-  my.word_date = new Date();
-  dbase_update_props({ word_date: adjust_word_date(0) });
+function first_action() {
+  dbase_update_props({ item_index: 0 });
 }
 
-function wordUp_action() {
-  console.log('Word Up');
-  // dbase_update_props({ word_count: dbase_increment(1) });
-  dbase_update_props({ word_date: adjust_word_date(1) });
+function next_action() {
+  let last = my.items.length - 1;
+  if (my.item_index >= last) {
+    dbase_update_props({ item_index: 0 });
+  } else {
+    dbase_update_props({ item_index: dbase_increment(1) });
+  }
 }
 
-function wordDown_action() {
-  console.log('Word Down');
-  // dbase_update_props({ word_count: dbase_increment(-1) });
-  dbase_update_props({ word_date: adjust_word_date(-1) });
+function previous_action() {
+  let last = my.items.length - 1;
+  if (my.item_index <= 0) {
+    dbase_update_props({ item_index: last });
+  } else {
+    dbase_update_props({ item_index: dbase_increment(-1) });
+  }
 }
 
-function adjust_word_date(delta) {
-  my.word_date = adjustDate(my.word_date, delta);
-  // return formatDate(my.word_date);
-  return my.word_date.toDateString();
-}
-
-function adjustDate(date, delta) {
-  const nextDay = new Date(date);
-  nextDay.setDate(nextDay.getDate() + delta);
-  console.log('adjustDate date', date.getDate(), 'getDate', nextDay.getDate());
-  return nextDay;
-}
-
-function formatDate(date) {
-  // Extract year, month, and day from the date object
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is zero-indexed
-  const day = String(date.getDate()).padStart(2, '0');
-
-  // Construct the formatted date string
-  const formattedDate = `${year}-${month}-${day}`;
-
-  return formattedDate;
-}
-
-/*
-
-https://www.merriam-webster.com/word-of-the-day/2023-01-01
-Annus mirabilis means “a remarkable or notable year.”
-
-https://www.merriam-webster.com/word-of-the-day/2024-01-01
-Incipient is used to describe things which are 
-beginning to come into being 
-or which are to become apparent.
-
-https://www.w3schools.com/tags/tag_iframe.ASP
-
-
-my.iframe_element.elt.src = 'https://www.merriam-webster.com/word-of-the-day/2023-01-01'
-
-*/
-
-// Issue: lots of debug noise for iframe web site
+// https://editor.p5js.org/jht9629-nyu/sketches/23h3z1G82
+// p5moExamples words 47
