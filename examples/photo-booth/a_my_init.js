@@ -6,10 +6,11 @@ function my_init() {
   my.videoFlag = 1;
   my.logLoud = 0;
 
-  my.imageQuality = 0.1;
+  my.imageQuality = 1;
+  // my.imageQuality = 0.1;
   my.imageExt = '.jpg';
   // my.imageExt = '.png';
-  my.thumbWidth = 512;
+  my.thumbWidth = 256;
 
   // Aspect ratio of video capture on mobile device
   my.vwidth = 480;

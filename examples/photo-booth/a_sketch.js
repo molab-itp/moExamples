@@ -1,9 +1,21 @@
 // https://editor.p5js.org/jht9629-nyu/sketches/5VKqK34Ps
 // p5moExamples photo booth 52
 
+// Capture canvas pixels to cloud as image jpg or png
+
+// [] Correct display of images - must hit show button
+// [] Add --> Take, keep array of n images and upate
+// [] photo_index
+// [] Show other photobooths
+
 let my = {};
 
 function setup() {
+  my.photo_index = 0;
+  my.photo_count = 0;
+  my.photo_max = 3;
+  my.slit_scan = 0;
+
   //
   // Lowest pixel density for small uploads
   pixelDensity(1);
@@ -13,8 +25,6 @@ function setup() {
   my.canvas = createCanvas(my.width, my.height);
   my.canvas.mouseReleased(canvas_mouseReleased);
   my.canvas.touchEnded(canvas_mouseReleased);
-
-  my.photo_count = 0;
 
   ui_init();
 
@@ -28,8 +38,6 @@ function setup() {
   my.y = my.height / 2;
   my.xstep = 1;
   my.radius = int(my.width / 10);
-
-  my.slit_scan = 1;
 }
 
 function startup_completed() {
@@ -67,15 +75,18 @@ function draw_frame() {
     // faster to get entire video frame as an image
     my.videoImg = my.video.get();
   }
+  if (!my.videoImg) {
+    return;
+  }
 
   if (my.slit_scan) {
     //
-    my.videoImg.loadPixels();
+    // my.videoImg.loadPixels();
     let w = my.videoImg.width;
     let h = my.videoImg.height;
     copy(my.videoImg, w / 2, 0, 1, h, my.x, 0, 1, h);
     //
-  } else if (my.videoImg) {
+  } else {
     // background(0);
     image(my.videoImg, 0, 0);
 

@@ -1,6 +1,9 @@
 //
 function ui_init() {
   //
+  my.effectBtn = ui_createButton('Effect');
+  my.effectBtn.mousePressed(effect_action);
+
   my.addBtn = ui_createButton('Add');
   my.addBtn.mousePressed(add_action);
 
@@ -13,8 +16,16 @@ function ui_init() {
   my.photo_count_span = createSpan('' + my.photo_count);
 }
 
+function effect_action() {
+  my.slit_scan = !my.slit_scan;
+}
+
 function add_action() {
   console.log('add_action');
+  if (my.photo_count >= my.photo_max) {
+    console.log('add_action my.photo_max', my.photo_max);
+    return;
+  }
   dbase_update_props({ photo_count: dbase_increment(1) });
   console.log('add_action photo_count', my.photo_count);
 
@@ -22,7 +33,7 @@ function add_action() {
   let path = photo_path(my.uid, my.photo_count);
   let imageQuality = my.imageQuality;
 
-  fstorage_upload({ layer, path, imageQuality });
+  fstorage_upload({ path, layer, imageQuality });
 }
 
 function remove_action() {
