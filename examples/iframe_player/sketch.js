@@ -1,7 +1,12 @@
 // https://editor.p5js.org/jht9629-nyu/sketches/88yxquMBl
 // p5moExamples iframe_player 47
 
-// harvesting sketches from
+// my.items is play list of p5js sketches
+// which are played in sequence
+// switching every my.perSlideSecs seconds
+// moLibrary is used to save my.item_index in firebase realtime database
+
+// sketches harvested from
 // https://github.com/molab-itp/p5mirror/forks
 
 let my = {};
