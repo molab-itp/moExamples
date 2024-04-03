@@ -1,10 +1,10 @@
 // https://editor.p5js.org/jht9629-nyu/sketches/88yxquMBl
 // p5moExamples iframe_player 47
 
-let my = {};
-
 // harvesting sketches from
 // https://github.com/molab-itp/p5mirror/forks
+
+let my = {};
 
 function my_setup() {
   my.width = windowWidth;
@@ -16,6 +16,9 @@ function my_setup() {
   my.roomName = 'room1';
   my.mo_app = 'mo-iframe_player';
   my.nameDevice = '';
+
+  my.perSlideSecs = 7;
+  my.perSlideTime = millis();
 
   my.item_index = 0;
   my.items = [];
@@ -47,6 +50,8 @@ function setup() {
   createButton('First').mousePressed(first_action);
   createSpan(' Index ');
   my.item_index_span = createSpan(my.item_index);
+  createSpan(' ');
+  my.timer_span = createSpan('');
 
   // Move the iframe below all the ui elements
   let body_elt = document.querySelector('body');
@@ -56,15 +61,20 @@ function setup() {
 
 function create_my_iframe() {
   my.iframe_element = createElement('iframe');
-  my.iframe_element.elt.src = my.iframe_src;
-  my.iframe_element.elt.width = windowWidth;
-  my.iframe_element.elt.height = windowHeight;
+  item_index_changed();
 }
 
 function draw() {
-  background(200);
   //
   my.item_index_span.html(my.item_index);
+
+  let now = millis();
+  let lapse = (now - my.perSlideTime) / 1000;
+  if (lapse > my.perSlideSecs) {
+    my.perSlideTime = now;
+    next_action();
+  }
+  my.timer_span.html(lapse.toFixed(1));
 }
 
 function startup_completed() {
@@ -76,10 +86,16 @@ function startup_completed() {
     console.log('observed_item device', device);
     if (device.item_index != undefined) {
       my.item_index = device.item_index;
-      my.iframe_src = my.items[my.item_index];
-      my.iframe_element.elt.src = my.iframe_src;
+      item_index_changed();
     }
   }
+}
+
+function item_index_changed() {
+  my.iframe_src = my.items[my.item_index];
+  my.iframe_element.elt.src = my.iframe_src;
+  my.iframe_element.elt.width = windowWidth;
+  my.iframe_element.elt.height = windowHeight;
 }
 
 function first_action() {
@@ -102,6 +118,10 @@ function previous_action() {
   } else {
     dbase_update_props({ item_index: dbase_increment(-1) });
   }
+}
+
+function windowResized() {
+  item_index_changed();
 }
 
 // https://editor.p5js.org/jht9629-nyu/sketches/23h3z1G82
