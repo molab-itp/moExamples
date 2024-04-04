@@ -1,11 +1,11 @@
 // https://editor.p5js.org/jht9629-nyu/sketches/5VKqK34Ps
-// p5moExamples photo booth 67
+// p5moExamples photo booth 68
 
 // Capture canvas pixels to cloud as image jpg or png
 
 // [] my.photo_list - show only last n
 //    [ { name: "", index: n }, ... ]
-// [] preserver image show order
+// [] preserve image show order
 // [] Show other photobooths
 
 let my = {};
@@ -14,18 +14,16 @@ function setup() {
   my_init();
 
   my.photo_index = 0;
-  my.photo_count = 0;
-  my.photo_max = 3;
+  my.photo_max = 4;
+  my.photo_list = [];
   my.slit_scan = 0;
-  my.update_count = 0;
 
   // my.imageQuality = 1;
   my.imageQuality = 0.1;
   my.imageExt = '.jpg';
   // my.imageExt = '.png';
-  my.thumbWidth = my.vwidth;
+  my.thumbWidth = my.vwidth / 2;
 
-  //
   // Lowest pixel density for small uploads
   pixelDensity(1);
 
@@ -39,8 +37,7 @@ function setup() {
 
   dbase_app_init({ completed: startup_completed });
 
-  // anim_init();
-
+  // for moving circle or video scan line
   my.x = 0;
   my.y = my.height / 2;
   my.xstep = 1;
@@ -53,14 +50,14 @@ function startup_completed() {
 
   function observed_key(key, device) {
     // console.log('observed_a_device key', key, 'uid', my.uid, 'device', device);
-    console.log('observed_key key', key, 'device.photo_index', device && device.photo_index);
+    // console.log('observed_key key', key, 'device.photo_index', device && device.photo_index);
   }
 
   function observed_item(device) {
-    console.log('observed_item device.photo_index', device.photo_index);
-    console.log('observed_item device.photo_count', device.photo_count);
-    if (device.photo_count != undefined) {
-      my.photo_count = device.photo_count;
+    // console.log('observed_item device.photo_index', device.photo_index);
+    // console.log('observed_item device.photo_list', device.photo_list);
+    if (device.photo_list != undefined) {
+      my.photo_list = device.photo_list;
     }
     if (device.photo_index != undefined) {
       my.photo_index = device.photo_index;
@@ -71,7 +68,7 @@ function startup_completed() {
 
 function draw() {
   draw_frame();
-  draw_update_count();
+  draw_number(my.photo_index + 1);
 }
 
 function draw_frame() {
@@ -85,32 +82,50 @@ function draw_frame() {
     return;
   }
   if (my.slit_scan) {
-    //
-    // my.videoImg.loadPixels();
-    let w = my.videoImg.width;
-    let h = my.videoImg.height;
-    copy(my.videoImg, w / 2, 0, 1, h, my.x, 0, 1, h);
-    //
+    draw_scan();
   } else {
-    // background(0);
-    image(my.videoImg, 0, 0);
-    noStroke();
-    let index = my.photo_index + 1;
-    fill(my.colors[index % my.colors.length]);
-    circle(my.x, my.y, my.radius);
+    draw_video();
   }
   my.x = (my.x + my.xstep) % my.width;
 
-  my.photo_count_span.html(my.photo_count);
+  let str = my.photo_list.length + ' ' + my.photo_index;
+  my.photo_count_span.html(str);
 }
 
-function draw_update_count() {
-  let n = my.update_count + 1;
-  fill(255);
-  textSize(40);
+function draw_scan() {
+  // my.videoImg.loadPixels();
+  let w = my.videoImg.width;
+  let h = my.videoImg.height;
+  copy(my.videoImg, w / 2, 0, 1, h, my.x, 0, 1, h);
+}
+
+function draw_video() {
+  // background(0);
+  image(my.videoImg, 0, 0);
+  // Draw circle on video
+  noStroke();
+  let index = my.photo_index + 1;
+  fill(my.colors[index % my.colors.length]);
+  circle(my.x, my.y, my.radius);
+}
+
+function draw_number(n) {
+  // Convert number to string
+  let str = n + '';
   let x = 10;
-  let y = my.height - 20;
-  text(n + '', 10, y);
+  let y = my.height;
+  textSize(50);
+  // Draw black rect background
+  let a = textAscent();
+  let d = textDescent();
+  let h = a + d;
+  let w = textWidth(str);
+  fill(0);
+  rect(x, y - h, w, h);
+  // Draw white text
+  fill(255);
+  // x  y bottom-left corner.
+  text(str, x, y - d);
 }
 
 function canvas_mouseReleased() {

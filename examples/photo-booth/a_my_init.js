@@ -4,6 +4,7 @@ function my_init() {
   my.version = '?v=57';
   my.isRemote = 1;
   my.videoFlag = 1;
+  // show detailed log
   my.logLoud = 0;
 
   // Aspect ratio of video capture on mobile device

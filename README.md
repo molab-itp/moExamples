@@ -1,7 +1,7 @@
 # [p5moExamples](https://github.com/molab-itp/p5moExamples.git) ?v=57
 
-- multi-device experiences from handheld to large screens
-- using cloud storage
+- multi-device experiences on handheld and large screens
+- creating and updating firebase cloud data
 
 - p5js examples for [p5moLibrary](https://github.com/molab-itp/p5moLibrary.git)
 
