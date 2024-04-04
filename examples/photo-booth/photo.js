@@ -4,10 +4,6 @@ function photo_name(index) {
   return index.toString().padStart(3, '0') + my.imageExt;
 }
 
-function photo_path(uid, index) {
-  return uid + '/' + photo_name(index);
-}
-
 function photo_list_entry(index) {
   let name = photo_name(index);
   return { name, index };
@@ -74,17 +70,25 @@ function show_action() {
   // delivered in the same order requested
   function url_result(url, index) {
     // console.log('url_result', url);
-    let id = 'id_img_' + index;
-    let img = select('#' + id);
-    if (!img) {
-      // console.log('show_action id', id);
-      img = createImg(url, 'image');
-      img.id(id);
-      // console.log('show_action createImg', img);
-      my.gallery_div.child(img);
-      let iwidth = my.thumbWidth;
-      img.style('width: ' + iwidth + 'px;');
-    }
+    let img = find_img(index);
     img.elt.src = url;
   }
+}
+
+// Create image element for an index
+//  or return if already present
+//
+function find_img(index) {
+  let id = 'id_img_' + index;
+  let img = select('#' + id);
+  if (!img) {
+    // console.log('show_action id', id);
+    img = createImg('', 'image');
+    img.id(id);
+    // console.log('show_action createImg', img);
+    my.gallery_div.child(img);
+    let iwidth = my.thumbWidth;
+    img.style('width: ' + iwidth + 'px;');
+  }
+  return img;
 }

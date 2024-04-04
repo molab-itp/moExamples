@@ -47,7 +47,12 @@ function take_action() {
 
 function remove_action() {
   console.log('remove_action photo_count', my.photo_list.length);
-  if (my.photo_list.length < 1) return;
+  if (my.photo_list.length < 1) {
+    // No more images in the cloud
+    //  zero out photo_index
+    dbase_update_props({ photo_index: 0 });
+    return;
+  }
   //
   // remove the last entry in photo_list
   //
