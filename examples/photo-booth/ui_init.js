@@ -23,7 +23,7 @@ function effect_action() {
 }
 
 function take_action() {
-  console.log('take_action');
+  // console.log('take_action');
 
   let entry = photo_list_entry(my.photo_index + 1);
   let path = photo_path_entry(my.uid, entry);
@@ -33,7 +33,7 @@ function take_action() {
 
   fstorage_upload({ path, layer, imageQuality, result: take_action_completed });
   function take_action_completed(arg) {
-    console.log('take_action_completed: arg', arg);
+    // console.log('take_action_completed: arg', arg);
 
     // !!@ async issue: update here causes show_action
     //  to undo effect of photo_list_trim / remove_img_index

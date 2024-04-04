@@ -36,23 +36,23 @@ function photo_list_trim() {
 }
 
 function photo_list_remove_entry(entry) {
-  console.log('photo_list_remove_entry entry', entry);
+  // console.log('photo_list_remove_entry entry', entry);
 
   let path = photo_path_entry(my.uid, entry);
 
   fstorage_remove({ path, result: remove_completed });
   function remove_completed(arg) {
-    console.log('photo_list_trim: arg', arg);
+    // console.log('photo_list_trim: arg', arg);
   }
 
   remove_img_index(entry.index);
 }
 
 function remove_img_index(index) {
-  console.log('remove_img_index index', index);
+  // console.log('remove_img_index index', index);
   let id = 'id_img_' + index;
   let img = select('#' + id);
-  console.log('remove_img_index img', img);
+  // console.log('remove_img_index img', img);
   if (img) {
     img.remove();
   }
