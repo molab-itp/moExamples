@@ -4,8 +4,8 @@ function ui_init() {
   my.effectBtn = ui_createButton('Effect');
   my.effectBtn.mousePressed(effect_action);
 
-  my.addBtn = ui_createButton('Add');
-  my.addBtn.mousePressed(add_action);
+  my.takeBtn = ui_createButton('Take');
+  my.takeBtn.mousePressed(take_action);
 
   my.removeBtn = ui_createButton('Remove');
   my.removeBtn.mousePressed(remove_action);
@@ -14,26 +14,35 @@ function ui_init() {
   my.showBtn.mousePressed(show_action);
 
   my.photo_count_span = createSpan('' + my.photo_count);
+
+  my.gallery_div = ui_div_empty('igallery');
 }
 
 function effect_action() {
   my.slit_scan = !my.slit_scan;
 }
 
-function add_action() {
-  console.log('add_action');
-  if (my.photo_count >= my.photo_max) {
-    console.log('add_action my.photo_max', my.photo_max);
-    return;
+function take_action() {
+  console.log('take_action');
+  if (my.photo_index >= my.photo_max) {
+    dbase_update_props({ photo_index: 1 });
+  } else {
+    dbase_update_props({ photo_index: dbase_increment(1) });
   }
-  dbase_update_props({ photo_count: dbase_increment(1) });
-  console.log('add_action photo_count', my.photo_count);
+  my.update_count++;
 
+  let path = photo_path(my.uid, my.photo_index);
   let layer = my.canvas;
-  let path = photo_path(my.uid, my.photo_count);
   let imageQuality = my.imageQuality;
 
-  fstorage_upload({ path, layer, imageQuality });
+  fstorage_upload({ path, layer, imageQuality, result: take_action_completed });
+  function take_action_completed(arg) {
+    console.log('take_action_completed: arg', arg);
+
+    if (my.photo_index > my.photo_count) {
+      dbase_update_props({ photo_count: my.photo_index });
+    }
+  }
 }
 
 function remove_action() {
@@ -42,9 +51,26 @@ function remove_action() {
 
   let path = photo_path(my.uid, my.photo_count);
 
-  fstorage_remove({ path });
+  fstorage_remove({ path, result: remove_action_completed });
+  function remove_action_completed(arg) {
+    console.log('remove_action_completed: arg', arg);
 
-  dbase_update_props({ photo_count: dbase_increment(-1) });
+    remove_img_index(my.photo_count);
+
+    dbase_update_props({ photo_count: dbase_increment(-1) });
+
+    if (my.photo_index > my.photo_count) {
+      dbase_update_props({ photo_index: my.photo_count });
+    }
+  }
+}
+
+function remove_img_index(index) {
+  let id = 'id_img_' + index;
+  let img = select('#' + id);
+  if (img) {
+    img.remove();
+  }
 }
 
 function photo_path(uid, count) {
@@ -54,19 +80,27 @@ function photo_path(uid, count) {
 
 function show_action() {
   //
-  my.gallery_div = ui_div_empty('igallery');
   for (let index = 1; index <= my.photo_count; index++) {
     let path = photo_path(my.uid, index);
-    let imageType = 'image/jpeg';
-
-    fstorage_download_url({ path, imageType, result: url_result });
+    fstorage_download_url({
+      path,
+      result: (url) => {
+        url_result(url, index);
+      },
+    });
   }
-}
-
-function url_result(url) {
-  // console.log('url_result', url);
-  let img = createImg(url, 'image');
-  my.gallery_div.child(img);
-  let iwidth = my.thumbWidth;
-  img.style('width: ' + iwidth + 'px;');
+  function url_result(url, index) {
+    // console.log('url_result', url);
+    let id = 'id_img_' + index;
+    let img = select('#' + id);
+    if (!img) {
+      img = createImg(url, 'image');
+      img.id(id);
+      my.gallery_div.child(img);
+      let iwidth = my.thumbWidth;
+      img.style('width: ' + iwidth + 'px;');
+    }
+    // img.elt.src = url + '&v=' + my.update_count;
+    img.elt.src = url;
+  }
 }

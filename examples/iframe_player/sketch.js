@@ -107,6 +107,7 @@ function item_index_changed() {
 
 function first_action() {
   dbase_update_props({ item_index: 0 });
+  my.perSlideTime = millis();
 }
 
 function next_action() {
