@@ -27,16 +27,18 @@ function my_setup() {
 
   my.item_index = 0;
   my.items = [];
-  my.items.push('https://molab-itp.github.io/p5moExamples/examples/lobby/?v=57&room=room0');
-  my.items.push(
-    'https://leey611.github.io/p5mirror-leey611/p5projects/Bezier%20Curve%20Interactive%20Tangents%20copy-ZfRGzFyhK/'
-  );
-  my.items.push('https://karakkzzk.github.io/p5mirror-karakkzzk/p5projects/Innovative%20crafter-OcjJ4foZE/');
-  my.items.push('https://paulineium.github.io/p5mirror-pk2196/p5projects/ims01-paulineium-CHGZXqDjz/');
-  my.items.push('https://jiaying0412.github.io/p5mirror---jiaying0822/p5projects/ims01-Jiaz-jYTEhmWCm/');
+  my.items.push('https://leey611.github.io/p5mirror-leey611/p5projects/ims02-yu-T5zVm6jEl/');
   my.items.push(
     'https://newbenjaminb.github.io/p5mirror-bb/p5projects/%20W6.4-1v4%20colliding%20balls%20DONE-VbVQXinn1/'
   );
+  my.items.push('https://molab-itp.github.io/p5moExamples/examples/lobby/?v=58&room=room0');
+  my.items.push('https://karakkzzk.github.io/p5mirror-karakkzzk/p5projects/Innovative%20crafter-OcjJ4foZE/');
+  my.items.push('https://paulineium.github.io/p5mirror-pk2196/p5projects/ims01-paulineium-CHGZXqDjz/');
+  my.items.push('https://jiaying0412.github.io/p5mirror---jiaying0822/p5projects/ims01-Jiaz-jYTEhmWCm/');
+  // my.items.push(
+  //   'https://leey611.github.io/p5mirror-leey611/p5projects/Bezier%20Curve%20Interactive%20Tangents%20copy-ZfRGzFyhK/'
+  // );
+
   my.iframe_src = my.items[my.item_index];
 }
 
@@ -105,6 +107,7 @@ function item_index_changed() {
 
 function first_action() {
   dbase_update_props({ item_index: 0 });
+  my.perSlideTime = millis();
 }
 
 function next_action() {

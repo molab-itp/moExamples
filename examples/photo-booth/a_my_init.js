@@ -1,20 +1,15 @@
 //
 function my_init() {
   // updated to verify change on mobile
-  my.version = '?v=57';
+  my.version = '?v=58';
   my.isRemote = 1;
   my.videoFlag = 1;
+  // show detailed log
   my.logLoud = 0;
 
-  my.imageQuality = 1;
-  // my.imageQuality = 0.1;
-  my.imageExt = '.jpg';
-  // my.imageExt = '.png';
-  my.thumbWidth = 256;
-
   // Aspect ratio of video capture on mobile device
-  my.vwidth = 480;
-  my.vheight = 640;
+  my.vwidth = 480 / 2;
+  my.vheight = 640 / 2;
   my.fireb_config = 'jht9629';
   // my.fireb_config = 'jht1493';
   // my.fireb_config = 'jhtitp';
