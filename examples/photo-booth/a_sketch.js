@@ -3,7 +3,6 @@
 
 // Capture canvas pixels to cloud as image jpg or png
 
-// [] preserve image show order
 // [] Show other photobooths
 
 let my = {};
@@ -172,3 +171,5 @@ function windowResized() {
 
 // [x] my.photo_list - show only last n
 //    [ { name: "", index: n }, ... ]
+
+// [x] preserve image show order

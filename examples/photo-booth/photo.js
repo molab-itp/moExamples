@@ -13,35 +13,34 @@ function photo_path_entry(uid, entry) {
   return uid + '/' + entry.name;
 }
 
-function photo_list_add(entry) {
+async function photo_list_add(entry) {
   my.photo_list.push(entry);
   if (my.photo_list.length > my.photo_max) {
-    photo_list_trim();
+    await photo_list_trim();
   }
 
   // Change to photo_list send to cloud
   dbase_update_props({ photo_list: my.photo_list });
 }
 
-function photo_list_trim() {
+async function photo_list_trim() {
   //
   // remove the first entry in photo_list
   //
   let first = my.photo_list.shift();
-  photo_list_remove_entry(first);
+  await photo_list_remove_entry(first);
 }
 
-function photo_list_remove_entry(entry) {
+async function photo_list_remove_entry(entry) {
   // console.log('photo_list_remove_entry entry', entry);
 
   let path = photo_path_entry(my.uid, entry);
-
-  fstorage_remove({ path, result: remove_completed });
-  function remove_completed(arg) {
-    // console.log('photo_list_trim: arg', arg);
+  try {
+    await fstorage_remove({ path });
+    remove_img_index(entry.index);
+  } catch (err) {
+    console.log('show_action err', err);
   }
-
-  remove_img_index(entry.index);
 }
 
 function remove_img_index(index) {
@@ -54,22 +53,20 @@ function remove_img_index(index) {
   }
 }
 
-function show_action() {
+async function show_action() {
   //
   // console.log('show_action my.photo_list', my.photo_list);
   for (let entry of my.photo_list) {
     let path = photo_path_entry(my.uid, entry);
-    fstorage_download_url({
-      path,
-      result: (url) => {
-        url_result(url, entry.index);
-      },
-    });
+    try {
+      let url = await fstorage_download_url({ path });
+      url_result(url, entry.index);
+    } catch (err) {
+      console.log('show_action err', err);
+    }
   }
-  // url results are not necessarily
-  // delivered in the same order requested
   function url_result(url, index) {
-    // console.log('url_result', url);
+    // console.log('url_result index', index, 'url', url);
     let img = find_img(index);
     img.elt.src = url;
   }
