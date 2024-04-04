@@ -43,7 +43,7 @@ async function take_action() {
 }
 
 async function remove_action() {
-  console.log('remove_action photo_count', my.photo_list.length);
+  // console.log('remove_action photo_count', my.photo_list.length);
   if (my.photo_list.length < 1) {
     // No more images in the cloud
     //  zero out photo_index
@@ -56,6 +56,6 @@ async function remove_action() {
   let last = my.photo_list.pop();
   await photo_list_remove_entry(last);
 
-  // Change to photo_list send to cloud
+  // Update photo_list in the cloud
   dbase_update_props({ photo_list: my.photo_list });
 }
