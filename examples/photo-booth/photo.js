@@ -20,7 +20,7 @@ async function photo_list_add(entry) {
   }
 
   // Change to photo_list send to cloud
-  dbase_update_props({ photo_list: my.photo_list });
+  dbase_group_update({ photo_list: my.photo_list });
 }
 
 async function photo_list_trim() {

@@ -1,5 +1,5 @@
 // https://editor.p5js.org/jht9629-nyu/sketches/5VKqK34Ps
-// p5moExamples photo booth 69
+// p5moExaples photom booth 70
 
 // Capture canvas pixels to cloud as image jpg or png
 
@@ -9,6 +9,9 @@ let my = {};
 
 function setup() {
   my_init();
+
+  // set group to share cloud data
+  my.group = 'group1';
 
   my.photo_index = 0;
   my.photo_max = 4;
@@ -43,7 +46,9 @@ function setup() {
 
 function startup_completed() {
   //
-  dbase_devices_observe({ observed_key, observed_item, all: 1 });
+  // dbase_devices_observe({ observed_key, observed_item, all: 1 });
+  // dbase_app_observe({ observed_item });
+  dbase_group_observe({ observed_key, observed_item });
 
   function observed_key(key, device) {
     // console.log('observed_a_device key', key, 'uid', my.uid, 'device', device);
