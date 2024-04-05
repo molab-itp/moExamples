@@ -35,7 +35,7 @@ async function take_action() {
 
     await photo_list_add(entry);
 
-    dbase_update_props({ photo_index: dbase_increment(1) });
+    dbase_group_update({ photo_index: dbase_increment(1) });
     //
   } catch (err) {
     console.log('take_action err', err);
@@ -47,7 +47,7 @@ async function remove_action() {
   if (my.photo_list.length < 1) {
     // No more images in the cloud
     //  zero out photo_index
-    dbase_update_props({ photo_index: 0 });
+    dbase_group_update({ photo_index: 0 });
     return;
   }
   //
@@ -57,5 +57,5 @@ async function remove_action() {
   await photo_list_remove_entry(last);
 
   // Update photo_list in the cloud
-  dbase_update_props({ photo_list: my.photo_list });
+  dbase_group_update({ photo_list: my.photo_list });
 }
