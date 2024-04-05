@@ -3,8 +3,6 @@
 
 // Capture canvas pixels to cloud as image jpg or png
 
-// [] Show other photobooths
-
 let my = {};
 
 function setup() {
@@ -178,3 +176,7 @@ function windowResized() {
 //    [ { name: "", index: n }, ... ]
 
 // [x] preserve image show order
+
+// [x] Show other photobooths
+// enabled by group settings
+//   my.group = 'group1';
