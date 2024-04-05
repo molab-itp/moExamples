@@ -6,11 +6,12 @@ function photo_name(index) {
 
 function photo_list_entry(index) {
   let name = photo_name(index);
-  return { name, index };
+  let uid = my.uid;
+  return { name, index, uid };
 }
 
-function photo_path_entry(uid, entry) {
-  return uid + '/' + entry.name;
+function photo_path_entry(entry) {
+  return entry.uid + '/' + entry.name;
 }
 
 async function photo_list_add(entry) {
@@ -34,7 +35,7 @@ async function photo_list_trim() {
 async function photo_list_remove_entry(entry) {
   // console.log('photo_list_remove_entry entry', entry);
 
-  let path = photo_path_entry(my.uid, entry);
+  let path = photo_path_entry(entry);
   try {
     await fstorage_remove({ path });
     remove_img_index(entry.index);
@@ -57,7 +58,7 @@ async function show_action() {
   //
   // console.log('show_action my.photo_list', my.photo_list);
   for (let entry of my.photo_list) {
-    let path = photo_path_entry(my.uid, entry);
+    let path = photo_path_entry(entry);
     try {
       let url = await fstorage_download_url({ path });
       url_result(url, entry.index);
