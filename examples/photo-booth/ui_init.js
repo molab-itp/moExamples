@@ -26,7 +26,7 @@ async function take_action() {
   // console.log('take_action');
 
   let entry = photo_list_entry(my.photo_index + 1);
-  let path = photo_path_entry(my.uid, entry);
+  let path = photo_path_entry(entry);
 
   let layer = my.canvas;
   let imageQuality = my.imageQuality;
