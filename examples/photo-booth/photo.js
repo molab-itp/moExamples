@@ -83,7 +83,11 @@ function find_img(index) {
     img = createImg('', 'image');
     img.id(id);
     // console.log('show_action createImg', img);
-    my.gallery_div.child(img);
+    // my.gallery_div.child(img);
+
+    // Add image as first child to see most recent first
+    my.gallery_div.elt.prepend(img.elt);
+
     let iwidth = my.thumbWidth;
     img.style('width: ' + iwidth + 'px;');
   }
