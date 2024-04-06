@@ -22,6 +22,8 @@ function setup() {
   dbase_app_init({ completed: dbase_host_init });
 
   anim_init();
+
+  ui_log('p5moExamples pixel-grid 47');
 }
 
 function dbase_host_init() {
@@ -40,6 +42,14 @@ function draw() {
   ui_init_update();
 
   my.animLoop.step({ action: updateAction });
+
+  if (mouseIsPressed === true) {
+    let colr;
+    if (my.videoImg) {
+      colr = my.videoImg.get(mouseX, mouseY);
+    }
+    ui_log('mouse...', mouseX, mouseY, pmouseX, pmouseY, 'colr', colr);
+  }
 }
 
 function draw_frame() {
