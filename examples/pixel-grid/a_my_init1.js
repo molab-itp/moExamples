@@ -1,8 +1,9 @@
 //
 function my_init1() {
   // updated to verify change on mobile
-  my.version = '?v=65';
+  my.version = '?v=66';
   my.isRemote = 1;
+  my.settingsFlag = 0;
   // Aspect ratio of video capture
   my.vwidth = 480;
   my.vheight = 640;
@@ -23,7 +24,6 @@ function my_init1() {
   my.nstepIndex = 0;
   my.nstepDir = 1;
   my.margin = 0.1;
-  my.settingsFlag = 1;
   my.logSummaryFlag = 0;
   my.logDetailFlag = 0;
   my.scanFlag = 1;
