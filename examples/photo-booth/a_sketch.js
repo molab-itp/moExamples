@@ -1,5 +1,5 @@
 // https://editor.p5js.org/jht9629-nyu/sketches/5VKqK34Ps
-// p5moExaples photom booth 70
+// p5moExamples photo booth 70
 
 // Capture canvas pixels to cloud as image jpg or png
 
