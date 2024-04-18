@@ -134,3 +134,8 @@ bin/git-release.sh
     function dbase_devices_observe({ observed_key, removed_key, all }) {
 
 */
+
+/* --
+
+alias crud=./p5mirrorLib-private/bin/crud.sh
+*/
