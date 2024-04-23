@@ -20,7 +20,8 @@ function setup() {
   my.imageQuality = 0.1;
   my.imageExt = '.jpg';
   // my.imageExt = '.png';
-  my.thumbWidth = my.vwidth / 2;
+  // my.thumbWidth = my.vwidth / 2;
+  my.thumbWidth = my.vwidth;
 
   // Lowest pixel density for small uploads
   pixelDensity(1);
