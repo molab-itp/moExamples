@@ -1,4 +1,4 @@
-# [p5moExamples](https://github.com/molab-itp/p5moExamples.git) ?v=67
+# [p5moExamples](https://github.com/molab-itp/p5moExamples.git) ?v=68
 
 - multi-device experiences on handheld and large screens
 - creating and updating firebase cloud data
@@ -17,21 +17,21 @@
 - [p5js p5moExamples vote](https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1)
 - [p5js p5moExamples words](https://editor.p5js.org/jht9629-nyu/sketches/23h3z1G82)
 
-## [github.io versions of examples](https://molab-itp.github.io/p5moExamples?v=67)
+## [github.io versions of examples](https://molab-itp.github.io/p5moExamples?v=68)
 
-- [examples/vote](examples/vote?v=67)
-- [examples/vote_DOMjs](examples/vote_DOMjs?v=67)
-- [examples/words](examples/words?v=67)
-- [examples/video](examples/video?v=67)
-- [examples/photo-booth](examples/photo-booth?v=67)
-- [examples/iframe_player](examples/iframe_player?v=67)
+- [examples/vote](examples/vote?v=68)
+- [examples/vote_DOMjs](examples/vote_DOMjs?v=68)
+- [examples/words](examples/words?v=68)
+- [examples/video](examples/video?v=68)
+- [examples/photo-booth](examples/photo-booth?v=68)
+- [examples/iframe_player](examples/iframe_player?v=68)
 
-- [examples/lobby room0](examples/lobby?v=67&room=room0)
-- [examples/lobby room1](examples/lobby?v=67&room=room1)
-- [examples/paint](examples/paint?v=67)
-- [examples/paint remote=0](examples/paint?v=67&remote=0)
-- [examples/pixel-grid](examples/pixel-grid?v=67)
-- [examples/pixel-grid remote=0](examples/pixel-grid?v=67&remote=0)
+- [examples/lobby room0](examples/lobby?v=68&room=room0)
+- [examples/lobby room1](examples/lobby?v=68&room=room1)
+- [examples/paint](examples/paint?v=68)
+- [examples/paint remote=0](examples/paint?v=68&remote=0)
+- [examples/pixel-grid](examples/pixel-grid?v=68)
+- [examples/pixel-grid remote=0](examples/pixel-grid?v=68&remote=0)
 
 ## github.io of p5mirror-jht9629-nyu
 
