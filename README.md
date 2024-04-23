@@ -1,4 +1,4 @@
-# [github p5moExamples](https://github.com/molab-itp/p5moExamples.git) ?v=70
+# [github p5moExamples](https://github.com/molab-itp/p5moExamples.git) ?v=71
 
 - multi-device experiences on handheld and large screens
 - creating and updating firebase cloud data
@@ -7,11 +7,12 @@
 
 ## How is data synchronized in real time in the examples?
 
-Data, such as shared photos, vote counts, and drawing points, is synchronized through [Firebase](https://www.youtube.com/watch?v=p9pgI3Mg-So&list=PLl-K7zZEsYLnfwBe4WgEw9ao0J0N1LYDR&index=8), which serves as a backend/server and has built-in sockets.
+Data, such as shared photos, vote counts, and drawing points, is synchronized through [Firebase](firebase.google.com), which serves as a backend/server and has built-in sockets.
 
 The functions that include Firebase setup are in [p5moLibrary](https://github.com/molab-itp/p5moLibrary).
 
-- [firebase docs database](https://firebase.google.com/docs/database/web/start?hl=en&authuser=0)
+- [video - What is Firebase and how to use it](https://www.youtube.com/watch?v=p9pgI3Mg-So&list=PLl-K7zZEsYLnfwBe4WgEw9ao0J0N1LYDR&index=8)
+- [docs - firebase web database](https://firebase.google.com/docs/database/web/start?hl=en&authuser=0)
 
 ## p5js versions of examples
 
@@ -25,21 +26,21 @@ The functions that include Firebase setup are in [p5moLibrary](https://github.co
 - [p5js p5moExamples vote](https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1): real-time voting examples that count your own votes and total votes from available devices
 - [p5js p5moExamples words](https://editor.p5js.org/jht9629-nyu/sketches/23h3z1G82): showing the word of the day websites with iframes by incrementing and decrementing the date
 
-## [github.io versions of examples](https://molab-itp.github.io/p5moExamples?v=70)
+## [github.io versions of examples](https://molab-itp.github.io/p5moExamples?v=71)
 
-- [examples/vote](examples/vote?v=70)
-- [examples/vote_DOMjs](examples/vote_DOMjs?v=70)
-- [examples/words](examples/words?v=70)
-- [examples/video](examples/video?v=70)
-- [examples/photo-booth](examples/photo-booth?v=70)
-- [examples/iframe_player](examples/iframe_player?v=70)
+- [examples/vote](examples/vote?v=71)
+- [examples/vote_DOMjs](examples/vote_DOMjs?v=71)
+- [examples/words](examples/words?v=71)
+- [examples/video](examples/video?v=71)
+- [examples/photo-booth](examples/photo-booth?v=71)
+- [examples/iframe_player](examples/iframe_player?v=71)
 
-- [examples/lobby room0](examples/lobby?v=70&room=room0)
-- [examples/lobby room1](examples/lobby?v=70&room=room1)
-- [examples/paint](examples/paint?v=70)
-- [examples/paint remote=0](examples/paint?v=70&remote=0)
-- [examples/pixel-grid](examples/pixel-grid?v=70)
-- [examples/pixel-grid remote=0](examples/pixel-grid?v=70&remote=0)
+- [examples/lobby room0](examples/lobby?v=71&room=room0)
+- [examples/lobby room1](examples/lobby?v=71&room=room1)
+- [examples/paint](examples/paint?v=71)
+- [examples/paint remote=0](examples/paint?v=71&remote=0)
+- [examples/pixel-grid](examples/pixel-grid?v=71)
+- [examples/pixel-grid remote=0](examples/pixel-grid?v=71&remote=0)
 
 ## github.io of p5mirror-jht9629-nyu
 
