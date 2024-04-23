@@ -1,4 +1,7 @@
 //
+// Using DOM.js for ui
+//  https://github.com/lenincompres/DOM.js
+
 function create_ui() {
   DOM.set([
     { tag: 'button', text: 'Vote Up', onclick: voteUpAction },
@@ -24,6 +27,10 @@ function create_ui() {
   // createElement('br');
   // createButton('Remove App').mousePressed(removeAppAction);
 }
+
+// function calc_votes() {
+//    let item = `uid ${uid} vote_count ${vote_count}`;
+//    id_ul.innerHTML = items.join('<br>');
 
 // id_vote_count_span.innerHTML = my.vote_count;
 // id_vote_total_count_span.innerHTML = my.vote_total_count;
