@@ -3,7 +3,10 @@
 
 // participants can cast a numeric vote up or down
 // buttons to flip and coup: reset the database
+
 // display list of participants using DOMjs id_ul.innerHTML
+// Using DOM.js for ui
+//  https://github.com/lenincompres/DOM.js
 
 let my = {};
 
@@ -14,11 +17,8 @@ function setup() {
   my_setup(); // setup firebase configuration
 
   my.canvas = createCanvas(my.width, my.height);
-  // noCanvas();
 
   dbase_app_init({ completed: startup_completed }); // callback function when app init
-
-  // test_DOMjs();
 
   create_ui();
 }
@@ -91,14 +91,15 @@ function calc_votes() {
   for (let device of a_devices) {
     // console.log('device', device);
     let { uid, vote_count } = device;
-    if (vote_count != undefined) {
-      my.vote_total_count += vote_count;
-      let item = `uid ${uid} vote_count ${vote_count}`;
-      if (my.uid == uid) {
-        item = `<b>${item}</b>`;
-      }
-      items.push(item);
+    if (vote_count == undefined) {
+      continue;
     }
+    my.vote_total_count += vote_count;
+    let item = `uid ${uid} vote_count ${vote_count}`;
+    if (my.uid == uid) {
+      item = `<b>${item}</b>`;
+    }
+    items.push(item);
   }
   //
   // !!@ how to attach at li

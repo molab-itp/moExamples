@@ -31,7 +31,7 @@ function my_setup() {
   my.items.push(
     'https://newbenjaminb.github.io/p5mirror-bb/p5projects/%20W6.4-1v4%20colliding%20balls%20DONE-VbVQXinn1/'
   );
-  my.items.push('https://molab-itp.github.io/p5moExamples/examples/lobby/?v=67&room=room0');
+  my.items.push('https://molab-itp.github.io/p5moExamples/examples/lobby/?v=68&room=room0');
   my.items.push('https://karakkzzk.github.io/p5mirror-karakkzzk/p5projects/Innovative%20crafter-OcjJ4foZE/');
   my.items.push('https://paulineium.github.io/p5mirror-pk2196/p5projects/ims01-paulineium-CHGZXqDjz/');
   my.items.push('https://jiaying0412.github.io/p5mirror---jiaying0822/p5projects/ims01-Jiaz-jYTEhmWCm/');
