@@ -1,3 +1,4 @@
+//
 // converting video slit scan to a effect pluging example
 //
 // effects have to be declared as a class

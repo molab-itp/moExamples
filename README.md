@@ -21,7 +21,7 @@ The functions that include Firebase setup are in [p5moLibrary](https://github.co
 - [p5js p5moExamples paint](https://editor.p5js.org/jht9629-nyu/sketches/nBefVKAbH): real-time multi-user drawing canvas controlled with both landscape(desktop) and portrait(cellphone) mode
 - [p5js p5moExamples photo-booth](https://editor.p5js.org/jht9629-nyu/sketches/5VKqK34Ps): web-based real-time, multi-user photo sharing app with visual effects
 - [p5js p5moExamples pixel-grid](https://editor.p5js.org/jht9629-nyu/sketches/CntV1JQNp): web camera-based pixel effect
-- [p5js p5moExamples video](https://editor.p5js.org/jht9629-nyu/sketches/KeRAIMzHN): browser-based dashboard for mixing web camera videos
+- [p5js p5moExamples videoKit](https://editor.p5js.org/jht9629-nyu/sketches/KeRAIMzHN): browser-based dashboard for mixing web camera videos
 - [p5js p5moExamples vote_DOMjs](https://editor.p5js.org/jht9629-nyu/sketches/CAgivET8K): real-time voting examples that count your own votes and total votes from available devices
 - [p5js p5moExamples vote](https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1): real-time voting examples that count your own votes and total votes from available devices
 - [p5js p5moExamples words](https://editor.p5js.org/jht9629-nyu/sketches/23h3z1G82): showing the word of the day websites with iframes by incrementing and decrementing the date
@@ -31,7 +31,7 @@ The functions that include Firebase setup are in [p5moLibrary](https://github.co
 - [examples/vote](examples/vote?v=71)
 - [examples/vote_DOMjs](examples/vote_DOMjs?v=71)
 - [examples/words](examples/words?v=71)
-- [examples/video](examples/video?v=71)
+- [examples/videoKit](examples/videoKit?v=71)
 - [examples/photo-booth](examples/photo-booth?v=71)
 - [examples/iframe_player](examples/iframe_player?v=71)
 
