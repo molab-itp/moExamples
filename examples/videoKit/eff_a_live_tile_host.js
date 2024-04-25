@@ -1,7 +1,7 @@
 //
 // Show live media in grid with qr code
 //
-class eff_live_tile_host {
+class eff_a_live_tile_host {
   static meta_props = [
     { prop: 'ncell', selection: [3, 2, 3, 4, 5, 6, 7] },
     { prop: 'width_div', selection: [1, 2] },
@@ -27,7 +27,7 @@ class eff_live_tile_host {
       },
       br: 1,
     },
-    { prop: 'image_url', textInput: './effects/qrcode0.png', style: 'width:40%' },
+    { prop: 'image_url', textInput: './assets/qrcode0.png', style: 'width:40%' },
   ];
   constructor(props) {
     console.log('eff_live_tile_host constructor');
@@ -46,7 +46,7 @@ class eff_live_tile_host {
       videoKit.layerCopyInput(layer, { imedia, urect, fitWidth });
       sindex = (sindex + 1) % nshow;
     }
-    if (this.showQRCode) {
+    if (this.showQRCode && this.eff_qr) {
       videoKit.layerCopyEffect(layer, this.eff_qr);
     }
     if (this.period_timer.check()) {

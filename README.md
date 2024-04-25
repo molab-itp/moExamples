@@ -28,6 +28,8 @@ The functions that include Firebase setup are in [p5moLibrary](https://github.co
 
 ## [github.io versions of examples](https://molab-itp.github.io/p5moExamples?v=71)
 
+- [examples/dice99](examples/dice99?v=71)
+
 - [examples/vote](examples/vote?v=71)
 - [examples/vote_DOMjs](examples/vote_DOMjs?v=71)
 - [examples/words](examples/words?v=71)

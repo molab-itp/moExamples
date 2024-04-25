@@ -35,7 +35,11 @@ let a_config = {
   // the "effects" array creates a pull-down menu
   // which offers a first selection of effects added to the VideoKit library,
   // you could add some more !!!!
-  effects: [{ label: 'a_slit_scan', factory: eff_a_slit_scan }],
+  effects: [
+    { label: 'a_live_tile_host', factory: eff_a_live_tile_host },
+    { label: 'a_slit_scan', factory: eff_a_slit_scan },
+    { label: 'a_ncell', factory: eff_a_ncell },
+  ],
   // settings for import, will appear in the settings menu
   // SETTINGS will load a save .json file with predefined values
   // for all the settings associated with the effect
