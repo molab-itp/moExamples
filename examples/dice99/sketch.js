@@ -16,7 +16,10 @@ function setup() {
   // createCanvas(my.width, my.height, WEBGL);
   my.width = windowWidth;
   my.height = windowHeight;
-  createCanvas(my.width, my.height);
+  my.canvas = createCanvas(my.width, my.height);
+
+  my.canvas.mouseClicked(shakeAction);
+
   // normalMaterial();
   create_ui();
 
@@ -48,9 +51,14 @@ function draw() {
   update_ui();
 }
 
-function skakeAction() {
+function shakeAction() {
   my.shakeRun = 1;
   my.shakeStart = millis() / 1000;
+}
+
+function fullScreenAction() {
+  let fs = fullscreen();
+  fullscreen(!fs);
 }
 
 function deviceShaken() {

@@ -4,7 +4,11 @@ function create_ui() {
   my.permBtn = createButton('permission');
   my.permBtn.mousePressed(permissionAction);
   my.shakeBtn = createButton('shake');
-  my.shakeBtn.mousePressed(skakeAction);
+  my.shakeBtn.mousePressed(shakeAction);
+
+  my.fullScreenBtn = createButton('fullScreen');
+  my.fullScreenBtn.mousePressed(fullScreenAction);
+
   // my.chkX = create_checkBox('rotX');
   // my.chkY = create_checkBox('rotY');
   // my.chkZ = create_checkBox('rotZ');
