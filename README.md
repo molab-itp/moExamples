@@ -104,3 +104,11 @@ Copied into to sketches.
 
 
 ```
+
+## CRUD
+
+```
+alias crud=./p5mirrorLib/bin/crud.sh
+
+
+```

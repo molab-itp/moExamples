@@ -3,7 +3,6 @@ node_modules
 p5moLibrary
 p5moRelease
 p5videoKit
-p5mirrorLib-private/
+p5mirrorLib
 .env
 downloads
-/p5mirrorLib
