@@ -1,4 +1,4 @@
-# [github p5moExamples](https://github.com/molab-itp/p5moExamples.git) ?v=74
+# [github p5moExamples](https://github.com/molab-itp/p5moExamples.git) ?v=75
 
 - multi-device experiences on handheld and large screens
 - creating and updating firebase cloud data
@@ -26,23 +26,23 @@ The functions that include Firebase setup are in [p5moLibrary](https://github.co
 - [p5js p5moExamples vote](https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1): real-time voting examples that count your own votes and total votes from available devices
 - [p5js p5moExamples words](https://editor.p5js.org/jht9629-nyu/sketches/23h3z1G82): showing the word of the day websites with iframes by incrementing and decrementing the date
 
-## [github.io versions of examples](https://molab-itp.github.io/p5moExamples?v=74)
+## [github.io versions of examples](https://molab-itp.github.io/p5moExamples?v=75)
 
-- [examples/dice99](examples/dice99?v=74)
+- [examples/dice99](examples/dice99?v=75)
 
-- [examples/vote](examples/vote?v=74)
-- [examples/vote_DOMjs](examples/vote_DOMjs?v=74)
-- [examples/words](examples/words?v=74)
-- [examples/videoKit](examples/videoKit?v=74)
-- [examples/photo-booth](examples/photo-booth?v=74)
-- [examples/iframe_player](examples/iframe_player?v=74)
+- [examples/vote](examples/vote?v=75)
+- [examples/vote_DOMjs](examples/vote_DOMjs?v=75)
+- [examples/words](examples/words?v=75)
+- [examples/videoKit](examples/videoKit?v=75)
+- [examples/photo-booth](examples/photo-booth?v=75)
+- [examples/iframe_player](examples/iframe_player?v=75)
 
-- [examples/lobby room0](examples/lobby?v=74&room=room0)
-- [examples/lobby room1](examples/lobby?v=74&room=room1)
-- [examples/paint](examples/paint?v=74)
-- [examples/paint remote=0](examples/paint?v=74&remote=0)
-- [examples/pixel-grid](examples/pixel-grid?v=74)
-- [examples/pixel-grid remote=0](examples/pixel-grid?v=74&remote=0)
+- [examples/lobby room0](examples/lobby?v=75&room=room0)
+- [examples/lobby room1](examples/lobby?v=75&room=room1)
+- [examples/paint](examples/paint?v=75)
+- [examples/paint remote=0](examples/paint?v=75&remote=0)
+- [examples/pixel-grid](examples/pixel-grid?v=75)
+- [examples/pixel-grid remote=0](examples/pixel-grid?v=75&remote=0)
 
 ## github.io of p5mirror-jht9629-nyu
 
