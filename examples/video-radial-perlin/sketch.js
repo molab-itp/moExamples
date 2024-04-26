@@ -1,3 +1,4 @@
+// https://editor.p5js.org/xxxx
 // https://editor.p5js.org/jht9629-gmail/sketches/Aap84EcU_
 // video radial perlin pix
 
@@ -10,11 +11,11 @@ let x0;
 let y0;
 let capture;
 let ang = 0;
-let astep = 0.3
+let astep = 0.3;
 let astart = 0; //180;
 let aend = 360;
 let rscale = 2;
-let routterScale = 1
+let routterScale = 1;
 
 let phase = 0;
 let zoff = 0;
@@ -39,10 +40,10 @@ function draw() {
   // image(img, dx, dy, dWidth, dHeight, sx, sy, [sWidth], [sHeight],
   let img = capture.get();
   img2 = img.get();
-  img2.resize(npix,0);
+  img2.resize(npix, 0);
   image(img2, 0, 0, nwidth, nheight);
-  
-  draw_rad(img)
+
+  draw_rad(img);
   // draw_noise()
 }
 
@@ -65,7 +66,7 @@ function draw_rad(img) {
     fill(0);
     circle(x0 + x1, y0 + y1, 5);
 
-    let r3 = nwidth * routterScale + random(-5,5);
+    let r3 = nwidth * routterScale + random(-5, 5);
     let x2 = r3 * cos(rang);
     let y2 = r3 * sin(rang);
     line(x0 + x1, y0 + y1, x0 + x2, y0 + y2);
