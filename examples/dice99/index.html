@@ -4,7 +4,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
     <!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script> -->
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width, maximum-scale=1.0" />
 
     <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
     <style>
@@ -22,6 +23,11 @@
         padding: 0;
         /* Disable long touch */
         /* touch-action: none; */
+        -webkit-touch-callout: none; /* Safari */
+        -webkit-user-select: none; /* Chrome */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none;
       }
       canvas {
         display: block;
