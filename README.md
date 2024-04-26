@@ -110,5 +110,6 @@ Copied into to sketches.
 ```
 alias crud=./p5mirrorLib/bin/crud.sh
 
+crud export_new --folder "examples" --all
 
 ```
