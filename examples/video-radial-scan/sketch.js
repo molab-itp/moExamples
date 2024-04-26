@@ -1,51 +1,49 @@
 // https://editor.p5js.org/jht9629-nyu/sketches/xxxx
 // video scan radial bounce
 
-// add pause
-// add cycle up and down
-
 let my = {};
 
 function my_setup() {
+  // my.width = 640;
+  // my.height = 480;
+  my.width = 480;
+  my.height = 640;
+  my.strokeWeight = 1;
+  my.rcenter = 0;
+  my.xstep = 1;
+  my.xstepStart = 1;
+  my.ang = 0;
+  my.astep = 0.1;
+  my.faster = 1;
+
+  my.xgap_start = my.rcenter;
+  my.xgap_end = my.height;
+  my.xgap = my.xgap_start;
+  my.secsPerUpdate = 0.1;
+  my.secsDelta = 0;
+
+  my.downFactor = 1;
+
   // my.x0;
   // my.y0;
   // my.capture;
   // my.img;
-
-  my.nwidth = 640;
-  my.nheight = 480;
-  my.sw = 10;
-  my.rcenter = 10;
-  my.ang = 0;
-  my.astep = 1;
-  my.faster = 1;
-
-  my.n = 20;
-  my.nfrom = 20;
-  my.nto = 1;
-  my.xgap_start = my.rcenter;
-  my.xgap_end = my.nheight;
-  my.xgap = my.xgap_start;
-  my.xstep = my.rcenter;
-  my.outter_radius = my.nwidth;
-  my.secsPerUpdate = 0.1;
-  my.secsDelta = 0;
 }
 
 function setup() {
   my_setup();
 
-  createCanvas(my.nwidth, my.nheight);
+  createCanvas(my.width, my.height);
 
   my.capture = createCapture(VIDEO);
   my.capture.size(width, height);
   my.capture.hide();
-  my.x0 = int(my.nwidth / 2);
-  my.y0 = int(my.nheight / 2);
+  my.x0 = int(my.width / 2);
+  my.y0 = int(my.height / 2);
 }
 
 function draw() {
-  strokeWeight(my.sw);
+  strokeWeight(my.strokeWeight);
   my.img = my.capture.get();
   let more = 1;
   while (more) {
@@ -67,7 +65,7 @@ function draw_out() {
   fill(c1);
   circle(my.x0 + x1, my.y0 + y1, my.rcenter);
 
-  let r2 = my.nwidth;
+  let r2 = my.width;
   let x2 = r2 * cos(rang);
   let y2 = r2 * sin(rang);
   line(my.x0 + x1, my.y0 + y1, my.x0 + x2, my.y0 + y2);
@@ -82,19 +80,26 @@ function draw_out() {
 }
 
 function next_step() {
-  my.secsDelta += my.deltaTime / 1000;
+  my.secsDelta += deltaTime / 1000;
   if (my.secsDelta < my.secsPerUpdate) {
     return;
   }
   my.secsDelta = 0;
   my.xgap += my.xstep;
-  if (my.xgap > my.xgap_end) {
-    my.xgap = my.xgap_start;
-    if (my.capture.loadedmetadata) {
-      my.outter_radius = -1;
-    }
+  if (my.xstep > 0 && my.xgap > my.xgap_end) {
+    my.xstep = -1 * my.xstep * my.downFactor;
+    my.xgap += my.xstep;
+  } else if (my.xstep < 0 && my.xgap < my.xgap_start) {
+    my.xstep = -1 * my.xstep;
+    my.xgap += my.xstep;
   }
 }
+
+// function windowResized() {
+//   resizeCanvas(windowWidth, windowHeight);
+//   my.width = windowWidth;
+//   my.height = windowHeight;
+// }
 
 // https://editor.p5js.org/jht9629-nyu/sketches/OReZ4wOR5
 // video scan radial v5
