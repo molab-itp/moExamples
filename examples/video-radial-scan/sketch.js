@@ -1,76 +1,80 @@
-// https://editor.p5js.org/jht9629-nyu/sketches/ZyRuMxSDy
-// video scan radial v6-1
+// https://editor.p5js.org/jht9629-nyu/sketches/xxxx
+// video scan radial bounce
 
 // add pause
 // add cycle up and down
 
-let nwidth = 640;
-let nheight = 480;
-let sw = 10;
-let rcenter = 10;
-let x0;
-let y0;
-let capture;
-let ang = 0;
-let astep = 1;
-let faster = 1;
-let img;
+let my = {};
 
-let n = 20;
-let nfrom = 20;
-let nto = 1;
-let xgap_start = rcenter;
-let xgap_end = nheight;
-let xgap = xgap_start;
-let xstep = rcenter;
-let outter_radius = nwidth;
-let secsPerUpdate = 0.1;
-let secsDelta = 0;
+function my_setup() {
+  // my.x0;
+  // my.y0;
+  // my.capture;
+  // my.img;
+
+  my.nwidth = 640;
+  my.nheight = 480;
+  my.sw = 10;
+  my.rcenter = 10;
+  my.ang = 0;
+  my.astep = 1;
+  my.faster = 1;
+
+  my.n = 20;
+  my.nfrom = 20;
+  my.nto = 1;
+  my.xgap_start = my.rcenter;
+  my.xgap_end = my.nheight;
+  my.xgap = my.xgap_start;
+  my.xstep = my.rcenter;
+  my.outter_radius = my.nwidth;
+  my.secsPerUpdate = 0.1;
+  my.secsDelta = 0;
+}
 
 function setup() {
-  createCanvas(nwidth, nheight);
-  capture = createCapture(VIDEO);
-  capture.size(width, height);
-  capture.hide();
-  x0 = int(nwidth / 2);
-  y0 = int(nheight / 2);
+  my_setup();
+
+  createCanvas(my.nwidth, my.nheight);
+
+  my.capture = createCapture(VIDEO);
+  my.capture.size(width, height);
+  my.capture.hide();
+  my.x0 = int(my.nwidth / 2);
+  my.y0 = int(my.nheight / 2);
 }
 
 function draw() {
-  strokeWeight(sw);
-  img = capture.get();
+  strokeWeight(my.sw);
+  my.img = my.capture.get();
   let more = 1;
   while (more) {
     more = draw_out();
-    if (!faster) more = 0;
+    if (!my.faster) more = 0;
   }
 }
 
 function draw_out() {
   // colorMode(HSB);
 
-  let r = xgap / 2;
-  let rang = radians(ang);
+  let r = my.xgap / 2;
+  let rang = radians(my.ang);
   let x1 = r * cos(rang);
   let y1 = r * sin(rang);
 
-  let c1 = img.get(x0 + x1, y0 + y1);
+  let c1 = my.img.get(my.x0 + x1, my.y0 + y1);
   stroke(c1);
   fill(c1);
-  circle(x0 + x1, y0 + y1, rcenter);
+  circle(my.x0 + x1, my.y0 + y1, my.rcenter);
 
-  {
-    x1 = r * cos(rang);
-    y1 = r * sin(rang);
-    let r2 = nwidth;
-    let x2 = r2 * cos(rang);
-    let y2 = r2 * sin(rang);
-    line(x0 + x1, y0 + y1, x0 + x2, y0 + y2);
-  }
+  let r2 = my.nwidth;
+  let x2 = r2 * cos(rang);
+  let y2 = r2 * sin(rang);
+  line(my.x0 + x1, my.y0 + y1, my.x0 + x2, my.y0 + y2);
 
-  ang = ang + astep;
-  if (ang > 360) {
-    ang = 0;
+  my.ang = my.ang + my.astep;
+  if (my.ang > 360) {
+    my.ang = 0;
     next_step();
     return 0;
   }
@@ -78,16 +82,16 @@ function draw_out() {
 }
 
 function next_step() {
-  secsDelta += deltaTime / 1000;
-  if (secsDelta < secsPerUpdate) {
+  my.secsDelta += my.deltaTime / 1000;
+  if (my.secsDelta < my.secsPerUpdate) {
     return;
   }
-  secsDelta = 0;
-  xgap += xstep;
-  if (xgap > xgap_end) {
-    xgap = xgap_start;
-    if (capture.loadedmetadata) {
-      outter_radius = -1;
+  my.secsDelta = 0;
+  my.xgap += my.xstep;
+  if (my.xgap > my.xgap_end) {
+    my.xgap = my.xgap_start;
+    if (my.capture.loadedmetadata) {
+      my.outter_radius = -1;
     }
   }
 }
