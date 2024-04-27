@@ -3,26 +3,33 @@
 
 let my = {};
 
+function setup() {
+  my_setup();
+  my_resize();
+
+  createCanvas(my.width, my.height);
+
+  my.capture = createCapture(VIDEO);
+  my.capture.size(width, height);
+  my.capture.hide();
+}
+
 function my_setup() {
-  // my.width = 640;
-  // my.height = 480;
-  my.width = 480;
-  my.height = 640;
-  my.strokeWeight = 1;
-  my.rcenter = 0;
-  my.xstep = 1;
-  my.xstepStart = 1;
-  my.ang = 0;
-  my.astep = 0.1;
   my.faster = 1;
 
-  my.xgap_start = my.rcenter;
-  my.xgap_end = my.height;
-  my.xgap = my.xgap_start;
-  my.secsPerUpdate = 0.1;
-  my.secsDelta = 0;
+  my.strokeWeight = 10;
+  my.rim = 5;
+  my.angle = 0;
+  my.angleStep = 1;
 
-  my.downFactor = 1;
+  my.xstep = 1;
+  my.xstepDir = 1;
+  my.xstepDownFactor = 4;
+  my.xposStart = 0;
+  my.xpos = my.xposStart;
+
+  my.secsPerUpdate = 0.01;
+  my.secsDelta = 0;
 
   // my.x0;
   // my.y0;
@@ -30,16 +37,12 @@ function my_setup() {
   // my.img;
 }
 
-function setup() {
-  my_setup();
-
-  createCanvas(my.width, my.height);
-
-  my.capture = createCapture(VIDEO);
-  my.capture.size(width, height);
-  my.capture.hide();
+function my_resize() {
+  my.width = windowWidth;
+  my.height = windowHeight;
   my.x0 = int(my.width / 2);
   my.y0 = int(my.height / 2);
+  my.xposEnd = my.height;
 }
 
 function draw() {
@@ -55,24 +58,24 @@ function draw() {
 function draw_out() {
   // colorMode(HSB);
 
-  let r = my.xgap / 2;
-  let rang = radians(my.ang);
+  let r = my.xpos / 2;
+  let rang = radians(my.angle);
   let x1 = r * cos(rang);
   let y1 = r * sin(rang);
 
   let c1 = my.img.get(my.x0 + x1, my.y0 + y1);
   stroke(c1);
   fill(c1);
-  circle(my.x0 + x1, my.y0 + y1, my.rcenter);
+  circle(my.x0 + x1, my.y0 + y1, my.rim);
 
   let r2 = my.width;
   let x2 = r2 * cos(rang);
   let y2 = r2 * sin(rang);
   line(my.x0 + x1, my.y0 + y1, my.x0 + x2, my.y0 + y2);
 
-  my.ang = my.ang + my.astep;
-  if (my.ang > 360) {
-    my.ang = 0;
+  my.angle = my.angle + my.angleStep;
+  if (my.angle > 360) {
+    my.angle = 0;
     next_step();
     return 0;
   }
@@ -85,21 +88,22 @@ function next_step() {
     return;
   }
   my.secsDelta = 0;
-  my.xgap += my.xstep;
-  if (my.xstep > 0 && my.xgap > my.xgap_end) {
-    my.xstep = -1 * my.xstep * my.downFactor;
-    my.xgap += my.xstep;
-  } else if (my.xstep < 0 && my.xgap < my.xgap_start) {
-    my.xstep = -1 * my.xstep;
-    my.xgap += my.xstep;
+  my.xpos += my.xstep;
+  if (my.xstep > 0 && my.xpos > my.xposEnd) {
+    my.xstepDir *= -1;
+    my.xstep = my.xstepDir * my.xstepDownFactor;
+    my.xpos += my.xstep;
+  } else if (my.xstep < 0 && my.xpos < my.xposStart) {
+    my.xstepDir *= -1;
+    my.xstep = my.xstepDir;
+    my.xpos += my.xstep;
   }
 }
 
-// function windowResized() {
-//   resizeCanvas(windowWidth, windowHeight);
-//   my.width = windowWidth;
-//   my.height = windowHeight;
-// }
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  my_resize();
+}
 
 // https://editor.p5js.org/jht9629-nyu/sketches/OReZ4wOR5
 // video scan radial v5
