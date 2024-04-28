@@ -14,6 +14,16 @@ function setup() {
   my.capture.hide();
 }
 
+function draw() {
+  strokeWeight(my.strokeWeight);
+  my.img = my.capture.get();
+  let more = 1;
+  while (more) {
+    more = draw_out();
+    if (!my.faster) more = 0;
+  }
+}
+
 function my_setup() {
   my.faster = 1;
 
@@ -28,7 +38,8 @@ function my_setup() {
   my.xposStart = 0;
   my.xpos = my.xposStart;
 
-  my.secsPerUpdate = 0.01;
+  my.secsPerUpdate = 0.1;
+  // my.secsPerUpdate = 0.01;
   my.secsDelta = 0;
 
   // my.x0;
@@ -43,16 +54,6 @@ function my_resize() {
   my.x0 = int(my.width / 2);
   my.y0 = int(my.height / 2);
   my.xposEnd = my.height;
-}
-
-function draw() {
-  strokeWeight(my.strokeWeight);
-  my.img = my.capture.get();
-  let more = 1;
-  while (more) {
-    more = draw_out();
-    if (!my.faster) more = 0;
-  }
 }
 
 function draw_out() {
