@@ -39,6 +39,7 @@ let a_config = {
     { label: 'a_live_tile_host', factory: eff_a_live_tile_host },
     { label: 'a_slit_scan', factory: eff_a_slit_scan },
     { label: 'a_ncell', factory: eff_a_ncell },
+    { label: 'a_radial', factory: eff_a_radial },
   ],
   // settings for import, will appear in the settings menu
   // SETTINGS will load a save .json file with predefined values
