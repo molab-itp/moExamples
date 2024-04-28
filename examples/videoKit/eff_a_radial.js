@@ -1,17 +1,20 @@
 //
+// lines radiating out from center
 
 class eff_a_radial {
   static meta_props = [
     // { prop: 'num_prop', label: 'prop1', selection: [0, 1] },
     { prop: 'rim', selection: [5, 0, 1, 10] },
-    { prop: 'secsPerUpdate', selection: [0.01, 1] },
+    { prop: 'period', selection: [0.01, 0.5, 1, 0.001, 0] },
   ];
 
   constructor(props) {
     let my = this;
     Object.assign(my, props);
     console.log('eff_a_radia_bounce props', props);
-    my.output = createGraphics(my.input.width, my.input.height);
+    my.width = my.input.width;
+    my.height = my.input.height;
+    my.output = createGraphics(my.width, my.height);
     my.setup();
     my.resize();
   }
@@ -39,7 +42,7 @@ class eff_a_radial {
     my.xstepDownFactor = 4;
     my.xposStart = 0;
     my.xpos = my.xposStart;
-    // my.secsPerUpdate = 0.1;
+    // my.period = 0.1;
     my.secsDelta = 0;
     // my.x0;
     // my.y0;
@@ -48,8 +51,6 @@ class eff_a_radial {
 
   resize() {
     let my = this;
-    my.width = my.input.width;
-    my.height = my.input.height;
     my.x0 = int(my.width / 2);
     my.y0 = int(my.height / 2);
     my.xposEnd = my.height;
@@ -85,7 +86,7 @@ class eff_a_radial {
   next_step() {
     let my = this;
     my.secsDelta += deltaTime / 1000;
-    if (my.secsDelta < my.secsPerUpdate) {
+    if (my.secsDelta < my.period) {
       return;
     }
     my.secsDelta = 0;
