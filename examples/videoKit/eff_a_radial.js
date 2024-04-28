@@ -6,6 +6,7 @@ class eff_a_radial {
     // { prop: 'num_prop', label: 'prop1', selection: [0, 1] },
     { prop: 'rim', selection: [5, 0, 1, 10] },
     { prop: 'period', selection: [0.01, 0.5, 1, 0.001, 0] },
+    { prop: 'strokeWeight', selection: [10, 5, 4, 1, 20] },
   ];
 
   constructor(props) {
@@ -33,7 +34,7 @@ class eff_a_radial {
   setup() {
     let my = this;
     my.faster = 1;
-    my.strokeWeight = 10;
+    // my.strokeWeight = 10;
     // my.rim = 5;
     my.angle = 0;
     my.angleStep = 1;
