@@ -115,6 +115,6 @@ crud list
 
 crud export_new --folder "examples" --all
 
-crud export_update --folder "examples/videoKit" --sketch u_Blv5bOK
+crud export_update --folder "examples/videoKit" --sketch u_Blv5bOK --verbose
 
 ```
