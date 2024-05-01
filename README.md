@@ -1,4 +1,4 @@
-# [github p5moExamples](https://github.com/molab-itp/p5moExamples.git) ?v=81
+# [github p5moExamples](https://github.com/molab-itp/p5moExamples.git) ?v=82
 
 - multi-device experiences on handheld and large screens
 - creating and updating firebase cloud data
@@ -26,24 +26,25 @@ The functions that include Firebase setup are in [p5moLibrary](https://github.co
 - [p5js p5moExamples vote](https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1): real-time voting examples that count your own votes and total votes from available devices
 - [p5js p5moExamples words](https://editor.p5js.org/jht9629-nyu/sketches/23h3z1G82): showing the word of the day websites with iframes by incrementing and decrementing the date
 
-## [github.io versions of examples](https://molab-itp.github.io/p5moExamples?v=81)
+## [github.io versions of examples](https://molab-itp.github.io/p5moExamples?v=82)
 
-- [examples/video-radial-scan](examples/video-radial-scan?v=81)
-- [examples/dice99](examples/dice99?v=81)
+- [examples/shout](examples/shout?v=82)
+- [examples/video-radial-scan](examples/video-radial-scan?v=82)
+- [examples/dice99](examples/dice99?v=82)
 
-- [examples/vote](examples/vote?v=81)
-- [examples/vote_DOMjs](examples/vote_DOMjs?v=81)
-- [examples/words](examples/words?v=81)
-- [examples/videoKit](examples/videoKit?v=81)
-- [examples/photo-booth](examples/photo-booth?v=81)
-- [examples/iframe_player](examples/iframe_player?v=81)
+- [examples/vote](examples/vote?v=82)
+- [examples/vote_DOMjs](examples/vote_DOMjs?v=82)
+- [examples/words](examples/words?v=82)
+- [examples/videoKit](examples/videoKit?v=82)
+- [examples/photo-booth](examples/photo-booth?v=82)
+- [examples/iframe_player](examples/iframe_player?v=82)
 
-- [examples/lobby room0](examples/lobby?v=81&room=room0)
-- [examples/lobby room1](examples/lobby?v=81&room=room1)
-- [examples/paint](examples/paint?v=81)
-- [examples/paint remote=0](examples/paint?v=81&remote=0)
-- [examples/pixel-grid](examples/pixel-grid?v=81)
-- [examples/pixel-grid remote=0](examples/pixel-grid?v=81&remote=0)
+- [examples/lobby room0](examples/lobby?v=82&room=room0)
+- [examples/lobby room1](examples/lobby?v=82&room=room1)
+- [examples/paint](examples/paint?v=82)
+- [examples/paint remote=0](examples/paint?v=82&remote=0)
+- [examples/pixel-grid](examples/pixel-grid?v=82)
+- [examples/pixel-grid remote=0](examples/pixel-grid?v=82&remote=0)
 
 ## github.io of p5mirror-jht9629-nyu
 
@@ -116,5 +117,9 @@ crud list
 crud export_new --folder "examples" --all
 
 crud export_update --folder "examples/videoKit" --sketch u_Blv5bOK --verbose
+
+crud delete --all --remote
+
+crud watermark --all --remote
 
 ```
