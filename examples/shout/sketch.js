@@ -4,6 +4,7 @@
 // a play list of websites show in an iframe
 
 // [] loop, play next after n seconds
+// [] move to mo-shout with qr code
 
 let my = {};
 
