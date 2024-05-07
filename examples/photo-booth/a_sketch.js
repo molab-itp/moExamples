@@ -9,7 +9,7 @@ function setup() {
   my_init();
 
   // set group to share cloud data
-  my.group = 'group1';
+  // my.group = 'group1';
 
   my.photo_index = 0;
   my.photo_max = 4;
@@ -46,13 +46,13 @@ function setup() {
 function startup_completed() {
   //
   // dbase_devices_observe({ observed_key, observed_item, all: 1 });
-  // dbase_app_observe({ observed_item });
-  dbase_group_observe({ observed_key, observed_item });
+  // dbase_group_observe({ observed_key, observed_item });
+  dbase_app_observe({ observed_item });
 
-  function observed_key(key, device) {
-    // console.log('observed_a_device key', key, 'uid', my.uid, 'device', device);
-    // console.log('observed_key key', key, 'device.photo_index', device && device.photo_index);
-  }
+  // function observed_key(key, device) {
+  // console.log('observed_a_device key', key, 'uid', my.uid, 'device', device);
+  // console.log('observed_key key', key, 'device.photo_index', device && device.photo_index);
+  // }
 
   function observed_item(device) {
     // console.log('observed_item device.photo_index', device.photo_index);

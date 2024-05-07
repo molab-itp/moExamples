@@ -18,8 +18,14 @@ function my_init() {
   my.dbase_rootPath = 'm0-@r-@w-';
   my.mo_app = 'mo-photo';
   my.roomName = 'room1';
+  my.group = 'group1';
 
   // my.nameDevice = '';
+  my.query = get_url_params();
+  if (my.query) {
+    my.roomName = my.query.room || my.roomName;
+    my.group = my.query.group || my.group;
+  }
 
   if (my.isRemote) {
     my.width = my.vwidth;
