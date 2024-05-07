@@ -8,10 +8,9 @@ function my_init() {
   my.logLoud = 0;
 
   // Aspect ratio of video capture on mobile device
-  // my.vwidth = 480 / 2;
-  // my.vheight = 640 / 2;
-  my.vwidth = 480 * 1;
-  my.vheight = 640 * 1;
+  let scale = 0.5;
+  my.vwidth = 480 * scale;
+  my.vheight = 640 * scale;
   my.fireb_config = 'jht9629';
   // my.fireb_config = 'jht1493';
   // my.fireb_config = 'jhtitp';
