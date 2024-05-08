@@ -40,7 +40,9 @@ The functions that include Firebase setup are in [p5moLibrary](https://github.co
 - [examples/iframe_player](examples/iframe_player?v=84)
 
 - [examples/lobby room0](examples/lobby?v=84&room=room0)
+- [examples/lobby room0 mo-videoplayer](examples/lobby?v=84&room=room0&app=mo-videoplayer)
 - [examples/lobby room1](examples/lobby?v=84&room=room1)
+
 - [examples/paint](examples/paint?v=84)
 - [examples/paint remote=0](examples/paint?v=84&remote=0)
 - [examples/pixel-grid](examples/pixel-grid?v=84)
