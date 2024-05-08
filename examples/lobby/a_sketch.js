@@ -5,12 +5,6 @@
 
 let my = {};
 
-// my.site_devices.length
-// my.site_devices[0].uid
-// my.site_devices[0].dbase.date_s
-// my.site_devices[0].dbase.visit_count
-// my.site_devices[0].dbase.userAgent
-
 function my_setup() {
   my.width = windowWidth;
   my.height = windowHeight;
@@ -20,15 +14,19 @@ function my_setup() {
   // my.fireb_config = my_firebaseConfig;
   my.dbase_rootPath = 'm0-@r-@w-';
   my.mo_app = 'mo-blackfacts';
+  // my.mo_app = 'mo-videoplayer';
   my.nameDevice = '';
   my.ndiv = 1;
 
   my.query = get_url_params();
 
-  my.roomName = 'room1';
+  my.roomName = 'room0';
   if (my.query) {
     my.roomName = my.query.room || my.roomName;
+    my.mo_app = my.query.app || my.mo_app;
   }
+
+  // textSize(80);
 }
 
 // Your web app's Firebase configuration
@@ -46,14 +44,55 @@ function setup() {
 
   my.canvas = createCanvas(my.width, my.height);
 
-  dbase_app_init({});
+  // dbase_app_init({});
+  dbase_app_init({ completed: startup_completed });
+}
+
+function startup_completed() {
+  //
+  // dbase_app_observe({ observed_item });
+  dbase_devices_observe({ observed_item, all: 1 });
+
+  function observed_item(device) {
+    console.log('observed_item device', device);
+  }
 }
 
 function draw() {
   background(200);
-  my.site_devices = dbase_site_devices();
-  if (!my.site_devices) return;
-  let ndevices = my.site_devices.length;
+  draw_devices();
+
+  let n = my.app_devices.length;
+  draw_number('n=', n, 20);
+}
+
+function draw_number(prefix, n) {
+  // Convert number to string
+  let str = prefix + ' ' + (n + '').padStart(2, '0');
+  let x = 10;
+  let y = my.height;
+  // textSize(sz);
+  // Draw black rect background
+  let a = textAscent();
+  let d = textDescent();
+  let h = a + d;
+  let w = textWidth(str);
+  fill(0);
+  rect(x, y - h, w, h);
+  // rect(x, 0, w, my.height);
+
+  // Draw white text
+  fill(255);
+  // x  y bottom-left corner.
+  text(str, x, y - d);
+}
+
+function draw_devices() {
+  // my.app_devices = dbase_site_devices();
+  let devices = dbase_a_devices();
+  my.app_devices = [];
+  if (!devices) return;
+  let ndevices = devices.length;
   if (ndevices != my.last_ndevices) {
     console.log('ndevices', ndevices);
     my.ndiv = 1;
@@ -67,7 +106,10 @@ function draw() {
   let x = x0;
   for (let index = 0; index < ndevices; index++) {
     let last = index == ndevices - 1;
-    draw_device(index, x, y);
+    let device = devices[index];
+    let adevice = dbase_site_device_for_uid(device.uid);
+    my.app_devices.push(adevice);
+    draw_device(adevice, x, y);
     if (!last) {
       x += my.len;
     }
@@ -82,19 +124,20 @@ function draw() {
   }
 }
 
-function draw_device(index, x, y) {
-  let device = my.site_devices[index];
-  let last = device.index == my.site_devices.length - 1;
+function draw_device(adevice, x, y) {
+  // let last = device.index == my.app_devices.length - 1;
+  // let last = index == my.app_devices.length - 1;
+  let last;
   // Black big circle
   fill(0);
   circle(x, y, my.len);
   // inner green dot marks active device
-  if (dbase_site_isActive(device)) {
+  if (dbase_site_isActive(adevice)) {
     fill('green');
     circle(x, y, my.dotLen);
   }
   // inner yellow dot marks my device
-  if (device.uid == my.uid) {
+  if (adevice.uid == my.uid) {
     fill([187, 165, 61]);
     circle(x, y, my.dotLen);
   }
@@ -103,13 +146,14 @@ function draw_device(index, x, y) {
     circle(x, y, my.dotLen * 0.5);
   }
   fill(255);
-  let n = device.index + 1;
+  // let n = device.index + 1;
+  let n = adevice.index + 1;
   text(n + '', x, y);
 }
 
 function downloadAction() {
-  if (!my.site_devices) return;
-  let str = JSON.stringify(my.site_devices, undefined, 2);
+  if (!my.app_devices) return;
+  let str = JSON.stringify(my.app_devices, undefined, 2);
   downloadToFile('lobby-' + my.mo_app + '-live' + '.json', str);
   downloadActionShort();
 }
@@ -118,11 +162,11 @@ function downloadActionShort() {
   //
   // remove arrays to short display of summary
   //
-  for (let device of my.site_devices) {
+  for (let device of my.app_devices) {
     delete device.dbase.update;
     delete device.dbase.visit;
   }
-  let str = JSON.stringify(my.site_devices, undefined, 2);
+  let str = JSON.stringify(my.app_devices, undefined, 2);
   downloadToFile('lobby-' + my.mo_app + '-live-short' + '.json', str);
 }
 
