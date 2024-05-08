@@ -3,6 +3,8 @@
 
 // Capture canvas pixels to cloud as image jpg or png
 
+// Issue: remove image will not remove it from other devices
+
 let my = {};
 
 function setup() {
@@ -27,6 +29,7 @@ function setup() {
   pixelDensity(1);
 
   my.canvas = createCanvas(my.width, my.height);
+
   my.canvas.mouseReleased(canvas_mouseReleased);
   my.canvas.touchEnded(canvas_mouseReleased);
 
@@ -45,20 +48,18 @@ function setup() {
 
 function startup_completed() {
   //
-  // dbase_devices_observe({ observed_key, observed_item, all: 1 });
-  // dbase_group_observe({ observed_key, observed_item });
   dbase_app_observe({ observed_item });
 
-  // function observed_key(key, device) {
-  // console.log('observed_a_device key', key, 'uid', my.uid, 'device', device);
-  // console.log('observed_key key', key, 'device.photo_index', device && device.photo_index);
-  // }
-
   function observed_item(device) {
+    console.log('observed_item device', device);
     // console.log('observed_item device.photo_index', device.photo_index);
     // console.log('observed_item device.photo_list', device.photo_list);
     if (device.photo_list != undefined) {
       my.photo_list = device.photo_list;
+    } else {
+      // Removing all photos will remove all img divs
+      my.photo_list = [];
+      img_remove_all();
     }
     if (device.photo_index != undefined) {
       my.photo_index = device.photo_index;

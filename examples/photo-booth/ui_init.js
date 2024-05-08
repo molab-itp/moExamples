@@ -22,40 +22,46 @@ function effect_action() {
   my.slit_scan = !my.slit_scan;
 }
 
-async function take_action() {
-  // console.log('take_action');
-
-  let entry = photo_list_entry(my.photo_index + 1);
-  let path = photo_path_entry(entry);
-
-  let layer = my.canvas;
-  let imageQuality = my.imageQuality;
-  try {
-    await fstorage_upload({ path, layer, imageQuality });
-
-    await photo_list_add(entry);
-
-    dbase_group_update({ photo_index: dbase_increment(1) });
-    //
-  } catch (err) {
-    console.log('take_action err', err);
+function img_remove_all() {
+  //
+  // console.log('photo_remove_all');
+  for (;;) {
+    let child = my.gallery_div.elt.firstChild;
+    // console.log('photo_remove_all child', child);
+    if (!child) {
+      break;
+    }
+    child.remove();
   }
 }
 
-async function remove_action() {
-  // console.log('remove_action photo_count', my.photo_list.length);
-  if (my.photo_list.length < 1) {
-    // No more images in the cloud
-    //  zero out photo_index
-    dbase_group_update({ photo_index: 0 });
-    return;
+function remove_img_index(index) {
+  // console.log('remove_img_index index', index);
+  let id = 'id_img_' + index;
+  let img = select('#' + id);
+  // console.log('remove_img_index img', img);
+  if (img) {
+    img.remove();
   }
-  //
-  // remove the last entry in photo_list
-  //
-  let last = my.photo_list.pop();
-  await photo_list_remove_entry(last);
+}
 
-  // Update photo_list in the cloud
-  dbase_group_update({ photo_list: my.photo_list });
+// Create image element for an index
+//  or return if already present
+//
+function find_img(index) {
+  let id = 'id_img_' + index;
+  let img = select('#' + id);
+  if (!img) {
+    // console.log('show_action id', id);
+    img = createImg('', 'image');
+    img.id(id);
+    // console.log('show_action createImg', img);
+
+    // Add image as first child to see most recent first
+    my.gallery_div.elt.prepend(img.elt);
+
+    let iwidth = my.thumbWidth;
+    img.style('width: ' + iwidth + 'px;');
+  }
+  return img;
 }

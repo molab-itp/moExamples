@@ -5,7 +5,7 @@ function my_init() {
   my.isRemote = 1;
   my.videoFlag = 1;
   // show detailed log
-  my.logLoud = 0;
+  my.logLoud = 1;
 
   // Aspect ratio of video capture on mobile device
   let scale = 0.5;
