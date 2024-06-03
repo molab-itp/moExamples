@@ -1,5 +1,7 @@
 //
 // Lit for UI input elements
+// reference: https://lit.dev/tutorials/intro-to-lit/#8
+
 // button
 // text input
 // slider -- input range
@@ -122,8 +124,6 @@ export class LitDemo extends LitElement {
   }
 }
 customElements.define('lit-demo', LitDemo);
-
-// https://lit.dev/tutorials/intro-to-lit/#8
 
 // https://editor.p5js.org/jht9629-nyu/sketches/AwB8tHJ15
 // test drive DOM.js v11 inputs

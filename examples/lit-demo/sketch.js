@@ -15,11 +15,11 @@ let my = {};
 function setup() {
   createCanvas(400, 100);
 
-  // createElement('todo-list');
-
   my.lit = createElement('lit-demo');
 
   // createElement('todo-list');
+
+  // createElement('lit-demo');
 }
 
 function draw() {
