@@ -17,7 +17,8 @@ let my = {};
 function setup() {
   createCanvas(400, 100);
 
-  // store new LitDemo html element defined in lit-demo.js
+  // store new LitDemo html element
+  // defined in lit-demo.js
   my.lit = createElement('lit-demo');
 
   // createElement('todo-list');
@@ -28,7 +29,7 @@ function setup() {
 function draw() {
   // background('#FF00FF');
 
-  // the background color comes from color picker
+  // use color picker value for the background color
   background(my.lit.elt._colorValue);
 
   // draw a rect shape in the middle of the canvas
