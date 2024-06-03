@@ -1,15 +1,21 @@
 // https://editor.p5js.org/jht9629-nyu/sketches/HureJsyBs
-// lit try v3
+// lit demo v3
 
-// createElement
-// ToDoList example added to p5js
+// demo of Lit html inputs
+// Button
+// text input
+// Slider
+// checkbox
+// radio button row
+// selection
+// color
 
 function setup() {
   createCanvas(400, 40);
 
   // createElement('todo-list');
 
-  createElement('test-drive');
+  createElement('lit-demo');
 
   // createElement('test-drive');
 }
@@ -22,3 +28,6 @@ function draw() {
 
 // https://editor.p5js.org/jht9629-nyu/sketches/Ne1xB_wOz
 // lit try v2
+
+// https://editor.p5js.org/jht9629-nyu/sketches/AwB8tHJ15
+// test drive DOM.js v11 inputs

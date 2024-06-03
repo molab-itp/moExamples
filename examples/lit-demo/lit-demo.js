@@ -10,7 +10,7 @@
 
 import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
 
-export class TestDrive extends LitElement {
+export class LitDemo extends LitElement {
   static properties = {
     _counter: { state: true },
     _value2: { state: true }, // ?? is state required since driven by input element update?
@@ -34,7 +34,7 @@ export class TestDrive extends LitElement {
 
   render() {
     return html`
-      <h2>Test Drive Lit ${this._counter}</h2>
+      <h2>Lit Demo counter=${this._counter}</h2>
       <input id="id_input1" value=${'counter=' + this._counter} />
       <button @click=${this.update1Action}>Update</button> <br />
       <input
@@ -133,7 +133,7 @@ export class TestDrive extends LitElement {
     return this.renderRoot?.querySelector('#id_input1') ?? null;
   }
 }
-customElements.define('test-drive', TestDrive);
+customElements.define('lit-demo', LitDemo);
 
 // https://editor.p5js.org/jht9629-nyu/sketches/AwB8tHJ15
 // test drive DOM.js v11 inputs
