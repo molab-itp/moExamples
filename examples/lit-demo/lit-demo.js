@@ -13,10 +13,10 @@ import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/co
 export class LitDemo extends LitElement {
   static properties = {
     _counter: { state: true },
-    _value2: { state: true }, // ?? is state required since driven by input element update?
-    _value3: { state: true },
-    _value4: { state: true },
-    _value5: { state: true },
+    _value2: {},
+    _value3: {},
+    _value4: {},
+    _value5: {},
   };
   static styles = css`
     /* .completed { text-decoration-line: line-through; color: #777; } */
