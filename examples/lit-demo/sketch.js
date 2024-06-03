@@ -10,18 +10,26 @@
 // selection
 // color
 
+let my = {};
+
 function setup() {
-  createCanvas(400, 40);
+  createCanvas(400, 100);
 
   // createElement('todo-list');
 
-  createElement('lit-demo');
+  my.lit = createElement('lit-demo');
 
-  // createElement('test-drive');
+  // createElement('todo-list');
 }
 
 function draw() {
-  background('red');
+  // background('#FF00FF');
+  background(my.lit.elt._colorValue);
+
+  let len = 50;
+  let x = (my.lit.elt._sliderValue / 100) * width;
+  let y = (height - len) / 2;
+  rect(x - len / 2, y, len, len);
 }
 
 // https://lit.dev/tutorials/intro-to-lit/#8
@@ -31,3 +39,9 @@ function draw() {
 
 // https://editor.p5js.org/jht9629-nyu/sketches/AwB8tHJ15
 // test drive DOM.js v11 inputs
+
+// https://lit.dev/learn/#filter=tutorial
+
+// https://lit.dev/tutorials/reactivity/#7
+// click to animate
+// https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
