@@ -27,7 +27,7 @@ export class LitDemo extends LitElement {
     this._counter = 0;
     this.sliderValue = 30;
     this.checkBoxValue = false;
-    this.radioValue = 'louie';
+    this.radioValue = 'gold';
     this.petSelectionValue = 'dog';
     this.colorValue = '#ffff00';
   }
@@ -36,7 +36,9 @@ export class LitDemo extends LitElement {
     return html`
       <h2>Lit Demo counter=${this._counter}</h2>
       <input id="id_counterInput" value=${'counter=' + this._counter} />
-      <button @click=${this.updateClickEvent}>Update</button> <br />
+      <button @click=${this.updateUpClickEvent}>Update Up</button>
+      <button @click=${this.updateDownClickEvent}>Update Down</button>
+      <br />
       <label>
         <input type="range" min="0" max="100" value=${this.sliderValue} @input=${this.sliderInputEvent} />
         sliderValue ${this.sliderValue}
@@ -49,16 +51,16 @@ export class LitDemo extends LitElement {
       <fieldset @change=${this.radioChangeEvent}>
         <legend>Select a radioValue:</legend>
         <label>
-          <input type="radio" id="huey" name="drone" value="huey" ?checked=${this.radioValue == 'huey'} />
-          Huey
+          <input type="radio" name="drone" value="red" ?checked=${this.radioValue == 'red'} />
+          Red
         </label>
         <label>
-          <input type="radio" id="dewey" name="drone" value="dewey" ?checked=${this.radioValue == 'dewey'} />
-          Dewey
+          <input type="radio" name="drone" value="green" ?checked=${this.radioValue == 'green'} />
+          Green
         </label>
         <label>
-          <input type="radio" id="louie" name="drone" value="louie" ?checked=${this.radioValue == 'louie'} />
-          Louie
+          <input type="radio" name="drone" value="gold" ?checked=${this.radioValue == 'gold'} />
+          Gold
         </label>
       </fieldset>
       <label>
@@ -80,42 +82,37 @@ export class LitDemo extends LitElement {
 
   colorInputEvent(event) {
     // console.log('colorInputEvent event', event);
-    console.log('colorInputEvent event.target', event.target);
-    console.log('colorInputEvent event.target.value', event.target.value, typeof event.target.value);
     this.colorValue = event.target.value;
   }
 
   petChangeEvent(event) {
-    // console.log('petChangeEvent event', event);
-    console.log('petChangeEvent event.target', event.target);
-    console.log('petChangeEvent event.target.value', event.target.value, typeof event.target.value);
+    // console.log('petChangeEvent event.target.value', event.target.value, typeof event.target.value);
     this.petSelectionValue = event.target.value;
   }
 
   radioChangeEvent(event) {
-    // console.log('radioChangeEvent event', event);
-    // console.log('radioChangeEvent event.target', event.target);
-    console.log('radioChangeEvent event.target.value', event.target.value);
+    // console.log('radioChangeEvent event.target.value', event.target.value);
     this.radioValue = event.target.value;
   }
 
   checkBoxChangeEvent(event) {
-    console.log('checkBoxChangeEvent event', event);
-    console.log('checkBoxChangeEvent event.target', event.target);
-    console.log('checkBoxChangeEvent event.target.checked', event.target.checked);
+    // console.log('checkBoxChangeEvent event.target.checked', event.target.checked);
     this.checkBoxValue = event.target.checked;
   }
 
   sliderInputEvent(event) {
-    // console.log('sliderInputEvent event', event);
     // console.log('sliderInputEvent event.target', event.target);
     this.sliderValue = parseFloat(event.target.value);
   }
 
-  updateClickEvent(event) {
-    // console.log('updateClickEvent event', event);
-    console.log('updateClickEvent event.target', event.target);
+  updateUpClickEvent(event) {
+    // console.log('updateClickEvent event.target', event.target);
     this._counter += 1;
+    this.input.value = 'counter=' + this._counter;
+  }
+  updateDownClickEvent(event) {
+    // console.log('updateDownClickEvent event', event);
+    this._counter -= 1;
     this.input.value = 'counter=' + this._counter;
   }
 

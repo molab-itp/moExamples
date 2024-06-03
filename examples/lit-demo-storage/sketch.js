@@ -23,9 +23,9 @@ function setup() {
   my.lit.attribute('sliderValue', 10);
   my.lit.attribute('colorValue', '#FF0000');
 
-  // createElement('todo-list');
-
   // createElement('lit-demo');
+
+  my.yoffset = 0;
 }
 
 function draw() {
@@ -36,10 +36,15 @@ function draw() {
 
   // draw a rect shape in the middle of the canvas
   // that tracks the slider value from left to right
-  let len = 50;
+  let len = 50 + my.lit.elt._counter;
   let x = (my.lit.elt.sliderValue / 100) * width;
   let y = (height - len) / 2;
+  if (my.lit.elt.checkBoxValue) {
+    my.yoffset = (my.yoffset + 1) % height;
+    y = my.yoffset;
+  }
 
+  fill(my.lit.elt.radioValue);
   rect(x - len / 2, y, len, len);
 }
 
