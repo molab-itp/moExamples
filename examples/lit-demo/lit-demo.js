@@ -73,15 +73,15 @@ export class LitDemo extends LitElement {
       <br />
       <label>
         Choose a color for _colorValue
-        <input type="color" name="head" value=${this._colorValue} @input=${this.colorChangeEvent} />
+        <input type="color" name="head" value=${this._colorValue} @input=${this.colorInputEvent} />
       </label>
     `;
   }
 
-  colorChangeEvent(event) {
-    // console.log('colorChangeEvent event', event);
-    console.log('colorChangeEvent event.target', event.target);
-    console.log('colorChangeEvent event.target.value', event.target.value, typeof event.target.value);
+  colorInputEvent(event) {
+    // console.log('colorInputEvent event', event);
+    console.log('colorInputEvent event.target', event.target);
+    console.log('colorInputEvent event.target.value', event.target.value, typeof event.target.value);
     this._colorValue = event.target.value;
   }
 
