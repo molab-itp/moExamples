@@ -7,11 +7,11 @@
 function setup() {
   createCanvas(400, 40);
 
-  createElement('todo-list');
+  // createElement('todo-list');
 
   createElement('test-drive');
 
-  createElement('test-drive');
+  // createElement('test-drive');
 }
 
 function draw() {
