@@ -18,8 +18,9 @@ export class LitDemo extends LitElement {
     sliderValue: { type: Number },
     checkBoxValue: { type: Boolean },
     radioValue: {},
-    petSelectionValue: {},
+    shapeValue: {},
     colorValue: {},
+    updateCount: { state: true },
   };
 
   constructor() {
@@ -28,11 +29,13 @@ export class LitDemo extends LitElement {
     this.sliderValue = 30;
     this.checkBoxValue = false;
     this.radioValue = 'gold';
-    this.petSelectionValue = 'dog';
+    this.shapeValue = 'rect';
     this.colorValue = '#ffff00';
+    this.updateCount = 0;
   }
 
   render() {
+    this.updateCount++;
     return html`
       <h2>Lit Demo counter=${this._counter}</h2>
       <input id="id_counterInput" value=${'counter=' + this._counter} />
@@ -64,17 +67,17 @@ export class LitDemo extends LitElement {
         </label>
       </fieldset>
       <label>
-        Choose a pet for petSelectionValue:
-        <select name="pets" @change=${this.petChangeEvent}>
+        Choose a shapeValue:
+        <select name="pets" @change=${this.shapeChangeEvent}>
           <option value="">--Please choose an option--</option>
-          <option value="dog" ?selected=${this.petSelectionValue == 'dog'}>Dog</option>
-          <option value="cat" ?selected=${this.petSelectionValue == 'cat'}>Cat</option>
-          <option value="ape" ?selected=${this.petSelectionValue == 'ape'}>Ape</option>
+          <option value="rect" ?selected=${this.shapeValue == 'rect'}>Rect</option>
+          <option value="circle" ?selected=${this.shapeValue == 'circle'}>Circle</option>
+          <option value="triangle" ?selected=${this.shapeValue == 'triangle'}>Triangle</option>
         </select>
       </label>
       <br />
       <label>
-        Choose a color for colorValue
+        Choose a colorValue
         <input type="color" name="head" value=${this.colorValue} @input=${this.colorInputEvent} />
       </label>
     `;
@@ -85,9 +88,9 @@ export class LitDemo extends LitElement {
     this.colorValue = event.target.value;
   }
 
-  petChangeEvent(event) {
-    // console.log('petChangeEvent event.target.value', event.target.value, typeof event.target.value);
-    this.petSelectionValue = event.target.value;
+  shapeChangeEvent(event) {
+    // console.log('shapeChangeEvent event.target.value', event.target.value, typeof event.target.value);
+    this.shapeValue = event.target.value;
   }
 
   radioChangeEvent(event) {
@@ -122,35 +125,5 @@ export class LitDemo extends LitElement {
 }
 customElements.define('lit-demo', LitDemo);
 
-// https://editor.p5js.org/jht9629-nyu/sketches/AwB8tHJ15
-// test drive DOM.js v11 inputs
-
-/* -- DOM Reference
-  https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
-  https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox
-  https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio
-  https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
-  https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/color
-
-  https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset
-  https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date
-
-*/
-
-// <input
-// id="id_input2"
-// type="range"
-// min="0"
-// max="100"
-// value=${this.sliderValue}
-// @input=${this.sliderInputEvent}
-// @change=${this.sliderChangeEvent}
-// />
-// <label for="id_input2">sliderValue ${this.sliderValue}</label> <br />
-
-// @change=${this.sliderChangeEvent}
-// sliderChangeEvent(event) {
-//   // console.log('sliderChangeEvent event', event);
-//   // console.log('sliderChangeEvent event.target', event.target);
-//   console.log('sliderChangeEvent event.target.value', event.target.value, typeof event.target.value);
-// }
+// https://editor.p5js.org/jht9629-nyu/sketches/HureJsyBs
+// lit demo v3
