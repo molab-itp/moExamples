@@ -37,7 +37,8 @@ export class LitDemo extends LitElement {
   render() {
     this.updateCount++;
     return html`
-      <h2>Lit Demo counter=${this._counter}</h2>
+      <h2>Lit Demo Storage -- localStorage used to preserve settings</h2>
+      <br />
       <input id="id_counterInput" value=${'counter=' + this._counter} />
       <button @click=${this.updateUpClickEvent}>Update Up</button>
       <button @click=${this.updateDownClickEvent}>Update Down</button>

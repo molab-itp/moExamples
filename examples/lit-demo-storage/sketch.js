@@ -1,6 +1,7 @@
 // https://editor.p5js.org/jht9629-nyu/sketches/W_42_8Enr
 // lit demo storage v3
 
+// localStorage used to preserve settings
 // Lit demo of UI input elements
 // reference: https://lit.dev/tutorials/intro-to-lit/#8
 
