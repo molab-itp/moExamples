@@ -21,7 +21,7 @@ function setup() {
   // defined in lit-demo.js
   my.lit = createElement('lit-demo');
 
-  createElement('todo-list');
+  // createElement('todo-list');
 
   // createElement('lit-demo');
 }
