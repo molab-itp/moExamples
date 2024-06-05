@@ -14,7 +14,7 @@ import { LitElement, html } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/li
 
 export class LitDemo extends LitElement {
   static properties = {
-    _counter: { state: true },
+    _size: { state: true },
     sliderValue: { type: Number },
     checkBoxValue: { type: Boolean },
     radioValue: {},
@@ -25,7 +25,7 @@ export class LitDemo extends LitElement {
 
   constructor() {
     super();
-    this._counter = 0;
+    this._size = 0;
     this.sliderValue = 30;
     this.checkBoxValue = false;
     this.radioValue = 'gold';
@@ -39,9 +39,10 @@ export class LitDemo extends LitElement {
     return html`
       <h2>Lit Demo Storage -- localStorage used to preserve settings</h2>
       <br />
-      <input id="id_counterInput" value=${'counter=' + this._counter} />
-      <button @click=${this.updateUpClickEvent}>Update Up</button>
-      <button @click=${this.updateDownClickEvent}>Update Down</button>
+      <input id="id_sizeInput" value=${'size=' + this._size} />
+      <button @click=${this.resetClickEvent}>Reset</button>
+      <button @mousedown=${this.biggerMouseDownEvent} @click=${this.biggerClickEvent}>Bigger</button>
+      <button @mousedown=${this.smallerMouseDownEvent} @click=${this.smallerClickEvent}>Smaller</button>
       <br />
       <label>
         <input type="range" min="0" max="100" value=${this.sliderValue} @input=${this.sliderInputEvent} />
@@ -109,22 +110,41 @@ export class LitDemo extends LitElement {
     this.sliderValue = parseFloat(event.target.value);
   }
 
-  updateUpClickEvent(event) {
-    // console.log('updateClickEvent event.target', event.target);
-    this._counter += 1;
-    this.input.value = 'counter=' + this._counter;
+  biggerMouseDownEvent(event) {
+    // console.log('biggerMouseDownEvent event.target', event.target);
+    this.biggerIsActive = true;
   }
-  updateDownClickEvent(event) {
-    // console.log('updateDownClickEvent event', event);
-    this._counter -= 1;
-    this.input.value = 'counter=' + this._counter;
+
+  biggerClickEvent(event) {
+    // console.log('updateClickEvent event.target', event.target);
+    this.biggerIsActive = false;
+  }
+
+  smallerMouseDownEvent(event) {
+    // console.log('smallerMouseDownEvent event.target', event.target);
+    this.smallerIsActive = true;
+  }
+
+  smallerClickEvent(event) {
+    // console.log('smallerClickEvent event', event);
+    this.smallerIsActive = false;
+  }
+
+  resetClickEvent(event) {
+    // console.log('resetClickEvent event', event);
+    this._size = 0;
   }
 
   get input() {
-    return this.renderRoot?.querySelector('#id_counterInput') ?? null;
+    return this.renderRoot?.querySelector('#id_sizeInput') ?? null;
   }
 }
 customElements.define('lit-demo', LitDemo);
 
 // https://editor.p5js.org/jht9629-nyu/sketches/HureJsyBs
 // lit demo v3
+
+// https://developer.mozilla.org/en-US/docs/Web/API/Element/mousedown_event
+// https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseup_event
+
+// https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event

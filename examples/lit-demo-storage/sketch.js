@@ -38,9 +38,16 @@ function draw() {
   // use color picker value for the background color
   background(my.lit.elt.colorValue);
 
+  // Adjust size based on mouseDown in Bigger / Smaller buttons
+  if (my.lit.elt.biggerIsActive) {
+    my.lit.elt._size += 1;
+  } else if (my.lit.elt.smallerIsActive) {
+    my.lit.elt._size -= 1;
+  }
+
   // draw a rect shape in the middle of the canvas
   // that tracks the slider value from left to right
-  let len = 50 + my.lit.elt._counter;
+  let len = 50 + my.lit.elt._size;
   let x = (my.lit.elt.sliderValue / 100) * width;
   let y = (height - len) / 2;
   if (my.lit.elt.checkBoxValue) {
