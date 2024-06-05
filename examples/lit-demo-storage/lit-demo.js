@@ -21,6 +21,7 @@ export class LitDemo extends LitElement {
     shapeValue: {},
     colorValue: {},
     updateCount: { state: true },
+    customColorValue: {},
   };
 
   constructor() {
@@ -32,6 +33,7 @@ export class LitDemo extends LitElement {
     this.shapeValue = 'rect';
     this.colorValue = '#ffff00';
     this.updateCount = 0;
+    this.customColorValue = '#ffff00';
   }
 
   render() {
@@ -67,6 +69,13 @@ export class LitDemo extends LitElement {
           <input type="radio" name="drone" value="gold" ?checked=${this.radioValue == 'gold'} />
           Gold
         </label>
+        <label>
+          <input type="radio" name="drone" value="custom" ?checked=${this.radioValue == 'custom'} />
+          Custom
+          <label>
+            <input type="color" name="head" value=${this.customColorValue} @input=${this.customColorInputEvent} />
+          </label>
+        </label>
       </fieldset>
       <label>
         Choose a shapeValue:
@@ -83,6 +92,11 @@ export class LitDemo extends LitElement {
         <input type="color" name="head" value=${this.colorValue} @input=${this.colorInputEvent} />
       </label>
     `;
+  }
+
+  customColorInputEvent(event) {
+    // console.log('customColorInputEvent event', event);
+    this.customColorValue = event.target.value;
   }
 
   colorInputEvent(event) {

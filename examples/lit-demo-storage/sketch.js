@@ -55,7 +55,11 @@ function draw() {
     y = my.yoffset;
   }
 
-  fill(my.lit.elt.radioValue);
+  let acolor = my.lit.elt.radioValue;
+  if (acolor == 'custom') {
+    acolor = my.lit.elt.customColorValue;
+  }
+  fill(acolor);
 
   let shape = my.lit.elt.shapeValue;
   if (shape == 'rect') {
