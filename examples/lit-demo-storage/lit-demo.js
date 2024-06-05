@@ -72,9 +72,7 @@ export class LitDemo extends LitElement {
         <label>
           <input type="radio" name="drone" value="custom" ?checked=${this.radioValue == 'custom'} />
           Custom
-          <label>
-            <input type="color" name="head" value=${this.customColorValue} @input=${this.customColorInputEvent} />
-          </label>
+          <input type="color" value=${this.customColorValue} @input=${this.customColorInputEvent} />
         </label>
       </fieldset>
       <label>
@@ -89,7 +87,7 @@ export class LitDemo extends LitElement {
       <br />
       <label>
         Choose a colorValue
-        <input type="color" name="head" value=${this.colorValue} @input=${this.colorInputEvent} />
+        <input type="color" value=${this.colorValue} @input=${this.colorInputEvent} />
       </label>
     `;
   }
@@ -111,7 +109,10 @@ export class LitDemo extends LitElement {
 
   radioChangeEvent(event) {
     // console.log('radioChangeEvent event.target.value', event.target.value);
-    this.radioValue = event.target.value;
+    // console.log('radioChangeEvent event.target.type', event.target.type);
+    if (event.target.type == 'radio') {
+      this.radioValue = event.target.value;
+    }
   }
 
   checkBoxChangeEvent(event) {
