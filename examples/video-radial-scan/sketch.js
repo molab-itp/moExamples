@@ -1,5 +1,5 @@
 // https://editor.p5js.org/jht9629-nyu/sketches/hmPJyOAk1
-// video scan radial bounce
+// video scan radial bounce v2
 
 let my = {};
 
