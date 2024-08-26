@@ -49,7 +49,7 @@ function draw() {
 
   // overlayEyesMouth();
 
-  overlayEyesMouthBars();
+  // overlayEyesMouthBars();
 }
 
 function draw_shape_layer(face, layer) {
