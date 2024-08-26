@@ -29,7 +29,7 @@ function faceMesh_init() {
   // my.align = "center";
   my.alpha = 255;
   my.avg_color = [0, 0, 0];
-  my.stWt = width * 0.01; // strokeWeight
+  my.strokeWeight = width * 0.01; // strokeWeight
 
   faceMesh_pairsToNits();
 }

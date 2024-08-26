@@ -78,7 +78,7 @@ function draw_vertex_layer(lp, face, layer) {
 }
 
 function draw_lips_line(face) {
-  my.output.strokeWeight(my.stWt);
+  my.output.strokeWeight(my.strokeWeight);
   my.output.stroke(255, 0, 0);
   draw_line(lips_out_top, face);
 
@@ -112,7 +112,7 @@ function draw_eye_shape(face) {
 }
 
 function draw_eye_lines(face) {
-  my.output.strokeWeight(my.stWt);
+  my.output.strokeWeight(my.strokeWeight);
   my.output.stroke('gold');
 
   draw_line(left_eye_top, face);
@@ -142,7 +142,7 @@ function draw_points(points) {
   for (let point of points) {
     let { x, y } = faceMesh_inputPtToOutput(point);
     my.output.fill(0, 255, 0);
-    my.output.circle(x, y, my.stWt);
+    my.output.circle(x, y, my.strokeWeight);
   }
 }
 
