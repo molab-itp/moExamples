@@ -1,21 +1,21 @@
+//
 
 // my.output
 // my.mar_w
-// my.mar_h 
+// my.mar_h
 // my.align
 // my.alpha
 // my.avg_color[]
 
-// function drawFaceMesh(my, input, predictions) {
-function drawFaceMesh(my, keypoints) {
-  
+// function faceMesh_render(my, input, predictions) {
+function faceMesh_render(my, keypoints) {
   let input = my.input.get();
   if (!input) return;
-  
+
   let layer = my.output;
   let out_w = layer.width;
   let out_h = layer.height;
-  let mar_w = out_w * (my.mar_w / 100); 
+  let mar_w = out_w * (my.mar_w / 100);
   let mar_h = out_h * (my.mar_h / 100);
   let rr = out_h / input.height;
   let align_none = my.align === 'none';
@@ -38,7 +38,7 @@ function drawFaceMesh(my, keypoints) {
   let ry = (out_h - mar_h * 2) / ylen;
   let x0 = 0; // flush left
   let y0 = mar_h;
-  
+
   if (align_right) {
     x0 = out_w - xlen * rx;
   } else if (align_center) {
@@ -48,17 +48,17 @@ function drawFaceMesh(my, keypoints) {
     ry = rr;
     x0k = 0;
     y0k = 0;
-  }
-  else { // align left
+  } else {
+    // align left
     x0 = mar_w;
   }
-  
+
   layer.strokeWeight(0);
   let n = mesh_nits.length;
   for (let j = 0; j < n; j += 3) {
-    let {x: x1, y: y1} = keypoints[mesh_nits[j]];
-    let {x: x2, y: y2} = keypoints[mesh_nits[j + 1]];
-    let {x: x3, y: y3} = keypoints[mesh_nits[j + 2]];
+    let { x: x1, y: y1 } = keypoints[mesh_nits[j]];
+    let { x: x2, y: y2 } = keypoints[mesh_nits[j + 1]];
+    let { x: x3, y: y3 } = keypoints[mesh_nits[j + 2]];
     let col = input.get(x1, y1);
     col[3] = my.alpha;
     col_sum[0] += col[0];
@@ -88,4 +88,3 @@ function drawFaceMesh(my, keypoints) {
   my.xlen = xlen;
   my.ylen = ylen;
 }
-

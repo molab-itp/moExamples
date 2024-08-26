@@ -1,66 +1,26 @@
 // https://editor.p5js.org/jht9629-nyu/sketches/_3QMiI-fM
 // faceMesh mesh_nits v8 bestill
 
-let flipH = true;
-let faceMesh;
-let video;
-let faces = [];
-let options = {
-  maxFaces: 1,
-  refineLandmarks: false,
-  flipHorizontal: flipH,
-};
+// let faceMesh;
+// let faces; //  = [];
 
 let my = {};
 
-function preload() {
-  // Load the faceMesh model
-  faceMesh = ml5.faceMesh(options);
-}
-
 function setup() {
-  // pixelDensity(1);
   // createCanvas(640, 480);
   createCanvas(windowWidth, windowHeight);
-  // Create the webcam video and hide it
-  video = createCapture(VIDEO, { flipped: flipH });
-  video.size(640, 480);
-  // video.size(1920, 1080);
-  video.hide();
-  // Start detecting faces from the webcam video
-  faceMesh.detectStart(video, function (results) {
-    // Callback function for when faceMesh outputs data
-    // Save the output to the faces variable
-    faces = results;
-  });
 
-  my.input = video;
-  // my.output = createGraphics(video.width, video.height);
-  my.output = createGraphics(width, height);
-  my.output.noStroke();
-  my.mar_h = 5; // height margin in percent
-  my.mar_w = 5;
-  // my.align = "center";
-  my.alpha = 255;
-  my.avg_color = [0, 0, 0];
-  my.stWt = width * 0.01; // strokeWeight
+  video_init();
 
-  faceMeshPairsToNits();
+  faceMesh_init();
 
-  createVideoMask();
+  video_maskInit();
 
   my.bestill = new eff_bestill({ factor: 10, input: my.output });
 }
 
-function createVideoMask() {
-  my.videoMask = createGraphics(video.width, video.height);
-  my.videoMask.clear();
-  // my.videoMask.fill(255,255,255,255);
-  // my.videoMask.rect(100,100,200,200);
-  my.videoBuff = createGraphics(video.width, video.height);
-}
-
 function draw() {
+  if (!my.faces) return;
   // Draw the webcam video
   // image(video, 0, 0, width, height);
 
@@ -71,7 +31,7 @@ function draw() {
   // my.output.background(0);
 
   // Draw all the tracked face points
-  for (let face of faces) {
+  for (let face of my.faces) {
     // draw_face_circle(face);
     draw_face_mesh(face);
     draw_mouth_shape(face);
@@ -87,33 +47,7 @@ function draw() {
   my.bestill.prepareOutput();
   image(my.bestill.output, 0, 0);
 
-  if (my.face1) {
-    draw_shape_layer(my.face1, my.videoMask);
-    video.mask(my.videoMask);
-
-    let { x: x0, y: y0 } = transInversePt({ x: 0, y: 0 });
-    my.videoBuff.clear();
-    my.videoBuff.image(video, 0, 0, my.xlen, my.ylen, x0, y0, my.xlen, my.ylen);
-
-    // image(my.videoBuff, 0, 0);
-
-    let w = my.xlen * my.rx;
-    let h = my.ylen * my.ry;
-    image(my.videoBuff, 0, 0, w, h, 0, 0, my.xlen, my.ylen);
-
-    // console.log('x0, y0, w, h', x0, y0, w, h);
-  }
-}
-
-// image(img, dx, dy, dWidth, dHeight, sx, sy, [sWidth], [sHeight]
-
-function transInversePt(pt) {
-  let { x, y } = pt;
-  // x = (x - my.x0k) * my.rx + my.x0;
-  // y = (y - my.y0k) * my.ry + my.y0;
-  x = my.x0k + (x - my.x0) / my.rx;
-  y = my.y0k + (y - my.y0) / my.ry;
-  return { x, y };
+  // overlayEyesMouth();
 }
 
 function draw_shape_layer(face, layer) {
@@ -139,7 +73,7 @@ function draw_shape_layer(face, layer) {
 function draw_vertex_layer(lp, face, layer) {
   for (let i = 0; i < lp.length; i++) {
     let ki = lp[i];
-    // let { x, y } = transPt(face.keypoints[ki]);
+    // let { x, y } = faceMesh_inputPtToOutput(face.keypoints[ki]);
     let { x, y } = face.keypoints[ki];
     layer.vertex(x, y);
   }
@@ -201,21 +135,14 @@ function draw_mouth_shape(face) {
 function draw_vertex(lp, face) {
   for (let i = 0; i < lp.length; i++) {
     let ki = lp[i];
-    let { x, y } = transPt(face.keypoints[ki]);
+    let { x, y } = faceMesh_inputPtToOutput(face.keypoints[ki]);
     my.output.vertex(x, y);
   }
 }
 
-function transPt(pt) {
-  let { x, y } = pt;
-  x = (x - my.x0k) * my.rx + my.x0;
-  y = (y - my.y0k) * my.ry + my.y0;
-  return { x, y };
-}
-
 function draw_points(points) {
   for (let point of points) {
-    let { x, y } = transPt(point);
+    let { x, y } = faceMesh_inputPtToOutput(point);
     my.output.fill(0, 255, 0);
     my.output.circle(x, y, my.stWt);
   }
@@ -225,7 +152,7 @@ function draw_line(lp, face) {
   let px, py;
   for (let i = 0; i < lp.length; i++) {
     let ki = lp[i];
-    let { x, y } = transPt(face.keypoints[ki]);
+    let { x, y } = faceMesh_inputPtToOutput(face.keypoints[ki]);
     if (i != 0) {
       my.output.line(px, py, x, y);
     }
@@ -236,7 +163,7 @@ function draw_line(lp, face) {
 
 function draw_face_circle(face) {
   for (let keypoint of face.keypoints) {
-    let { x, y } = transPt(keypoint);
+    let { x, y } = faceMesh_inputPtToOutput(keypoint);
     fill(0, 255, 0);
     noStroke();
     circle(x, y, 2);
@@ -244,12 +171,7 @@ function draw_face_circle(face) {
 }
 
 function draw_face_mesh(face) {
-  drawFaceMesh(my, face.keypoints);
-}
-
-function faceMeshPairsToNits() {
-  // Extract the x coordinate from FACE_MESH_PAIRS
-  mesh_nits = FACE_MESH_PAIRS.map((xy) => xy[0]);
+  faceMesh_render(my, face.keypoints);
 }
 
 // https://editor.p5js.org/ml5/sketches/lCurUW1TT
