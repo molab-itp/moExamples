@@ -43,7 +43,7 @@ function setup() {
   // my.align = "center";
   my.alpha = 255;
   my.avg_color = [0, 0, 0];
-  my.stWt = 6; // strokeWeight
+  my.stWt = width * 0.01; // strokeWeight
 
   faceMeshPairsToNits();
 
