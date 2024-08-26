@@ -14,8 +14,6 @@ function setup() {
 
   faceMesh_init();
 
-  video_maskInit();
-
   my.bestill = new eff_bestill({ factor: 10, input: my.output });
 }
 
@@ -47,7 +45,7 @@ function draw() {
   my.bestill.prepareOutput();
   image(my.bestill.output, 0, 0);
 
-  // overlayEyesMouth();
+  overlayEyesMouth();
 }
 
 function draw_shape_layer(face, layer) {

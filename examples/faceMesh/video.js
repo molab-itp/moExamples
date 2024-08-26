@@ -4,11 +4,14 @@ let flipH = true;
 // let video;
 
 // Create the webcam video and hide it
+//
 function video_init() {
   my.video = createCapture(VIDEO, { flipped: flipH });
   my.video.size(640, 480);
   // video.size(1920, 1080);
   my.video.hide();
+
+  video_maskInit();
 }
 
 function video_maskInit() {
@@ -23,11 +26,11 @@ function video_maskInit() {
 function overlayEyesMouth() {
   if (my.face1) {
     draw_shape_layer(my.face1, my.videoMask);
-    video.mask(my.videoMask);
+    my.video.mask(my.videoMask);
 
     let { x: x0, y: y0 } = faceMesh_outputPtToInput({ x: 0, y: 0 });
     my.videoBuff.clear();
-    my.videoBuff.image(video, 0, 0, my.xlen, my.ylen, x0, y0, my.xlen, my.ylen);
+    my.videoBuff.image(my.video, 0, 0, my.xlen, my.ylen, x0, y0, my.xlen, my.ylen);
 
     // image(my.videoBuff, 0, 0);
 
