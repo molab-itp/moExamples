@@ -1,65 +1,51 @@
+let colorPalette = ['red', 'green', 'gold', 'black'];
 
-let colorPalette = ["red", "green", 'gold', "black"];
-
-// let my = {};
-
-function bars_setup(my) {
-  my.scrollSeconds = 30;
-  // my.debug = 1;
-  my.width = 400;
-  my.height = 400;
-  my.n = 3;
-  // =0 for left to right, else right to left scroll
-  my.xtoLeft = 1;
-
-  if (!my.debug) {
-    my.width = windowWidth;
-    my.height = windowHeight;
+class eff_bars {
+  // props = { width, height }
+  constructor(props) {
+    Object.assign(this, props);
+    this.init();
   }
-  createCanvas(my.width, my.height);
-  noStroke();
-
-  fullScreenBtn = createButton("Full Screen").mousePressed(full_screen_action);
-  fullScreenBtn.style("font-size:42px");
-
-  bars_my_setup(my);
-}
-
-function bars_my_setup(my) {
-  my.xlen = width / my.n;
-  my.ylen = height;
-  my.items = [];
-  let n = my.n + 1;
-  my.wide = my.xlen * n;
-  for (let i = 0; i < n; i++) {
-    let xpos = my.xlen * i;
-    let color = colorPalette[i % colorPalette.length];
-    my.items[i] = { xpos, color };
-  }
-  // for (let item of my.items) { console.log('item', item); }
-}
-
-function bars_draw(my) {
-  let deltaSecs = deltaTime / 1000
-  my.xstep = width * deltaSecs / my.scrollSeconds;
-  // console.log('my.xstep', my.xstep);
-
-  for (let item of my.items) {
-    let { xpos, color } = item;
-    item.xpos = (xpos + my.xstep) % my.wide;
-    fill(color);
-    let x = xpos - my.xlen;
-    let y = 0;
-    if (my.xtoLeft) {
-      x = width - x;
+  init() {
+    this.scrollSeconds = 30;
+    this.nbars = 3;
+    // =0 for left to right, else right to left scroll
+    this.xtoLeft = 1;
+    this.output = createGraphics(this.width, this.height);
+    this.xlen = this.width / this.nbars;
+    this.ylen = this.height;
+    this.items = [];
+    let n = this.nbars + 1;
+    this.wide = this.xlen * n;
+    for (let i = 0; i < n; i++) {
+      let xpos = this.xlen * i;
+      let color = colorPalette[i % colorPalette.length];
+      this.items[i] = { xpos, color };
     }
-    rect(x, y, my.xlen, my.ylen);
+  }
+  prepareOutput() {
+    let deltaSecs = deltaTime / 1000;
+    this.xstep = (width * deltaSecs) / this.scrollSeconds;
+    // console.log('this.xstep', this.xstep);
+    let layer = this.output;
+    layer.clear();
+    for (let item of this.items) {
+      let { xpos, color } = item;
+      item.xpos = (xpos + this.xstep) % this.wide;
+      layer.fill(color);
+      let x = xpos - this.xlen;
+      let y = 0;
+      if (this.xtoLeft) {
+        x = layer.width - x;
+      }
+      layer.rect(x, y, this.xlen, this.ylen);
+    }
   }
 }
 
 // --
 // https://editor.p5js.org/jht9629-nyu/sketches/ZpoPuHXRo
-// ims04-jht scroll color bars - no pop 
+// ims04-jht scroll color bars - no pop
 
 // https://editor.p5js.org/jht9629-nyu/sketches/3VKJ-q8ar
 // ims03-jht scrolling color bars

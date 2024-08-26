@@ -39,18 +39,16 @@ function faceMesh_pairsToNits() {
   mesh_nits = FACE_MESH_PAIRS.map((xy) => xy[0]);
 }
 
-function faceMesh_outputPtToInput(pt) {
-  let { x, y } = pt;
-  // x = (x - my.x0k) * my.rx + my.x0;
-  // y = (y - my.y0k) * my.ry + my.y0;
-  x = my.x0k + (x - my.x0) / my.rx;
-  y = my.y0k + (y - my.y0) / my.ry;
-  return { x, y };
-}
-
 function faceMesh_inputPtToOutput(pt) {
   let { x, y } = pt;
   x = (x - my.x0k) * my.rx + my.x0;
   y = (y - my.y0k) * my.ry + my.y0;
+  return { x, y };
+}
+
+function faceMesh_outputPtToInput(pt) {
+  let { x, y } = pt;
+  x = my.x0k + (x - my.x0) / my.rx;
+  y = my.y0k + (y - my.y0) / my.ry;
   return { x, y };
 }
