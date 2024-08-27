@@ -1,5 +1,3 @@
-let colorPalette = ['red', 'green', 'gold', 'black'];
-
 class eff_bars {
   // props = { width, height }
   constructor(props) {
