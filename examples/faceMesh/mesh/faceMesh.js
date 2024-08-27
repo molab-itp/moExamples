@@ -32,6 +32,8 @@ function faceMesh_init() {
   my.strokeWeight = width * 0.01; // strokeWeight
 
   faceMesh_pairsToNits();
+
+  my.openCount = 0;
 }
 
 function faceMesh_pairsToNits() {
