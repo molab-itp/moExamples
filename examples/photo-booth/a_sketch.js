@@ -70,6 +70,8 @@ function startup_completed() {
 
 function draw() {
   draw_frame();
+  // Must display the next photo_index
+  // so that image that will be saved in sync
   draw_number(my.photo_index + 1);
 }
 

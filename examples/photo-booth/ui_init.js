@@ -4,6 +4,9 @@ function ui_init() {
   my.effectBtn = ui_createButton('Effect');
   my.effectBtn.mousePressed(effect_action);
 
+  my.addBtn = ui_createButton('Add');
+  my.addBtn.mousePressed(add_action);
+
   my.takeBtn = ui_createButton('Take');
   my.takeBtn.mousePressed(take_action);
 

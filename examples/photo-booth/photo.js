@@ -63,9 +63,7 @@ async function show_action() {
   }
 }
 
-async function take_action() {
-  // console.log('take_action');
-
+async function add_action() {
   let entry = photo_list_entry(my.photo_index + 1);
   let path = photo_path_entry(entry);
 
@@ -82,6 +80,14 @@ async function take_action() {
   } catch (err) {
     console.log('take_action err', err);
   }
+}
+
+async function take_action() {
+  // console.log('take_action');
+
+  remove_action();
+
+  add_action();
 }
 
 async function remove_action() {
