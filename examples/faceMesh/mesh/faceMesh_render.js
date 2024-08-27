@@ -88,3 +88,6 @@ function faceMesh_render(my, keypoints) {
   my.xlen = xlen;
   my.ylen = ylen;
 }
+
+// lips_in_top 13
+// lips_in_bot 14
