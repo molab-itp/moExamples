@@ -53,7 +53,8 @@ function faceMesh_render(my, keypoints) {
     x0 = mar_w;
   }
 
-  layer.strokeWeight(0);
+  // layer.strokeWeight(0);
+  layer.noStroke();
   let n = mesh_nits.length;
   for (let j = 0; j < n; j += 3) {
     let { x: x1, y: y1 } = keypoints[mesh_nits[j]];
