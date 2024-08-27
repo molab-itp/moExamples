@@ -11,8 +11,8 @@ function ui_init() {
   my.removeBtn = ui_createButton('Remove');
   my.removeBtn.mousePressed(remove_action);
 
-  my.showBtn = ui_createButton('Show');
-  my.showBtn.mousePressed(show_action);
+  // my.showBtn = ui_createButton('Show');
+  // my.showBtn.mousePressed(show_action);
 
   my.photo_count_span = createSpan('' + my.photo_list.length);
 
