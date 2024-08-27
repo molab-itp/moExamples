@@ -6,7 +6,9 @@ let colorPalette = ['red', 'green', 'gold'];
 
 function setup() {
   // createCanvas(640, 480);
-  createCanvas(windowWidth, windowHeight);
+  my.canvas = createCanvas(windowWidth, windowHeight);
+
+  my_init();
 
   video_init();
 
@@ -15,10 +17,17 @@ function setup() {
   my.bestill = new eff_bestill({ factor: 10, input: my.output });
 
   my.bars = new eff_bars({ width: my.video.width, height: my.video.height });
+
+  ui_init();
+
+  dbase_app_init({ completed: startup_completed });
 }
 
 function draw() {
   if (!my.faces) return;
+
+  let str = my.photo_list.length + ' ' + my.photo_index;
+  my.photo_count_span.html(str);
 
   my.output.background(my.avg_color);
 
@@ -51,6 +60,9 @@ function trackLipsDiff() {
     if (my.lipsOpenState == 0) {
       my.lipsOpenCount++;
       // console.log('my.lipsOpenCount', my.lipsOpenCount);
+      // add_action();
+      let delay = 0.5 * 1000;
+      setTimeout(add_action, delay);
     }
     my.lipsOpenState = 1;
   } else {

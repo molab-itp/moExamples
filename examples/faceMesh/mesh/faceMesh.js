@@ -30,6 +30,8 @@ function faceMesh_init() {
   my.alpha = 255;
   my.avg_color = [0, 0, 0];
   my.strokeWeight = width * 0.01; // strokeWeight
+  my.strokeWeightEyes = my.strokeWeight * 1.5;
+  my.strokeWeightLips = my.strokeWeight;
 
   faceMesh_pairsToNits();
 

@@ -32,7 +32,7 @@ function draw_vertex_layer(lp, face, layer) {
 function draw_lips_line(face) {
   let colr = colorPalette[my.lipsOpenCount % colorPalette.length];
 
-  my.output.strokeWeight(my.strokeWeight);
+  my.output.strokeWeight(my.strokeWeightLips);
   my.output.stroke(colr);
   // my.output.stroke(255, 0, 0);
   draw_line(lips_out_top, face);
@@ -92,7 +92,7 @@ function draw_eye_shape(face) {
 function draw_eye_lines(face) {
   // my.lipsOpenCount colorPalette
   let colr = colorPalette[my.lipsOpenCount % colorPalette.length];
-  my.output.strokeWeight(my.strokeWeight);
+  my.output.strokeWeight(my.strokeWeightEyes);
   my.output.stroke(colr);
   // my.output.stroke('gold');
 
