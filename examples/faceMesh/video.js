@@ -17,9 +17,6 @@ function video_init() {
 function video_maskInit() {
   let { width, height } = my.video;
   my.videoMask = createGraphics(width, height);
-  my.videoMask.clear();
-  // my.videoMask.fill(255,255,255,255);
-  // my.videoMask.rect(100,100,200,200);
   my.videoBuff = createGraphics(width, height);
 }
 
