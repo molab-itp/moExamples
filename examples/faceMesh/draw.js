@@ -1,3 +1,5 @@
+//
+
 function draw_shape_layer(face, layer) {
   layer.clear();
   layer.fill([255, 255, 255, 255]);
@@ -28,22 +30,48 @@ function draw_vertex_layer(lp, face, layer) {
 }
 
 function draw_lips_line(face) {
+  let colr = colorPalette[my.lipsOpenCount % colorPalette.length];
+
   my.output.strokeWeight(my.strokeWeight);
-  my.output.stroke(255, 0, 0);
+  my.output.stroke(colr);
+  // my.output.stroke(255, 0, 0);
   draw_line(lips_out_top, face);
 
-  my.output.stroke(0, 255, 0);
+  // my.output.stroke(0, 255, 0);
   draw_line(lips_out_bot, face);
 
-  my.output.stroke(255, 255, 0);
+  // my.output.stroke(255, 255, 0);
   draw_line(lips_in_top, face);
 
-  my.output.stroke(0, 255, 255);
+  // my.output.stroke(0, 255, 255);
   draw_line(lips_in_bot, face);
 
-  // my.output.stroke(0, 255, 0);
-  my.output.stroke(255, 255, 255);
-  draw_points(face.lips.keypoints);
+  // draw_points_palette(face.lips.keypoints);
+}
+
+function draw_face_circle(face) {
+  draw_points_palette(face.faceOval.keypoints);
+}
+
+function draw_points_palette(points) {
+  my.output.strokeWeight(0);
+  let index = my.lipsOpenCount;
+  for (let point of points) {
+    let { x, y } = faceMesh_inputPtToOutput(point);
+    // my.output.fill(0, 255, 0);
+    let colr = colorPalette[index % colorPalette.length];
+    index++;
+    my.output.fill(colr);
+    my.output.circle(x, y, my.strokeWeight * 2);
+  }
+}
+
+function draw_points(points) {
+  for (let point of points) {
+    let { x, y } = faceMesh_inputPtToOutput(point);
+    my.output.fill(0, 255, 0);
+    my.output.circle(x, y, my.strokeWeight);
+  }
 }
 
 function draw_eye_shape(face) {
@@ -62,8 +90,11 @@ function draw_eye_shape(face) {
 }
 
 function draw_eye_lines(face) {
+  // my.lipsOpenCount colorPalette
+  let colr = colorPalette[my.lipsOpenCount % colorPalette.length];
   my.output.strokeWeight(my.strokeWeight);
-  my.output.stroke('gold');
+  my.output.stroke(colr);
+  // my.output.stroke('gold');
 
   draw_line(left_eye_top, face);
   draw_line(left_eye_bot, face);
@@ -88,14 +119,6 @@ function draw_vertex(lp, face) {
   }
 }
 
-function draw_points(points) {
-  for (let point of points) {
-    let { x, y } = faceMesh_inputPtToOutput(point);
-    my.output.fill(0, 255, 0);
-    my.output.circle(x, y, my.strokeWeight);
-  }
-}
-
 function draw_line(lp, face) {
   let px, py;
   for (let i = 0; i < lp.length; i++) {
@@ -106,15 +129,6 @@ function draw_line(lp, face) {
     }
     px = x;
     py = y;
-  }
-}
-
-function draw_face_circle(face) {
-  for (let keypoint of face.keypoints) {
-    let { x, y } = faceMesh_inputPtToOutput(keypoint);
-    fill(0, 255, 0);
-    noStroke();
-    circle(x, y, 2);
   }
 }
 

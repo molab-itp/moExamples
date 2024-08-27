@@ -87,6 +87,11 @@ function faceMesh_render(my, keypoints) {
   my.ry = ry;
   my.xlen = xlen;
   my.ylen = ylen;
+
+  let { y: y1 } = keypoints[13];
+  let { y: y2 } = keypoints[14];
+  my.lipsDiff = (y2 - y1) / ylen;
+  // console.log('my.lipsDiff', my.lipsDiff);
 }
 
 // lips_in_top 13

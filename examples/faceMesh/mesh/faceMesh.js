@@ -33,7 +33,8 @@ function faceMesh_init() {
 
   faceMesh_pairsToNits();
 
-  my.openCount = 0;
+  my.lipsOpenCount = 0;
+  my.lipsOpenState = 0;
 }
 
 function faceMesh_pairsToNits() {

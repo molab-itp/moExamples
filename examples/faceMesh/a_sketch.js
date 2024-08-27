@@ -2,7 +2,7 @@
 // faceMesh v9 photo
 
 let my = {};
-let colorPalette = ['red', 'green', 'gold', 'black'];
+let colorPalette = ['red', 'green', 'gold'];
 
 function setup() {
   // createCanvas(640, 480);
@@ -24,21 +24,38 @@ function draw() {
 
   // Draw all the tracked face points
   for (let face of my.faces) {
-    // draw_face_circle(face);
     draw_face_mesh(face);
     draw_mouth_shape(face);
     draw_lips_line(face);
     draw_eye_shape(face);
     draw_eye_lines(face);
+    // draw_face_circle(face);
     my.face1 = face;
   }
 
   my.bestill.prepareOutput();
   image(my.bestill.output, 0, 0);
 
-  // overlayEyesMouth();
+  if (my.lipsOpenCount % 2 == 1) {
+    overlayEyesMouth();
+  }
 
   // overlayEyesMouthBars();
+
+  trackLipsDiff();
+}
+
+function trackLipsDiff() {
+  //
+  if (my.lipsDiff > 0.05) {
+    if (my.lipsOpenState == 0) {
+      my.lipsOpenCount++;
+      // console.log('my.lipsOpenCount', my.lipsOpenCount);
+    }
+    my.lipsOpenState = 1;
+  } else {
+    my.lipsOpenState = 0;
+  }
 }
 
 // https://editor.p5js.org/ml5/sketches/lCurUW1TT
