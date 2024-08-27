@@ -8,6 +8,8 @@ function setup() {
   // createCanvas(640, 480);
   my.canvas = createCanvas(windowWidth, windowHeight);
 
+  pixelDensity(1);
+
   my_init();
 
   video_init();
@@ -45,11 +47,12 @@ function draw() {
   my.bestill.prepareOutput();
   image(my.bestill.output, 0, 0);
 
-  if (my.lipsOpenCount % 2 == 1) {
+  let phase = my.lipsOpenCount % 3;
+  if (phase == 1) {
     overlayEyesMouth();
+  } else if (phase == 2) {
+    overlayEyesMouthBars();
   }
-
-  // overlayEyesMouthBars();
 
   trackLipsDiff();
 }

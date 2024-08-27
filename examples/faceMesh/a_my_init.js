@@ -18,20 +18,19 @@ function my_init() {
   if (my.query) {
     my.roomName = my.query.room || my.roomName;
     my.group = my.query.group || my.group;
+    my.isRemote = parseFloat(my.query.remote || my.isRemote);
   }
 
   my.photo_index = 0;
   my.photo_max = 4;
   my.photo_list = [];
-  my.slit_scan = 0;
 
-  // Aspect ratio of video capture on mobile device
   let scale = 0.5;
   my.vwidth = 480 * scale;
   my.vheight = 640 * scale;
 
   // my.imageQuality = 1;
-  my.imageQuality = 0.1;
+  my.imageQuality = 0.5;
   my.imageExt = '.jpg';
   my.thumbWidth = my.vwidth;
 }
