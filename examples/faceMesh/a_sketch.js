@@ -50,6 +50,7 @@ function draw() {
   image(my.bestill.output, 0, 0);
 
   let phase = my.lipsOpenCount % 3;
+  // let phase = 2;
   if (phase == 1) {
     overlayEyesMouth();
   } else if (phase == 2) {
