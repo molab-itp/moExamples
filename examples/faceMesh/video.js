@@ -6,8 +6,10 @@ let flipH = true;
 // Create the webcam video and hide it
 //
 function video_init() {
-  my.video = createCapture(VIDEO, { flipped: flipH });
-  my.video.size(640, 480);
+  // Use default video size
+  my.video = createCapture({ video: true }, { flipped: flipH });
+  // my.video = createCapture(VIDEO, { flipped: flipH });
+  // my.video.size(640, 480);
   // video.size(1920, 1080);
   my.video.hide();
 
