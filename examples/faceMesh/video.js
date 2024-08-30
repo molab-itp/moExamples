@@ -6,11 +6,15 @@ let flipH = true;
 // Create the webcam video and hide it
 //
 function video_init() {
+  // !!@ prefer to use default video capture size,
+  // but when size is not specified must set
   // Use default video size
   // my.video = createCapture({ video: true, audio: false, flipped: flipH });
 
   my.video = createCapture(VIDEO, { flipped: flipH });
   console.log('my.video.width, my.video.height', my.video.width, my.video.height);
+
+  // !!@ remove when we can used default size
   let vwidth = 640;
   let vheight = 480;
   if (width < height) {
