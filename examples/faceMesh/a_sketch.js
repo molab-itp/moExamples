@@ -20,7 +20,7 @@ function setup() {
 
   my.bestill = new eff_bestill({ factor: 10, input: my.output });
 
-  my.bars = new eff_bars({ width: my.video.width, height: my.video.height });
+  // my.bars = new eff_bars({ width: my.video.width, height: my.video.height });
 
   ui_init();
 

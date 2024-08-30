@@ -10,6 +10,7 @@ function faceMesh_init() {
 
   my.faceMesh = ml5.faceMesh(options, function () {
     console.log('ml5.faceMesh loaded');
+    console.log('ml5.faceMesh loaded my.video', my.video);
     // Start detecting faces from the webcam video
     my.faceMesh.detectStart(my.video, function (results) {
       // Callback function for when faceMesh outputs data
@@ -21,7 +22,7 @@ function faceMesh_init() {
     });
   });
 
-  my.input = my.video;
+  // my.input = my.video;
   my.output = createGraphics(width, height);
   my.output.noStroke();
   my.mar_h = 5; // height margin in percent
