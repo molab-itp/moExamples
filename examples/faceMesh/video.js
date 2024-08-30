@@ -7,7 +7,7 @@ let flipH = true;
 //
 function video_init() {
   // Use default video size
-  my.video = createCapture({ video: true }, { flipped: flipH });
+  my.video = createCapture({ video: true, audio: false }, { flipped: flipH });
   // my.video = createCapture(VIDEO, { flipped: flipH });
   // my.video.size(640, 480);
   // video.size(1920, 1080);
