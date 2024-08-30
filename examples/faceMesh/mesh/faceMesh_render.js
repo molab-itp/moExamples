@@ -19,8 +19,9 @@ function faceMesh_render(my, keypoints) {
   let mar_h = out_h * (my.mar_h / 100);
   let rr = out_h / input.height;
   let align_none = my.align === 'none';
-  let align_center = my.align === 'center';
+  let align_left = my.align === 'left';
   let align_right = my.align === 'right';
+  // let align_center = my.align === 'center';
 
   let col_sum = [0, 0, 0];
   let ncol = 0;
@@ -34,23 +35,24 @@ function faceMesh_render(my, keypoints) {
   let y0k = y1k;
   let xlen = x2k - x1k;
   let ylen = y2k - y1k;
-  let rx = (out_w - mar_w * 2) / xlen;
   let ry = (out_h - mar_h * 2) / ylen;
+  // let rx = (out_w - mar_w * 2) / xlen;
+  let rx = ry;
   let x0 = 0; // flush left
   let y0 = mar_h;
 
   if (align_right) {
     x0 = out_w - xlen * rx;
-  } else if (align_center) {
-    x0 = (out_w - xlen * rx) / 2;
+  } else if (align_left) {
+    x0 = mar_w;
   } else if (align_none) {
     rx = rr;
     ry = rr;
     x0k = 0;
     y0k = 0;
   } else {
-    // align left
-    x0 = mar_w;
+    // align_center
+    x0 = (out_w - xlen * rx) / 2;
   }
 
   // layer.strokeWeight(0);

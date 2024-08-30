@@ -2,15 +2,17 @@
 // faceMesh v9 photo
 
 let my = {};
-let colorPalette = ['red', 'green', 'gold'];
+let colorPalette = ['red', 'green', 'gold', 'black'];
 
 function setup() {
   // createCanvas(640, 480);
-  my.canvas = createCanvas(windowWidth, windowHeight);
 
   pixelDensity(1);
 
   my_init();
+
+  let nh = Math.floor(windowHeight * (my.top_percent / 100));
+  my.canvas = createCanvas(windowWidth, nh);
 
   video_init();
 

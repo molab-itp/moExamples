@@ -6,7 +6,7 @@ class eff_bars {
   }
   init() {
     this.scrollSeconds = 30;
-    this.nbars = 3;
+    this.nbars = colorPalette.length;
     // =0 for left to right, else right to left scroll
     this.xtoLeft = 1;
     this.output = createGraphics(this.width, this.height);
