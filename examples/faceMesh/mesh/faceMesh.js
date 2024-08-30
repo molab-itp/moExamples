@@ -10,7 +10,7 @@ function faceMesh_init() {
 
   my.faceMesh = ml5.faceMesh(options, function () {
     console.log('ml5.faceMesh loaded');
-    console.log('ml5.faceMesh loaded my.video', my.video);
+    // console.log('ml5.faceMesh loaded my.video', my.video);
     // Start detecting faces from the webcam video
     my.faceMesh.detectStart(my.video, function (results) {
       // Callback function for when faceMesh outputs data

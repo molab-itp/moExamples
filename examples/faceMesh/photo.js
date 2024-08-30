@@ -5,7 +5,7 @@ function startup_completed() {
   dbase_app_observe({ observed_item });
 
   function observed_item(device) {
-    console.log('observed_item device', device);
+    // console.log('observed_item device', device);
     // console.log('observed_item device.photo_index', device.photo_index);
     // console.log('observed_item device.photo_list', device.photo_list);
     if (device.photo_list != undefined) {

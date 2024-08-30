@@ -1,23 +1,19 @@
 //
 
+// !!@ flipH=true does not take unless capture is sized immediately
 let flipH = true;
-// let video;
+// let flipH = false;
 
 // Create the webcam video and hide it
 //
-function video_init() {
-  enum_mediaDevices({}, function () {
-    let mediaDevice = my.mediaDevices[0];
-    if (!mediaDevice) {
-      console.log('video_init failed. my.mediaDevices.length', my.mediaDevices.length);
+function video_init(video_init_doneFunc) {
+  enum_mediaDevices({}, function (capture) {
+    // !!@ If multiple video devices may be called more than once
+    if (my.video) {
+      console.log('video_init !!@ done');
       return;
     }
-    // my.video = createCapture(mediaDevice, { flipped: flipH });
-    my.video = mediaDevice.capture;
-    console.log('my.video.width, my.video.height', my.video.width, my.video.height);
-
-    // !!@ default to 300 150
-    my.video.size(640, 480);
+    my.video = capture;
 
     my.video.hide();
 
@@ -25,9 +21,7 @@ function video_init() {
 
     video_maskInit();
 
-    my.bars = new eff_bars({ width: my.video.width, height: my.video.height });
-
-    my.input = my.video;
+    video_init_doneFunc();
   });
 }
 
@@ -81,15 +75,12 @@ function create_mediaDevices(options, doneFunc) {
     init_device_capture(mediaDevice);
     // create_mediaDiv(mediaDevice, { live: 0 });
   }
-  doneFunc();
-  // ui_refresh();
   function init_device_capture(mediaDevice) {
     let vcap = {
       audio: true,
       video: {
         deviceId: { exact: mediaDevice.deviceId },
       },
-      flipped: flipH,
     };
     if (dim && dim.width && dim.height) {
       vcap.video.width = { exact: dim.width };
@@ -97,8 +88,16 @@ function create_mediaDevices(options, doneFunc) {
     }
     // console.log('create_mediaDevices dim', dim);
     // console.log('create_mediaDevices vcap', vcap);
-    let capture = createCapture(vcap, function (stream) {
+
+    // !!@ flipH=true does not take unless capture is sized immediately
+    // let capture = createCapture(VIDEO, { flipped: flipH });
+    // capture.size(capture.width, capture.height);
+
+    let capture = createCapture(vcap, { flipped: flipH }, function (stream) {
+      console.log('create_mediaDevices stream', stream);
       mediaDevice.stream = stream;
+      // capture.width and height now valid
+      doneFunc(capture);
       // livem_restore();
     });
     capture.elt.muted = true;

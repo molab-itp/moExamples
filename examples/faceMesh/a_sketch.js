@@ -14,13 +14,15 @@ function setup() {
   let nh = Math.floor(windowHeight * (my.top_percent / 100));
   my.canvas = createCanvas(windowWidth, nh);
 
-  video_init();
+  video_init(function () {
+    my.bars = new eff_bars({ width: my.video.width, height: my.video.height });
 
-  faceMesh_init();
+    my.input = my.video;
 
-  my.bestill = new eff_bestill({ factor: 10, input: my.output });
+    faceMesh_init();
 
-  // my.bars = new eff_bars({ width: my.video.width, height: my.video.height });
+    my.bestill = new eff_bestill({ factor: 10, input: my.output });
+  });
 
   ui_init();
 

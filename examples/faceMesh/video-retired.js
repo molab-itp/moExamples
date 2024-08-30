@@ -21,11 +21,12 @@ function video_init() {
     vwidth = 480;
     vheight = 640;
   }
-  my.video.size(vwidth, vheight);
+  // my.video.size(vwidth, vheight);
   // video.size(1920, 1080);
   my.video.hide();
 
   console.log('my.video.width, my.video.height', my.video.width, my.video.height);
+  console.log('my.video.loadedmetadata', my.video.loadedmetadata);
 
   video_maskInit();
 
