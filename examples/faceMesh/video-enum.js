@@ -1,6 +1,7 @@
 //
 
-// !!@ flipH=true does not take unless capture is sized immediately
+// !!@ flipH=true does not preview correctly
+// unless capture is sized immediately
 let flipH = true;
 // let flipH = false;
 
