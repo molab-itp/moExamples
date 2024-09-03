@@ -45,6 +45,7 @@ function my_setup() {
 
   my.dbase_rootPath = 'm0-@r-@w-';
   my.roomName = 'room0';
+  my.nameDevice = '';
 
   my.mo_app = 'mo-america-rewind';
   my.group = 's0';
