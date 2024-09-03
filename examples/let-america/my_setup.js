@@ -1,7 +1,7 @@
 function my_setup() {
-  let lowerMargin = 0.5; // Room for buttons
+  // let lowerMargin = 80; // Room for buttons
   my.width = windowWidth;
-  my.height = windowHeight * lowerMargin;
+  my.height = windowHeight * 0.25;
 
   // change to your firebase app
   my.fireb_config = 'jht9629';
@@ -11,9 +11,9 @@ function my_setup() {
   my.dbase_rootPath = 'm0-@r-@w-';
 
   // change to add a room in firebase real-time database
-  my.roomName = 'room1';
+  my.roomName = 'room0';
 
-  my.mo_app = 'mo-vote';
+  my.mo_app = 'mo-america';
   my.nameDevice = '';
   //
   my.vote_count = 0;

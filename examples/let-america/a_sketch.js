@@ -1,16 +1,11 @@
-// https://editor.p5js.org/jht9629-nyu/sketches/CAgivET8K
-// p5moExamples vote_DOMjs 47
+// https://editor.p5js.org/jht9629-nyu/sketches/xxxx
+// p5moExamples let-america
 
-// participants can cast a numeric vote up or down
-// buttons to flip and coup: reset the database
-
-// display list of participants using DOMjs id_ul.innerHTML
-// Using DOM.js for ui
-//  https://github.com/lenincompres/DOM.js
+// control let-america be america poem scroll
 
 let my = {};
 
-// mo-vote/device/{uid}/vote
+// mo-america/device/{uid}/vote
 //    individual vote
 
 function setup() {
@@ -25,14 +20,14 @@ function setup() {
 
 function draw() {
   background(0);
-  fill(my.colors[abs(my.vote_count) % my.colors.length]);
+  fill(my.colors[abs(id_vote_count.vote_count) % my.colors.length]);
   circle(my.x, my.y, my.len);
   my.x = (my.x + my.xstep + width) % width;
 
   calc_votes();
 
-  id_vote_count_span.innerHTML = my.vote_count;
-  id_vote_total_count_span.innerHTML = my.vote_total_count;
+  // id_vote_count_span.innerHTML = my.vote_count;
+  // id_vote_total_count_span.innerHTML = my.vote_total_count;
 
   if (dbase_actions_issued(my.uid, { switch_action: 1 })) {
     switchDirection();
@@ -43,7 +38,9 @@ function draw() {
 // check device exists in db
 function startup_completed() {
   console.log('startup_completed');
-  //
+
+  id_vote_count.citizen_id = my.uid;
+
   dbase_devices_observe({ observed_key, observed_item, all: 1 });
 
   function observed_key(key, device) {
@@ -54,9 +51,14 @@ function startup_completed() {
   function observed_item(device) {
     console.log('observed_item device.vote_count', device.vote_count);
     if (device.vote_count != undefined) {
-      my.vote_count = device.vote_count;
+      id_vote_count.vote_count = device.vote_count;
     }
   }
+}
+
+function rewindAction() {
+  console.log('rewindAction');
+  dbase_issue_actions({ rewind_action: 1 }, { all: 1 });
 }
 
 function voteUpAction() {
@@ -67,11 +69,6 @@ function voteUpAction() {
 function voteDownAction() {
   console.log('Vote Down');
   dbase_update_props({ vote_count: dbase_increment(-1) });
-}
-
-function votePresentAction() {
-  console.log('Vote Present');
-  dbase_update_props({ vote_count: dbase_increment(0) });
 }
 
 function switchDirectionAction() {
@@ -100,15 +97,14 @@ function calc_votes() {
       continue;
     }
     my.vote_total_count += vote_count;
-    let item = `uid ${uid} vote_count ${vote_count}`;
+    let item = `${uid} vote_count ${vote_count}`;
     if (my.uid == uid) {
       item = `<b>${item}</b>`;
     }
     items.push(item);
   }
   //
-  // !!@ how to attach at li
-  id_ul.innerHTML = items.join('<br>');
+  id_voter_list.innerHTML = items.join('<br>');
 
   // li: {
   //   id: "listedThings",

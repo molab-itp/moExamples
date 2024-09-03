@@ -3,19 +3,30 @@
 //  https://github.com/lenincompres/DOM.js
 
 function create_ui() {
-  DOM.set([
-    { tag: 'button', text: 'Vote Up', onclick: voteUpAction },
-    { tag: 'button', text: 'Down', onclick: voteDownAction },
-    { tag: 'button', text: 'Present', onclick: votePresentAction },
-    { tag: 'span', id: 'id_vote_count_span', text: my.voteCount },
-    { tag: 'br' },
-    { tag: 'span', text: 'Total Votes ' },
-    { tag: 'span', id: 'id_vote_total_count_span', text: my.vote_total_count },
-    { tag: 'br' },
-    { tag: 'button', text: 'Flip', onclick: switchDirectionAction },
-    { tag: 'button', text: 'Coup', onclick: removeAppAction },
-    { tag: 'ul', id: 'id_ul' },
-  ]);
+  //
+  id_vote_count.rewindAction = rewindAction; //
+  id_vote_count.voteUpAction = voteUpAction;
+  id_vote_count.voteDownAction = voteDownAction;
+  id_vote_count.resetAction = removeAppAction;
+
+  // ?? Not sure of value of createElement vs. lower leverl DOM function
+  // my.lit = createElement('lit-vote-count');
+  // my.lit.elt.rewindAction = rewindAction; //
+  // my.lit.elt.voteUpAction = voteUpAction;
+  // my.lit.elt.voteDownAction = voteDownAction;
+
+  // DOM.set([
+  //   { tag: 'button', text: 'Vote Up', onclick: voteUpAction },
+  //   { tag: 'button', text: 'Down', onclick: voteDownAction },
+  //   { tag: 'span', id: 'id_vote_count_span', text: my.voteCount },
+  //   { tag: 'br' },
+  //   { tag: 'span', text: 'Total Votes ' },
+  //   { tag: 'span', id: 'id_vote_total_count_span', text: my.vote_total_count },
+  //   { tag: 'br' },
+  //   { tag: 'button', text: 'Flip', onclick: switchDirectionAction },
+  //   { tag: 'button', text: 'Coup', onclick: removeAppAction },
+  //   { tag: 'ul', id: 'id_ul' },
+  // ]);
 
   // createButton('Vote Up').mousePressed(voteUpAction);
   // createButton('Down').mousePressed(voteDownAction);
