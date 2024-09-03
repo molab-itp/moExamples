@@ -7,6 +7,7 @@ function create_ui() {
   id_vote_count.rewindAction = rewindAction; //
   id_vote_count.voteUpAction = voteUpAction;
   id_vote_count.voteDownAction = voteDownAction;
+  id_vote_count.votePresentAction = votePresentAction;
   id_vote_count.resetAction = removeAppAction;
 
   // ?? Not sure of value of createElement vs. lower leverl DOM function

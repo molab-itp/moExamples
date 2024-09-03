@@ -19,7 +19,8 @@ export class LitVoteCount extends LitElement {
       Welcome citizen id ${this.citizen_id}<br />
       Your vote count ${this.vote_count}<br />
       <button @click=${this.voteUpClickEvent}>Vote Up</button>
-      <button @click=${this.voteDownClickEvent}>Vote Down</button> <br />
+      <button @click=${this.voteDownClickEvent}>Vote Down</button>
+      <button @click=${this.votePresentClickEvent}>Vote Present</button> <br />
       <button @click=${this.resetClickEvent}>Reset</button> <br />
     `;
   }
@@ -41,6 +42,10 @@ export class LitVoteCount extends LitElement {
 
   voteDownClickEvent(event) {
     this.voteDownAction();
+  }
+
+  votePresentClickEvent(event) {
+    this.votePresentAction();
   }
 }
 customElements.define('lit-vote-count', LitVoteCount);

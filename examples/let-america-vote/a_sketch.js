@@ -71,6 +71,11 @@ function voteDownAction() {
   dbase_update_props({ vote_count: dbase_increment(-1) });
 }
 
+function votePresentAction() {
+  console.log('Vote Present');
+  dbase_update_props({ vote_count: dbase_increment(0) });
+}
+
 function switchDirectionAction() {
   dbase_issue_actions({ switch_action: 1 }, { all: 1 });
 }
