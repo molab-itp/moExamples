@@ -1,7 +1,7 @@
 //
 function my_init1() {
   // updated to verify change on mobile
-  my.version = '?v=102';
+  my.version = '?v=103';
   my.isRemote = 1;
   my.settingsFlag = 0;
   // Aspect ratio of video capture
