@@ -1,7 +1,7 @@
 //
 function my_init() {
   // updated to verify change on mobile
-  my.version = '?v=105';
+  my.version = '?v=106';
   my.isRemote = 1;
   my.videoFlag = 1;
   // show detailed log
