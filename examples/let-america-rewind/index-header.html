@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fixed Element Example</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 2000px; /* just to demonstrate scrolling */
+      }
+
+      .fixed-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        z-index: 1000;
+      }
+
+      .content {
+        margin-top: 60px; /* adjust to prevent content from hiding behind the fixed element */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fixed-header">I'm fixed at the top!</div>
+
+    <div class="content">
+      <p>Scroll down to see the fixed element remain at the top of the screen.</p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non sapien auctor, mollis nunc at, accumsan
+        nunc. Praesent vitae orci nec lorem sollicitudin venenatis.
+      </p>
+      <!-- Add more content here to enable scrolling -->
+    </div>
+  </body>
+</html>
+<!-- 
+https://chatgpt.com/c/66dd1417-de54-8002-8c52-a4b4873c1de6
+html css to keep element at the top of the window when window is scrolled
+ -->

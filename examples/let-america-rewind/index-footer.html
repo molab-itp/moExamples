@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fixed Footer Example</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 2000px; /* Just to enable scrolling for demonstration */
+      }
+
+      .fixed-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        z-index: 1000;
+      }
+
+      .content {
+        padding-bottom: 60px; /* To prevent content from being hidden behind the fixed footer */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <p>Scroll down to see the fixed element remain at the bottom of the screen.</p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non sapien auctor, mollis nunc at, accumsan
+        nunc. Praesent vitae orci nec lorem sollicitudin venenatis.
+      </p>
+      <!-- Add more content here to enable scrolling -->
+    </div>
+
+    <div class="fixed-footer">I'm fixed at the bottom!</div>
+  </body>
+</html>
+
+<!-- https://chatgpt.com/
+html css to keep element at the bottome of the window when window is scrolled
+ -->
