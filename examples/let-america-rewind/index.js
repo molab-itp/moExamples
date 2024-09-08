@@ -36,16 +36,14 @@ function app_init_completed() {
 function full_read_action() {
   console.log('full_read_action');
   dbase_issue_action('full_read');
-  // dbase_update_item({ full_read: dbase_increment(1) });
 }
 
 function rewind_action() {
   console.log('rewind_action');
   dbase_issue_action('rewind_count');
-  // dbase_update_item({ rewind_count: dbase_increment(1) });
 }
 
-// dbase_issue_action('full_read');
+// !!@ dbase_issue_action to p5moLibrary
 function dbase_issue_action(prop) {
   console.log('dbase_issue_action', prop);
   dbase_update_item({ [prop]: dbase_increment(1) });
