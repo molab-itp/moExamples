@@ -30,6 +30,13 @@ function app_init_completed() {
       console.log('rewind_action_count', rewind_action_count);
       my.rewind_action_count = rewind_action_count;
     }
+    // {num: 1, text: 'Let...'}
+    let line = item.line;
+    if (line) {
+      console.log('line', line);
+      id_line.innerText = `(${line.num}) ${line.text}`;
+      id_line.style.backgroundColor = line.color;
+    }
   }
 }
 
