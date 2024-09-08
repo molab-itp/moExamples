@@ -1,4 +1,4 @@
-# [github p5moExamples](https://github.com/molab-itp/p5moExamples.git) ?v=101
+# [github p5moExamples](https://github.com/molab-itp/p5moExamples.git) ?v=102
 
 - multi-device experiences on handheld and large screens
 - creating and updating firebase cloud data
@@ -26,30 +26,30 @@ The functions that include Firebase setup are in [p5moLibrary](https://github.co
 - [p5js p5moExamples vote](https://editor.p5js.org/jht9629-nyu/sketches/EEafnQwr1): real-time voting examples that count your own votes and total votes from available devices
 - [p5js p5moExamples words](https://editor.p5js.org/jht9629-nyu/sketches/23h3z1G82): showing the word of the day websites with iframes by incrementing and decrementing the date
 
-## [github.io versions of examples](https://molab-itp.github.io/p5moExamples?v=101)
+## [github.io versions of examples](https://molab-itp.github.io/p5moExamples?v=102)
 
-- [examples/let-america-rewind](examples/let-america-rewind?v=101)
-- [examples/faceMesh](examples/faceMesh?v=101)
+- [examples/let-america-rewind](examples/let-america-rewind?v=102)
+- [examples/faceMesh](examples/faceMesh?v=102)
 
-- [examples/shout](examples/shout?v=101)
-- [examples/video-radial-scan](examples/video-radial-scan?v=101)
-- [examples/dice99](examples/dice99?v=101)
+- [examples/shout](examples/shout?v=102)
+- [examples/video-radial-scan](examples/video-radial-scan?v=102)
+- [examples/dice99](examples/dice99?v=102)
 
-- [examples/vote](examples/vote?v=101)
-- [examples/vote_DOMjs](examples/vote_DOMjs?v=101)
-- [examples/words](examples/words?v=101)
-- [examples/videoKit](examples/videoKit?v=101)
-- [examples/photo-booth](examples/photo-booth?v=101)
-- [examples/iframe_player](examples/iframe_player?v=101)
+- [examples/vote](examples/vote?v=102)
+- [examples/vote_DOMjs](examples/vote_DOMjs?v=102)
+- [examples/words](examples/words?v=102)
+- [examples/videoKit](examples/videoKit?v=102)
+- [examples/photo-booth](examples/photo-booth?v=102)
+- [examples/iframe_player](examples/iframe_player?v=102)
 
-- [examples/lobby room0](examples/lobby?v=101&room=room0)
-- [examples/lobby room0 mo-videoplayer](examples/lobby?v=101&room=room0&app=mo-videoplayer)
-- [examples/lobby room1](examples/lobby?v=101&room=room1)
+- [examples/lobby room0](examples/lobby?v=102&room=room0)
+- [examples/lobby room0 mo-videoplayer](examples/lobby?v=102&room=room0&app=mo-videoplayer)
+- [examples/lobby room1](examples/lobby?v=102&room=room1)
 
-- [examples/paint](examples/paint?v=101)
-- [examples/paint remote=0](examples/paint?v=101&remote=0)
-- [examples/pixel-grid](examples/pixel-grid?v=101)
-- [examples/pixel-grid remote=0](examples/pixel-grid?v=101&remote=0)
+- [examples/paint](examples/paint?v=102)
+- [examples/paint remote=0](examples/paint?v=102&remote=0)
+- [examples/pixel-grid](examples/pixel-grid?v=102)
+- [examples/pixel-grid remote=0](examples/pixel-grid?v=102&remote=0)
 
 ## github.io of p5mirror-jht9629-nyu
 
