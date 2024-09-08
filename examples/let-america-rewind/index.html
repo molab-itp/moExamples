@@ -7,6 +7,18 @@
       body, button {
         font-size: 5vw;
       }
+      .fixed-footer {
+        font-size: 20px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        /* background-color: #333;
+        color: white; */
+        padding: 10px 20px;
+        text-align: center;
+        z-index: 1000;
+      }
     </style>
 
   </head>
@@ -25,6 +37,13 @@
     </h3>
     <div>by Langston Hughes 1901 – 1967</div>  
     <div><p id="id_line"></p></div>
+    <div class="fixed-footer">
+      powered by 
+      <a href="https://github.com/molab-itp/p5moLibrary" target="moLibrary">  
+        p5moLibrary
+      </a>
+      created by <a href="https://jht1493.net" target="jht"> John Henry Thompson</a>
+    </div>
   </body>
 
   <script type="module" src="https://molab-itp.github.io/p5moRelease/lib/108/dbase/a_dbase.js?v=99"></script>

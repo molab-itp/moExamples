@@ -24,14 +24,6 @@ function app_init_completed() {
   dbase_app_observe({ observed_item });
 
   function observed_item(item) {
-    let rewind_count = item.rewind_count;
-    if (rewind_count != null && rewind_count != my.rewind_count) {
-      // rewind action triggered
-      console.log('rewind action triggered my.rewind_count', my.rewind_count);
-      console.log('rewind_count', rewind_count);
-      my.rewind_count = rewind_count;
-    }
-    // {num: 1, text: 'Let...'}
     let line = item.line;
     if (line) {
       console.log('line', line);
@@ -43,12 +35,20 @@ function app_init_completed() {
 
 function full_read_action() {
   console.log('full_read_action');
-  dbase_update_item({ full_read: dbase_increment(1) });
+  dbase_issue_action('full_read');
+  // dbase_update_item({ full_read: dbase_increment(1) });
 }
 
 function rewind_action() {
   console.log('rewind_action');
-  dbase_update_item({ rewind_count: dbase_increment(1) });
+  dbase_issue_action('rewind_count');
+  // dbase_update_item({ rewind_count: dbase_increment(1) });
+}
+
+// dbase_issue_action('full_read');
+function dbase_issue_action(prop) {
+  console.log('dbase_issue_action', prop);
+  dbase_update_item({ [prop]: dbase_increment(1) });
 }
 
 function my_setup() {
