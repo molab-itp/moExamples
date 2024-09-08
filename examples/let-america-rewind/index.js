@@ -35,12 +35,12 @@ function app_init_completed() {
 
 function full_read_action() {
   console.log('full_read_action');
-  dbase_issue_action('full_read');
+  dbase_issue_action('action_full_read');
 }
 
 function rewind_action() {
   console.log('rewind_action');
-  dbase_issue_action('rewind_count');
+  dbase_issue_action('action_rewind');
 }
 
 // !!@ dbase_issue_action to p5moLibrary
