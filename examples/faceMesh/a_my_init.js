@@ -1,7 +1,7 @@
 //
 function my_init() {
   // updated to verify change on mobile
-  my.version = '?v=103';
+  my.version = '?v=104';
   my.isRemote = 1;
   // show detailed log
   my.logLoud = 1;
