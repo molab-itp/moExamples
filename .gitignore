@@ -1,8 +1,9 @@
 .DS_Store
 node_modules
+.env
+downloads
 p5moLibrary
 p5moRelease
 p5videoKit
 p5mirrorLib
-.env
-downloads
+moWebJam
