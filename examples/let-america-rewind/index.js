@@ -17,6 +17,8 @@ function document_loaded() {
   my_setup();
 
   dbase_app_init({ completed: app_init_completed });
+
+  id_footer.innerHTML = my.group + ' ' + id_footer.innerHTML;
 }
 
 function app_init_completed() {
@@ -27,8 +29,9 @@ function app_init_completed() {
     let line = item.line;
     if (line) {
       console.log('line', line);
-      id_line.innerText = `(${line.num}) ${line.text}`;
-      id_line.style.backgroundColor = line.color;
+      id_lineNum.innerText = `(${line.num})`;
+      id_lineText.innerText = line.text; // `(${line.num}) ${line.text}`;
+      id_lineText.style.backgroundColor = line.color;
     }
   }
 }
@@ -58,10 +61,17 @@ function my_setup() {
   my.roomName = 'm1-america';
   my.mo_app = 'mo-america-rewind';
   my.nameDevice = 'america';
-  // set group for all devices to share item values
-  my.group = 's0';
 
-  my.rewind_count = 0;
+  // set group for all devices to share item values
+  // my.group = 's0';
+
+  let params = get_url_params();
+  console.log('params', params);
+  my.group = params.group || 's0';
+  console.log('my.group', my.group);
+  if (my.group == 's0') {
+    my.roomName = 'm0-america';
+  }
 }
 
 function resize_window() {
