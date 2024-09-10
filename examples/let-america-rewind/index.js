@@ -55,7 +55,7 @@ function my_setup() {
   // my.fireb_config = 'jhtitp';
 
   my.dbase_rootPath = 'm0-@r-@w-';
-  my.roomName = 'm0-america';
+  my.roomName = 'm1-america';
   my.mo_app = 'mo-america-rewind';
   my.nameDevice = 'america';
   // set group for all devices to share item values
