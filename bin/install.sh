@@ -39,5 +39,15 @@ if [ ! -e "$dest" ]; then
   exit
 fi
 
+# check for destination moWebJam
+dest=moWebJam
+if [ ! -e "$dest" ]; then
+  git clone https://github.com/molab-itp/$dest.git $dest
+fi
+if [ ! -e "$dest" ]; then
+  echo "fail to clone to $dest"
+  exit
+fi
+
 # Begin in next branch
 git checkout next
