@@ -1,0 +1,35 @@
+jht@j_thompson p5moExamples % bin/install.sh 
+xcode-select: note: No developer tools were found, requesting install.
+If developer tools are located at a non-default location on disk, use `sudo xcode-select --switch path/to/Xcode.app` to specify the Xcode that you wish to use for command line developer tools, and cancel the installation dialog.
+See `man xcode-select` for more details.
+fail to clone to p5moLibrary
+jht@j_thompson p5moExamples % bin/install.sh
+xcode-select: note: No developer tools were found, requesting install.
+If developer tools are located at a non-default location on disk, use `sudo xcode-select --switch path/to/Xcode.app` to specify the Xcode that you wish to use for command line developer tools, and cancel the installation dialog.
+See `man xcode-select` for more details.
+fail to clone to p5moLibrary
+jht@j_thompson p5moExamples % bin/install.sh
+Cloning into 'p5moLibrary'...
+remote: Enumerating objects: 16898, done.
+remote: Counting objects: 100% (5175/5175), done.
+remote: Compressing objects: 100% (1081/1081), done.
+remote: Total 16898 (delta 4110), reused 5136 (delta 4079), pack-reused 11723 (from 1)
+Receiving objects: 100% (16898/16898), 144.61 MiB | 24.01 MiB/s, done.
+Resolving deltas: 100% (12769/12769), done.
+Updating files: 100% (237/237), done.
+Cloning into 'p5moRelease'...
+remote: Enumerating objects: 912, done.
+remote: Counting objects: 100% (912/912), done.
+remote: Compressing objects: 100% (803/803), done.
+remote: Total 912 (delta 589), reused 421 (delta 101), pack-reused 0 (from 0)
+Receiving objects: 100% (912/912), 195.54 KiB | 5.75 MiB/s, done.
+Resolving deltas: 100% (589/589), done.
+Cloning into 'p5videoKit'...
+remote: Enumerating objects: 5915, done.
+remote: Counting objects: 100% (620/620), done.
+remote: Compressing objects: 100% (283/283), done.
+remote: Total 5915 (delta 351), reused 564 (delta 314), pack-reused 5295 (from 1)
+Receiving objects: 100% (5915/5915), 7.85 MiB | 31.40 MiB/s, done.
+Resolving deltas: 100% (4350/4350), done.
+error: pathspec 'next' did not match any file(s) known to git
+jht@j_thompson p5moExamples % 
