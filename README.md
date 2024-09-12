@@ -28,7 +28,9 @@ The functions that include Firebase setup are in [p5moLibrary](https://github.co
 
 ## [github.io versions of examples](https://molab-itp.github.io/p5moExamples?v=109)
 
-- [examples/let-america-rewind](examples/let-america-rewind?v=109)
+- [examples/let-america-rewind s1](examples/let-america-rewind?v=109&group=s1)
+- [examples/let-america-rewind s2](examples/let-america-rewind?v=109&group=s2)
+
 - [examples/faceMesh](examples/faceMesh?v=109)
 
 - [examples/shout](examples/shout?v=109)
